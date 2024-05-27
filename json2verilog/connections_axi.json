@@ -1,0 +1,111 @@
+
+{
+    "instances": {
+        "m_axi_fifo_rd_instance": {
+            "ipRef": "axi_fifo_rd",
+            "description": "This axi_fifo is a master.",
+            "parameters":{
+                "ID_WIDTH" : "5",
+                "ADDR_WIDTH" : "32",
+                "DATA_WIDTH" : "32"
+            },
+            "defines": "null"
+        },
+        "s_axi_fifo_rd_instance": {
+            "ipRef": "axi_fifo_rd",
+            "description": "This axi_fifo is a slave.",
+            "parameters":{
+                "ID_WIDTH" : "5",
+                "ADDR_WIDTH" : "32",
+                "DATA_WIDTH" : "32"
+            },
+            "defines": "null"
+        }
+    },
+    "adHocConnections": {
+        "m_axi_fifo_rd_instance_m_axi_arid_s_axi_fifo_rd_instance_s_axi_arid": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": {
+                    "m_axi_arid": "ID_WIDTH-1:0"
+                }
+            },
+            "target": {
+                "instanceRef": "s_axi_fifo_rd_instance",
+                "portRef": {
+                    "m_axi_arid": "ID_WIDTH-1:0"
+                }
+            }
+        },
+        "m_axi_fifo_rd_instance_m_axi_araddr_s_axi_fifo_rd_instance_s_axi_araddr": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": {
+                    "araddr": "ADDR_WIDTH-1:0"
+                }
+            },
+            "target": {
+                "instanceRef": "s_axi_fifo_rd_instance",
+                "portRef": {
+                    "araddr": "ADDR_WIDTH-1:0"
+                }
+            }
+        },
+        "s_axi_fifo_rd_instance_s_axi_arready_m_axi_fifo_rd_instance_m_axi_arready": {
+            "initiator": {
+                "instanceRef": "s_axi_fifo_rd_instance",
+                "portRef": {
+                    "arready": "1"
+                }
+            },
+            "target": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": {
+                    "arready": "1"
+                }
+            }
+        },
+        "s_axi_fifo_rd_instance_s_axi_rid_m_axi_fifo_rd_instance_m_axi_rid": {
+            "initiator": {
+                "instanceRef": "s_axi_fifo_rd_instance",
+                "portRef": {
+                    "rid": "ID_WIDTH-1:0"
+                }
+            },
+            "target": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": {
+                    "rid": "ID_WIDTH-1:0"
+                }
+            }
+        },
+        "s_axi_fifo_rd_instance_s_axi_rdata_m_axi_fifo_rd_instance_m_axi_rdata": {
+            "initiator": {
+                "instanceRef": "s_axi_fifo_rd_instance",
+                "portRef": {
+                    "rdata": "DATA_WIDTH-1:0"
+                }
+            },
+            "target": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": {
+                    "rdata": "DATA_WIDTH-1:0"
+                }
+            }
+        },
+        "m_axi_fifo_rd_instance_m_axi_rready_s_axi_fifo_rd_instance_s_axi_rready": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": {
+                    "rready": "1"
+                }
+            },
+            "target": {
+                "instanceRef": "s_axi_fifo_rd_instance",
+                "portRef": {
+                    "rready": "1"
+                }
+            }
+        }
+    }
+}

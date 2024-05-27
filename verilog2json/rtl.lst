@@ -1,0 +1,5 @@
+./axi_demo/axi_fifo_rd.v
+./axi_demo/axi_fifo_wr.v
+./axi_demo/axi_crossbar_rd.v
+./axi_demo/axi_crossbar_wr.v
+

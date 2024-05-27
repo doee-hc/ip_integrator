@@ -1,0 +1,47 @@
+{
+
+    "adHOcConnections":{
+        "u_initiator_transmitter_sck_1_u_target_receiver_sck_1":{
+            "initiator":{
+                "instanceRef": "u_initiator_transmitter",
+                "portRef": {
+                    "sck": "1"
+                }
+            },
+            "target":{
+                "instanceRef": "u_target_receiver",
+                "portRef": {
+                    "sck": "1"
+                }
+            }            
+        },
+        "u_initiator_transmitter_ws_1_0_u_target_receiver_ws_1_0":{
+            "initiator":{
+                "instanceRef": "u_initiator_transmitter",
+                "portRef": {
+                    "ws": "1:0"
+                }
+            },
+            "target":{
+                "instanceRef": "u_target_receiver",
+                "portRef": {
+                    "ws": "1:0"
+                }
+            }            
+        },
+        "u_initiator_transmitter_sd_2_0_u_target_receiver_sd_3_1":{
+            "initiator":{
+                "instanceRef": "u_initiator_transmitter",
+                "portRef": {
+                    "sd": "2:0"
+                }
+            },
+            "target":{
+                "instanceRef": "u_target_receiver",
+                "portRef": {
+                    "sd": "3:1"
+                }
+            }            
+        }
+    }
+}

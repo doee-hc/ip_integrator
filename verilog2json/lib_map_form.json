@@ -1,0 +1,840 @@
+{
+    "result": [
+        {
+            "groupName": "IP_lib0",
+            "groupData": [
+                {
+                    "ipName": "axi_fifo_rd",
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_fifo_rd",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DATA_WIDTH": {
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "ID_WIDTH": {
+                                "value": "8"
+                            },
+                            "AR_FIFO": {
+                                "value": "1"
+                            },
+                            "R_FIFO": {
+                                "value": "2"
+                            }
+                        },
+                        "defines": "",
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_arid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_araddr": {
+                                "width": "ADDR_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arlen": {
+                                "width": "7:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arsize": {
+                                "width": "2:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arburst": {
+                                "width": "1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arlock": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_arqos": {
+                                "width": "3:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arvalid": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_arready": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_rid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rdata": {
+                                "width": "DATA_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rresp": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rlast": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_rvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_rready": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_arid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_araddr": {
+                                "width": "ADDR_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlen": {
+                                "width": "7:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arsize": {
+                                "width": "2:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arburst": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlock": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_arqos": {
+                                "width": "3:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_arready": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_rid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rdata": {
+                                "width": "DATA_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rresp": {
+                                "width": "1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rlast": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_rvalid": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_rready": {
+                                "width": "1",
+                                "direction": "output"
+                            }
+                        }
+                    }
+                },
+                {
+                    "ipName": "axi_fifo_wr",
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_fifo_wr",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DATA_WIDTH": {
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "ID_WIDTH": {
+                                "value": "8"
+                            },
+                            "AW_FIFO": {
+                                "value": "2"
+                            },
+                            "W_FIFO": {
+                                "value": "0"
+                            },
+                            "B_FIFO": {
+                                "value": "0"
+                            }
+                        },
+                        "defines": "",
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_awid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awaddr": {
+                                "width": "ADDR_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awlen": {
+                                "width": "7:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awsize": {
+                                "width": "2:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awburst": {
+                                "width": "1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awlock": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_awqos": {
+                                "width": "3:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awvalid": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_awready": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_wid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wdata": {
+                                "width": "DATA_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wstrb": {
+                                "width": "STRB_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wlast": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_wvalid": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_wready": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_bid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_bresp": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_bvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_bready": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_awid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awaddr": {
+                                "width": "ADDR_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlen": {
+                                "width": "7:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awsize": {
+                                "width": "2:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awburst": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlock": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_awqos": {
+                                "width": "3:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_awready": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_wid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wdata": {
+                                "width": "DATA_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wstrb": {
+                                "width": "STRB_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wlast": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_wvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_wready": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_bid": {
+                                "width": "ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_bresp": {
+                                "width": "1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_bvalid": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_bready": {
+                                "width": "1",
+                                "direction": "output"
+                            }
+                        }
+                    }
+                },
+                {
+                    "ipName": "axi_crossbar_rd",
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_crossbar_rd",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "M_REGIONS": {
+                                "value": "1"
+                            },
+                            "S_IF_COUNT": {
+                                "value": "4"
+                            },
+                            "M_IF_COUNT": {
+                                "value": "4"
+                            },
+                            "DATA_WIDTH": {
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "S_IF_ID_WIDTH": {
+                                "value": "8"
+                            },
+                            "M_IF_ID_WIDTH": {
+                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
+                            },
+                            "M_BASE_ADDR": {
+                                "value": "0"
+                            },
+                            "M_ADDR_WIDTH": {
+                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
+                            },
+                            "M_CONNECT": {
+                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
+                            },
+                            "S_AR_FIFO": {
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_R_FIFO": {
+                                "value": "{S_IF_COUNT{2'd2}}"
+                            },
+                            "M_AR_FIFO": {
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_R_FIFO": {
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            }
+                        },
+                        "defines": "",
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_arid": {
+                                "width": "S_IF_COUNT*S_IF_ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_araddr": {
+                                "width": "S_IF_COUNT*ADDR_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arlen": {
+                                "width": "S_IF_COUNT*8-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arsize": {
+                                "width": "S_IF_COUNT*3-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arburst": {
+                                "width": "S_IF_COUNT*2-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arlock": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arqos": {
+                                "width": "S_IF_COUNT*4-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arvalid": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_arready": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rid": {
+                                "width": "S_IF_COUNT*S_IF_ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rdata": {
+                                "width": "S_IF_COUNT*DATA_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rresp": {
+                                "width": "S_IF_COUNT*2-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rlast": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rvalid": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rready": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_arid": {
+                                "width": "M_IF_COUNT*M_IF_ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_araddr": {
+                                "width": "M_IF_COUNT*ADDR_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlen": {
+                                "width": "M_IF_COUNT*8-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arsize": {
+                                "width": "M_IF_COUNT*3-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arburst": {
+                                "width": "M_IF_COUNT*2-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlock": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arqos": {
+                                "width": "M_IF_COUNT*4-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arvalid": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arready": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rid": {
+                                "width": "M_IF_COUNT*M_IF_ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rdata": {
+                                "width": "M_IF_COUNT*DATA_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rresp": {
+                                "width": "M_IF_COUNT*2-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rlast": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rvalid": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_rready": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "rd_error_addr": {
+                                "width": "S_IF_COUNT*ADDR_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "rd_error_valid": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "rd_error_ready": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            }
+                        }
+                    }
+                },
+                {
+                    "ipName": "axi_crossbar_wr",
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_crossbar_wr",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "M_REGIONS": {
+                                "value": "1"
+                            },
+                            "S_IF_COUNT": {
+                                "value": "4"
+                            },
+                            "M_IF_COUNT": {
+                                "value": "4"
+                            },
+                            "DATA_WIDTH": {
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "S_IF_ID_WIDTH": {
+                                "value": "8"
+                            },
+                            "M_IF_ID_WIDTH": {
+                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
+                            },
+                            "M_BASE_ADDR": {
+                                "value": "0"
+                            },
+                            "M_ADDR_WIDTH": {
+                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
+                            },
+                            "M_CONNECT": {
+                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
+                            },
+                            "S_AW_FIFO": {
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_W_FIFO": {
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_B_FIFO": {
+                                "value": "{S_IF_COUNT{2'd1}}"
+                            },
+                            "M_AW_FIFO": {
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_W_FIFO": {
+                                "value": "{M_IF_COUNT{2'd2}}"
+                            },
+                            "M_B_FIFO": {
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            }
+                        },
+                        "defines": "",
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "s_axi_awid": {
+                                "width": "S_IF_COUNT*S_IF_ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awaddr": {
+                                "width": "S_IF_COUNT*ADDR_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awlen": {
+                                "width": "S_IF_COUNT*8-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awsize": {
+                                "width": "S_IF_COUNT*3-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awburst": {
+                                "width": "S_IF_COUNT*2-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awlock": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awqos": {
+                                "width": "S_IF_COUNT*4-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awvalid": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_awready": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_wid": {
+                                "width": "S_IF_COUNT*S_IF_ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wdata": {
+                                "width": "S_IF_COUNT*DATA_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wstrb": {
+                                "width": "S_IF_COUNT*STRB_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wlast": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wvalid": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "s_axi_wready": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_bid": {
+                                "width": "S_IF_COUNT*S_IF_ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_bresp": {
+                                "width": "S_IF_COUNT*2-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_bvalid": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_bready": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_awid": {
+                                "width": "M_IF_COUNT*M_IF_ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awaddr": {
+                                "width": "M_IF_COUNT*ADDR_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlen": {
+                                "width": "M_IF_COUNT*8-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awsize": {
+                                "width": "M_IF_COUNT*3-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awburst": {
+                                "width": "M_IF_COUNT*2-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlock": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awqos": {
+                                "width": "M_IF_COUNT*4-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awvalid": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awready": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_wid": {
+                                "width": "M_IF_COUNT*M_IF_ID_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wdata": {
+                                "width": "M_IF_COUNT*DATA_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wstrb": {
+                                "width": "M_IF_COUNT*STRB_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wlast": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wvalid": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_wready": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_bid": {
+                                "width": "M_IF_COUNT*M_IF_ID_WIDTH-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_bresp": {
+                                "width": "M_IF_COUNT*2-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_bvalid": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "input"
+                            },
+                            "m_axi_bready": {
+                                "width": "M_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "wr_error_addr": {
+                                "width": "S_IF_COUNT*ADDR_WIDTH-1:0",
+                                "direction": "output"
+                            },
+                            "wr_error_valid": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "output"
+                            },
+                            "wr_error_ready": {
+                                "width": "S_IF_COUNT-1:0",
+                                "direction": "input"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
