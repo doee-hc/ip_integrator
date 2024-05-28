@@ -21,24 +21,12 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
-                            "DATA_WIDTH": {
-                                "value": "32"
-                            },
-                            "ADDR_WIDTH": {
-                                "value": "32"
-                            },
-                            "STRB_WIDTH": {
-                                "value": "(DATA_WIDTH/8)"
-                            },
-                            "ID_WIDTH": {
-                                "value": "8"
-                            },
-                            "AR_FIFO": {
-                                "value": "1"
-                            },
-                            "R_FIFO": {
-                                "value": "2"
-                            }
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "ID_WIDTH": "8",
+                            "AR_FIFO": "1",
+                            "R_FIFO": "2"
                         },
                         "defines": "",
                         "ports": {
@@ -191,27 +179,13 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
-                            "DATA_WIDTH": {
-                                "value": "32"
-                            },
-                            "ADDR_WIDTH": {
-                                "value": "32"
-                            },
-                            "STRB_WIDTH": {
-                                "value": "(DATA_WIDTH/8)"
-                            },
-                            "ID_WIDTH": {
-                                "value": "8"
-                            },
-                            "AW_FIFO": {
-                                "value": "2"
-                            },
-                            "W_FIFO": {
-                                "value": "0"
-                            },
-                            "B_FIFO": {
-                                "value": "0"
-                            }
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "ID_WIDTH": "8",
+                            "AW_FIFO": "2",
+                            "W_FIFO": "0",
+                            "B_FIFO": "0"
                         },
                         "defines": "",
                         "ports": {
@@ -396,51 +370,21 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
-                            "M_REGIONS": {
-                                "value": "1"
-                            },
-                            "S_IF_COUNT": {
-                                "value": "4"
-                            },
-                            "M_IF_COUNT": {
-                                "value": "4"
-                            },
-                            "DATA_WIDTH": {
-                                "value": "32"
-                            },
-                            "ADDR_WIDTH": {
-                                "value": "32"
-                            },
-                            "STRB_WIDTH": {
-                                "value": "(DATA_WIDTH/8)"
-                            },
-                            "S_IF_ID_WIDTH": {
-                                "value": "8"
-                            },
-                            "M_IF_ID_WIDTH": {
-                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
-                            },
-                            "M_BASE_ADDR": {
-                                "value": "0"
-                            },
-                            "M_ADDR_WIDTH": {
-                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
-                            },
-                            "M_CONNECT": {
-                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
-                            },
-                            "S_AR_FIFO": {
-                                "value": "{S_IF_COUNT{2'd0}}"
-                            },
-                            "S_R_FIFO": {
-                                "value": "{S_IF_COUNT{2'd2}}"
-                            },
-                            "M_AR_FIFO": {
-                                "value": "{M_IF_COUNT{2'd1}}"
-                            },
-                            "M_R_FIFO": {
-                                "value": "{M_IF_COUNT{2'd0}}"
-                            }
+                            "M_REGIONS": "1",
+                            "S_IF_COUNT": "4",
+                            "M_IF_COUNT": "4",
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "S_IF_ID_WIDTH": "8",
+                            "M_IF_ID_WIDTH": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)",
+                            "M_BASE_ADDR": "0",
+                            "M_ADDR_WIDTH": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}",
+                            "M_CONNECT": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}",
+                            "S_AR_FIFO": "{S_IF_COUNT{2'd0}}",
+                            "S_R_FIFO": "{S_IF_COUNT{2'd2}}",
+                            "M_AR_FIFO": "{M_IF_COUNT{2'd1}}",
+                            "M_R_FIFO": "{M_IF_COUNT{2'd0}}"
                         },
                         "defines": "",
                         "ports": {
@@ -605,57 +549,23 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
-                            "M_REGIONS": {
-                                "value": "1"
-                            },
-                            "S_IF_COUNT": {
-                                "value": "4"
-                            },
-                            "M_IF_COUNT": {
-                                "value": "4"
-                            },
-                            "DATA_WIDTH": {
-                                "value": "32"
-                            },
-                            "ADDR_WIDTH": {
-                                "value": "32"
-                            },
-                            "STRB_WIDTH": {
-                                "value": "(DATA_WIDTH/8)"
-                            },
-                            "S_IF_ID_WIDTH": {
-                                "value": "8"
-                            },
-                            "M_IF_ID_WIDTH": {
-                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
-                            },
-                            "M_BASE_ADDR": {
-                                "value": "0"
-                            },
-                            "M_ADDR_WIDTH": {
-                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
-                            },
-                            "M_CONNECT": {
-                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
-                            },
-                            "S_AW_FIFO": {
-                                "value": "{S_IF_COUNT{2'd0}}"
-                            },
-                            "S_W_FIFO": {
-                                "value": "{S_IF_COUNT{2'd0}}"
-                            },
-                            "S_B_FIFO": {
-                                "value": "{S_IF_COUNT{2'd1}}"
-                            },
-                            "M_AW_FIFO": {
-                                "value": "{M_IF_COUNT{2'd1}}"
-                            },
-                            "M_W_FIFO": {
-                                "value": "{M_IF_COUNT{2'd2}}"
-                            },
-                            "M_B_FIFO": {
-                                "value": "{M_IF_COUNT{2'd0}}"
-                            }
+                            "M_REGIONS": "1",
+                            "S_IF_COUNT": "4",
+                            "M_IF_COUNT": "4",
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "S_IF_ID_WIDTH": "8",
+                            "M_IF_ID_WIDTH": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)",
+                            "M_BASE_ADDR": "0",
+                            "M_ADDR_WIDTH": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}",
+                            "M_CONNECT": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}",
+                            "S_AW_FIFO": "{S_IF_COUNT{2'd0}}",
+                            "S_W_FIFO": "{S_IF_COUNT{2'd0}}",
+                            "S_B_FIFO": "{S_IF_COUNT{2'd1}}",
+                            "M_AW_FIFO": "{M_IF_COUNT{2'd1}}",
+                            "M_W_FIFO": "{M_IF_COUNT{2'd2}}",
+                            "M_B_FIFO": "{M_IF_COUNT{2'd0}}"
                         },
                         "defines": "",
                         "ports": {

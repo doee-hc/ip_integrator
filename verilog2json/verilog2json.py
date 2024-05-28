@@ -24,7 +24,7 @@ def parse_verilog(verilog_file,lib_modules):
         define_matches = define_re.findall(verilog_code)
         ifdefine_matches = ifdefine_re.findall(verilog_code)
 
-        parameters = {name : {"value":value} for name, value in param_matches}
+        parameters = {name : value for name, value in param_matches}
         ports = {name : {"width":width.strip('[]') if width else '1','direction': direction} for direction, _,width,name in port_matches}
         # ports = []
         # for port_match in port_matches:

@@ -26,85 +26,73 @@
         "m_axi_fifo_rd_instance_m_axi_arid_s_axi_fifo_rd_instance_s_axi_arid": {
             "initiator": {
                 "instanceRef": "m_axi_fifo_rd_instance",
-                "portRef": {
-                    "m_axi_arid": "ID_WIDTH-1:0"
-                }
+                "portRef": "m_axi_arid",
+                "width": "ID_WIDTH-1:0"
             },
             "target": {
                 "instanceRef": "s_axi_fifo_rd_instance",
-                "portRef": {
-                    "m_axi_arid": "ID_WIDTH-1:0"
-                }
+                "portRef": "s_axi_arid",
+                "width": "ID_WIDTH-1:0"
             }
         },
         "m_axi_fifo_rd_instance_m_axi_araddr_s_axi_fifo_rd_instance_s_axi_araddr": {
             "initiator": {
                 "instanceRef": "m_axi_fifo_rd_instance",
-                "portRef": {
-                    "araddr": "ADDR_WIDTH-1:0"
-                }
+                "portRef":  "m_axi_araddr",
+                "width": "ADDR_WIDTH-1:0"
             },
             "target": {
                 "instanceRef": "s_axi_fifo_rd_instance",
-                "portRef": {
-                    "araddr": "ADDR_WIDTH-1:0"
-                }
+                "portRef": "s_axi_araddr",
+                "width": "ADDR_WIDTH-1:0"
             }
         },
         "s_axi_fifo_rd_instance_s_axi_arready_m_axi_fifo_rd_instance_m_axi_arready": {
             "initiator": {
                 "instanceRef": "s_axi_fifo_rd_instance",
-                "portRef": {
-                    "arready": "1"
-                }
+                "portRef": "s_axi_arready",
+                "width":  "1"
             },
             "target": {
                 "instanceRef": "m_axi_fifo_rd_instance",
-                "portRef": {
-                    "arready": "1"
-                }
+                "portRef": "m_axi_arready",
+                "width":  "1"
             }
         },
         "s_axi_fifo_rd_instance_s_axi_rid_m_axi_fifo_rd_instance_m_axi_rid": {
             "initiator": {
                 "instanceRef": "s_axi_fifo_rd_instance",
-                "portRef": {
-                    "rid": "ID_WIDTH-1:0"
-                }
+                "portRef":  "m_axi_rid",
+                "width": "ID_WIDTH-1:0"
             },
             "target": {
                 "instanceRef": "m_axi_fifo_rd_instance",
-                "portRef": {
-                    "rid": "ID_WIDTH-1:0"
-                }
+                "portRef": "s_axi_rid",
+                "width":  "ID_WIDTH-1:0"
             }
         },
         "s_axi_fifo_rd_instance_s_axi_rdata_m_axi_fifo_rd_instance_m_axi_rdata": {
             "initiator": {
                 "instanceRef": "s_axi_fifo_rd_instance",
-                "portRef": {
-                    "rdata": "DATA_WIDTH-1:0"
-                }
+                "portRef": "m_axi_rdata",
+                "width":  "DATA_WIDTH-1:0"
             },
             "target": {
                 "instanceRef": "m_axi_fifo_rd_instance",
-                "portRef": {
-                    "rdata": "DATA_WIDTH-1:0"
-                }
+                "portRef": "s_axi_rdata",
+                "width":  "DATA_WIDTH-1:0"
             }
         },
         "m_axi_fifo_rd_instance_m_axi_rready_s_axi_fifo_rd_instance_s_axi_rready": {
             "initiator": {
                 "instanceRef": "m_axi_fifo_rd_instance",
-                "portRef": {
-                    "rready": "1"
-                }
+                "portRef": "s_axi_rready",
+                "width":  "1"
             },
             "target": {
                 "instanceRef": "s_axi_fifo_rd_instance",
-                "portRef": {
-                    "rready": "1"
-                }
+                "portRef": "m_axi_rready",
+                "width":  "1"
             }
         }
     }
