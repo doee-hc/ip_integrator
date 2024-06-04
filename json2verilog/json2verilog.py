@@ -1,6 +1,7 @@
 import json
 import ast
 import operator
+import argparse
 
 def clog2(x):
     if x <= 0:
@@ -76,12 +77,12 @@ def generate_wire_declaration(connection, data):
     parts = width.split(':')
     if len(parts) == 1:
         # 1bit
-        return f"      wire {port};\n"
+        return f"      wire {instance_ref}_{port};\n"
     elif len(parts) == 2:
         # 多位宽的情况
         width_l = eval_expr(parts[0], params)
         width_r = eval_expr(parts[1], params)
-        return f"      wire [{width_l}:{width_r}] {port};\n"
+        return f"      wire [{width_l}:{width_r}] {instance_ref}_{port};\n"
     else:
         # 如果分割后的部分不是1也不是2，抛出异常
         raise ValueError(f"Invalid width format: {width}")
@@ -97,8 +98,12 @@ def generate_verilog(json_file_name,verilog_file_name):
     # Start generating Verilog code
     verilog_code = "module top_module();\n\n"
 
+
+    instances_ports = {}
+
     # Generate parameter and port declarations
     for instance_name, instance in data['instances'].items():
+        instances_ports.update({instance_name:[]})
         # Parameters
         for param, value in instance['parameters'].items():
             verilog_code += f"      localparam {instance_name}_{param} = {value};\n"
@@ -106,10 +111,16 @@ def generate_verilog(json_file_name,verilog_file_name):
 
 
     for connection in data['adHocConnections'].values():
+        target_inst = connection['target']['instanceRef']
+        target_port = connection['target']['portRef']
+        initiator_inst = connection['initiator']['instanceRef']
+        initiator_port = connection['initiator']['portRef']
+        instances_ports[target_inst].append(target_port)
+        instances_ports[initiator_inst].append(initiator_port)
         verilog_code += generate_wire_declaration(connection['initiator'], data)
         verilog_code += generate_wire_declaration(connection['target'], data)
         verilog_code += "\n"
-        verilog_code += f"      assign {connection['target']['portRef']} = {connection['initiator']['portRef']};\n"
+        verilog_code += f"      assign {target_inst}_{target_port} = {initiator_inst}_{initiator_port};\n"
         verilog_code += "\n"
         
 
@@ -122,21 +133,28 @@ def generate_verilog(json_file_name,verilog_file_name):
             comma = "," if i < len(params) - 1 else ""
             verilog_code += f"        .{param}({instance_name}_{param}){comma}\n"
         verilog_code += f"    ) {instance_name} (\n"
-        for param in params.keys():
-            prefix = "m_" if "master" in instance['description'] else "s_"
-            verilog_code += f"        .{prefix}{param.lower()}({prefix}{param.lower()}),\n"
+        for port in instances_ports[instance_name]:
+            verilog_code += f"      .{port}({instance_name}_{port}),\n"
         verilog_code = verilog_code.rstrip(",\n") + "\n    );\n\n"
-
 
     verilog_code += "\nendmodule"
 
     with open(verilog_file_name, 'w') as verilog_file:
         verilog_file.write(verilog_code)
 
-json_file_name = 'connections_axi.json'
-verilog_file_name = 'top.v'
 
-generate_verilog(json_file_name,verilog_file_name)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Convert JSON files to Verilog.')
+    parser.add_argument('-f', '--file', help='Single JSON file to process')
+    parser.add_argument('-o', '--output', required=True, help='Output Verilog file name')
+    args = parser.parse_args()
 
-# Output Verilog code
-print(f"{json_file_name} translate to {verilog_file_name}")
+
+    if not args.file:
+        parser.error('No input files provided. Use -f option.')
+
+    generate_verilog(args.file, args.output)
+    # Output Verilog code
+    print(f"{args.file} translate to {args.output}")
+
+
