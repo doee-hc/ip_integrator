@@ -1,6 +1,8 @@
 import re
 import json
 import os
+import argparse
+
 def parse_verilog(verilog_file,lib_modules):
     with open(verilog_file, 'r') as file:
         verilog_code = file.read()
@@ -70,11 +72,7 @@ def parse_verilog(verilog_file,lib_modules):
         }
         lib_modules.append(module_info)
 
-def process_filelist(filelist_path,json_file_name):
-    # Read filelist to get the list of Verilog files
-    with open(filelist_path, 'r') as filelist:
-        verilog_files = [line.strip() for line in filelist.readlines() if line.strip().endswith('.v')]
-
+def process_filelist(verilog_files,group_name,json_file_name):
     lib_modules = []
     # Process each Verilog file and generate JSON
     for verilog_file_path in verilog_files:
@@ -98,11 +96,29 @@ def process_filelist(filelist_path,json_file_name):
     with open(json_file_name, 'a') as json_file:
         json_file.write(json_output)
 
-json_file_name = 'lib_map_form.json'
-group_name = 'IP_lib0'
-with open(json_file_name, 'w') as json_file:
-    json_file.write('')
 
-process_filelist('rtl.lst',json_file_name)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Convert Verilog files to JSON.')
+    parser.add_argument('-f', '--file', help='Single Verilog file to process')
+    parser.add_argument('-l', '--list', help='File containing a list of Verilog files to process')
+    parser.add_argument('-o', '--output', required=True, help='Output JSON file name')
+    parser.add_argument('-g', '--group', default='IP_lib', help='Group name for the IPs in the JSON file')
+    args = parser.parse_args()
+
+    files_to_process = []
+    if args.file:
+        files_to_process.append(args.file)
+    elif args.list:
+        # Read filelist to get the list of Verilog files
+        with open(args.list, 'r') as filelist:
+            files_to_process.extend([line.strip() for line in filelist.readlines() if line.strip().endswith('.v') and not line.strip().startswith('#')])
+
+    if not files_to_process:
+        parser.error('No input files provided. Use -f or -l option.')
+
+    with open(args.output, 'w') as json_file:
+        json_file.write('')
+
+    process_filelist(files_to_process,args.group,args.output)
 
 

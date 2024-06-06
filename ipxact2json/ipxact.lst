@@ -1,0 +1,4 @@
+./axi_xml/axi_builder/export/axi_crossbar_rd.xml
+./axi_xml/axi_builder/export/axi_crossbar_wr.xml
+./axi_xml/axi_builder/export/axi_fifo_rd.xml
+./axi_xml/axi_builder/export/axi_fifo_wr.xml
