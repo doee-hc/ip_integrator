@@ -12,6 +12,12 @@ def parse_ports(ports_element, ns):
     ports = []
     for port in ports_element.findall(f'{ns}port'):
         direction = port.find(f'{ns}wire/{ns}direction').text
+
+        if direction == "in":
+            direction = "input"
+        elif direction == "out":
+            direction = "output"            
+
         port_name = port.find(f'{ns}name').text
 
         vector = port.find(f'{ns}wire/{ns}vectors/{ns}vector')
@@ -43,7 +49,7 @@ def ipxact_to_json(ipxact_file, group_name):
     description_element = root.find(f'{ns_tag}:description', nsmap)
 
     component = {
-        'IP_name': root.find(f'{ns_tag}:name', nsmap).text,
+        'ipName': root.find(f'{ns_tag}:name', nsmap).text,
         'style': {
             'width': 80,
             'height': 60,
@@ -60,11 +66,9 @@ def ipxact_to_json(ipxact_file, group_name):
             'version': root.find(f'{ns_tag}:version', nsmap).text,
             #'description': root.find(f'{ns_tag}:model/{ns_tag}:instantiations/{ns_tag}:componentInstantiation/{ns_tag}:description', nsmap).text,
             'description': description_element.text if description_element is not None else None,
-            'parameters': [],
+            'parameters': {},
             'defines': "",
-            'inputs': [],
-            'outputs': [],
-            'inouts': []
+            "ports": {}
         }
     }
 
@@ -72,24 +76,22 @@ def ipxact_to_json(ipxact_file, group_name):
     for param in root.findall(f'{ns_tag}:model/{ns_tag}:instantiations/{ns_tag}:componentInstantiation/{ns_tag}:moduleParameters/{ns_tag}:moduleParameter', nsmap):
         name = param.find(f'{ns_tag}:name', nsmap).text
         value = param.find(f'{ns_tag}:value', nsmap).text
-        component['content']['parameters'].append({name: value})
+        component['content']['parameters'][name] = value
         
 
     # xilinx ip parameters parser
     for param in root.findall(f'{ns_tag}:parameters/{ns_tag}:parameter', nsmap):
         name = param.find(f'{ns_tag}:name', nsmap).text
         value = param.find(f'{ns_tag}:value', nsmap).text
-        component['content']['parameters'].append({name: value})
+        component['content']['parameters'][name] = value
 
     # Parse ports
     ports = parse_ports(root.find(f'{ns_tag}:model/{ns_tag}:ports', nsmap), ns)
     for port in ports:
-        if port['direction'] == 'in':
-            component['content']['inputs'].append({port['name']: port['width']})
-        elif port['direction'] == 'out':
-            component['content']['outputs'].append({port['name']: port['width']})
-        else:  # inout
-            component['content']['inouts'].append({port['name']: port['width']})
+        component['content']['ports'][port['name']] = {
+            'width':port['width'],
+            'direction':port['direction']
+        }
 
     return component
 

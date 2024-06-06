@@ -4,7 +4,7 @@
             "groupName": "IP_lib",
             "groupData": [
                 {
-                    "IP_name": "axi_crossbar_rd",
+                    "ipName": "axi_crossbar_rd",
                     "style": {
                         "width": 80,
                         "height": 60,
@@ -20,168 +20,170 @@
                         "vendor": "ThirdParty",
                         "version": "1.0",
                         "description": null,
-                        "parameters": [
-                            {
-                                "M_REGIONS": "1"
-                            },
-                            {
-                                "S_IF_COUNT": "4"
-                            },
-                            {
-                                "M_IF_COUNT": "4"
-                            },
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "S_IF_ID_WIDTH": "8"
-                            },
-                            {
-                                "M_IF_ID_WIDTH": "(S_IF_ID_WIDTH + $clog2(S_IF_COUNT))"
-                            },
-                            {
-                                "M_BASE_ADDR": "0"
-                            },
-                            {
-                                "M_ADDR_WIDTH": "{M_IF_COUNT {{M_REGIONS {32'd24}}}}"
-                            },
-                            {
-                                "M_CONNECT": "{M_IF_COUNT {{S_IF_COUNT {1'b1}}}}"
-                            },
-                            {
-                                "S_AR_FIFO": "{S_IF_COUNT {2'b0}}"
-                            },
-                            {
-                                "S_R_FIFO": "{S_IF_COUNT {2'd2}}"
-                            },
-                            {
-                                "M_AR_FIFO": "{M_IF_COUNT {2'b1}}"
-                            },
-                            {
-                                "M_R_FIFO": "{M_IF_COUNT {2'b0}}"
-                            }
-                        ],
+                        "parameters": {
+                            "M_REGIONS": "1",
+                            "S_IF_COUNT": "4",
+                            "M_IF_COUNT": "4",
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "S_IF_ID_WIDTH": "8",
+                            "M_IF_ID_WIDTH": "(S_IF_ID_WIDTH + $clog2(S_IF_COUNT))",
+                            "M_BASE_ADDR": "0",
+                            "M_ADDR_WIDTH": "{M_IF_COUNT {{M_REGIONS {32'd24}}}}",
+                            "M_CONNECT": "{M_IF_COUNT {{S_IF_COUNT {1'b1}}}}",
+                            "S_AR_FIFO": "{S_IF_COUNT {2'b0}}",
+                            "S_R_FIFO": "{S_IF_COUNT {2'd2}}",
+                            "M_AR_FIFO": "{M_IF_COUNT {2'b1}}",
+                            "M_R_FIFO": "{M_IF_COUNT {2'b0}}"
+                        },
                         "defines": "",
-                        "inputs": [
-                            {
-                                "clk": "1"
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_arready": "(M_IF_COUNT-1):0"
+                            "m_axi_arready": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rdata": "((M_IF_COUNT*DATA_WIDTH)-1):0"
+                            "m_axi_rdata": {
+                                "width": "((M_IF_COUNT*DATA_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rid": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0"
+                            "m_axi_rid": {
+                                "width": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rlast": "(M_IF_COUNT-1):0"
+                            "m_axi_rlast": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rresp": "((M_IF_COUNT*2)-1):0"
+                            "m_axi_rresp": {
+                                "width": "((M_IF_COUNT*2)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rvalid": "(M_IF_COUNT-1):0"
+                            "m_axi_rvalid": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "rd_error_ready": "(S_IF_COUNT-1):0"
+                            "rd_error_ready": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "rst": "1"
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_araddr": "((S_IF_COUNT*ADDR_WIDTH)-1):0"
+                            "s_axi_araddr": {
+                                "width": "((S_IF_COUNT*ADDR_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arburst": "((S_IF_COUNT*2)-1):0"
+                            "s_axi_arburst": {
+                                "width": "((S_IF_COUNT*2)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arid": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0"
+                            "s_axi_arid": {
+                                "width": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arlen": "((S_IF_COUNT*8)-1):0"
+                            "s_axi_arlen": {
+                                "width": "((S_IF_COUNT*8)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arlock": "(S_IF_COUNT-1):0"
+                            "s_axi_arlock": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arqos": "((S_IF_COUNT*4)-1):0"
+                            "s_axi_arqos": {
+                                "width": "((S_IF_COUNT*4)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arsize": "((S_IF_COUNT*3)-1):0"
+                            "s_axi_arsize": {
+                                "width": "((S_IF_COUNT*3)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arvalid": "(S_IF_COUNT-1):0"
+                            "s_axi_arvalid": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_rready": "(S_IF_COUNT-1):0"
+                            "s_axi_rready": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
+                            },
+                            "m_axi_araddr": {
+                                "width": "((M_IF_COUNT*ADDR_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arburst": {
+                                "width": "((M_IF_COUNT*2)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arid": {
+                                "width": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlen": {
+                                "width": "((M_IF_COUNT*8)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlock": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arqos": {
+                                "width": "((M_IF_COUNT*4)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arsize": {
+                                "width": "((M_IF_COUNT*3)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arvalid": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_rready": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "rd_error_addr": {
+                                "width": "((S_IF_COUNT*ADDR_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "rd_error_valid": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_arready": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_rdata": {
+                                "width": "((S_IF_COUNT*DATA_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_rid": {
+                                "width": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_rlast": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_rresp": {
+                                "width": "((S_IF_COUNT*2)-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_rvalid": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
                             }
-                        ],
-                        "outputs": [
-                            {
-                                "m_axi_araddr": "((M_IF_COUNT*ADDR_WIDTH)-1):0"
-                            },
-                            {
-                                "m_axi_arburst": "((M_IF_COUNT*2)-1):0"
-                            },
-                            {
-                                "m_axi_arid": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0"
-                            },
-                            {
-                                "m_axi_arlen": "((M_IF_COUNT*8)-1):0"
-                            },
-                            {
-                                "m_axi_arlock": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "m_axi_arqos": "((M_IF_COUNT*4)-1):0"
-                            },
-                            {
-                                "m_axi_arsize": "((M_IF_COUNT*3)-1):0"
-                            },
-                            {
-                                "m_axi_arvalid": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "m_axi_rready": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "rd_error_addr": "((S_IF_COUNT*ADDR_WIDTH)-1):0"
-                            },
-                            {
-                                "rd_error_valid": "(S_IF_COUNT-1):0"
-                            },
-                            {
-                                "s_axi_arready": "(S_IF_COUNT-1):0"
-                            },
-                            {
-                                "s_axi_rdata": "((S_IF_COUNT*DATA_WIDTH)-1):0"
-                            },
-                            {
-                                "s_axi_rid": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0"
-                            },
-                            {
-                                "s_axi_rlast": "(S_IF_COUNT-1):0"
-                            },
-                            {
-                                "s_axi_rresp": "((S_IF_COUNT*2)-1):0"
-                            },
-                            {
-                                "s_axi_rvalid": "(S_IF_COUNT-1):0"
-                            }
-                        ],
-                        "inouts": []
+                        }
                     }
                 },
                 {
-                    "IP_name": "axi_crossbar_wr",
+                    "ipName": "axi_crossbar_wr",
                     "style": {
                         "width": 80,
                         "height": 60,
@@ -197,198 +199,204 @@
                         "vendor": "ThirdParty",
                         "version": "1.0",
                         "description": null,
-                        "parameters": [
-                            {
-                                "M_REGIONS": "1"
-                            },
-                            {
-                                "S_IF_COUNT": "4"
-                            },
-                            {
-                                "M_IF_COUNT": "4"
-                            },
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "S_IF_ID_WIDTH": "8"
-                            },
-                            {
-                                "M_IF_ID_WIDTH": "(S_IF_ID_WIDTH + $clog2(S_IF_COUNT))"
-                            },
-                            {
-                                "M_BASE_ADDR": "0"
-                            },
-                            {
-                                "M_ADDR_WIDTH": "{M_IF_COUNT {{M_REGIONS {32'd24}}}}"
-                            },
-                            {
-                                "M_CONNECT": "{M_IF_COUNT {{S_IF_COUNT {1'b1}}}}"
-                            },
-                            {
-                                "S_AW_FIFO": "{S_IF_COUNT {2'b0}}"
-                            },
-                            {
-                                "S_W_FIFO": "{S_IF_COUNT {2'b0}}"
-                            },
-                            {
-                                "S_B_FIFO": "{S_IF_COUNT {2'b1}}"
-                            },
-                            {
-                                "M_AW_FIFO": "{M_IF_COUNT {2'b1}}"
-                            },
-                            {
-                                "M_W_FIFO": "{M_IF_COUNT {2'd2}}"
-                            },
-                            {
-                                "M_B_FIFO": "{M_IF_COUNT {2'b0}}"
-                            }
-                        ],
+                        "parameters": {
+                            "M_REGIONS": "1",
+                            "S_IF_COUNT": "4",
+                            "M_IF_COUNT": "4",
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "S_IF_ID_WIDTH": "8",
+                            "M_IF_ID_WIDTH": "(S_IF_ID_WIDTH + $clog2(S_IF_COUNT))",
+                            "M_BASE_ADDR": "0",
+                            "M_ADDR_WIDTH": "{M_IF_COUNT {{M_REGIONS {32'd24}}}}",
+                            "M_CONNECT": "{M_IF_COUNT {{S_IF_COUNT {1'b1}}}}",
+                            "S_AW_FIFO": "{S_IF_COUNT {2'b0}}",
+                            "S_W_FIFO": "{S_IF_COUNT {2'b0}}",
+                            "S_B_FIFO": "{S_IF_COUNT {2'b1}}",
+                            "M_AW_FIFO": "{M_IF_COUNT {2'b1}}",
+                            "M_W_FIFO": "{M_IF_COUNT {2'd2}}",
+                            "M_B_FIFO": "{M_IF_COUNT {2'b0}}"
+                        },
                         "defines": "",
-                        "inputs": [
-                            {
-                                "clk": "1"
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_awready": "(M_IF_COUNT-1):0"
+                            "m_axi_awready": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_bid": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0"
+                            "m_axi_bid": {
+                                "width": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_bresp": "((M_IF_COUNT*2)-1):0"
+                            "m_axi_bresp": {
+                                "width": "((M_IF_COUNT*2)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_bvalid": "(M_IF_COUNT-1):0"
+                            "m_axi_bvalid": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_wready": "(M_IF_COUNT-1):0"
+                            "m_axi_wready": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "rst": "1"
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awaddr": "((S_IF_COUNT*ADDR_WIDTH)-1):0"
+                            "s_axi_awaddr": {
+                                "width": "((S_IF_COUNT*ADDR_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awburst": "((S_IF_COUNT*2)-1):0"
+                            "s_axi_awburst": {
+                                "width": "((S_IF_COUNT*2)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awid": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0"
+                            "s_axi_awid": {
+                                "width": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awlen": "((S_IF_COUNT*8)-1):0"
+                            "s_axi_awlen": {
+                                "width": "((S_IF_COUNT*8)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awlock": "(S_IF_COUNT-1):0"
+                            "s_axi_awlock": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awqos": "((S_IF_COUNT*4)-1):0"
+                            "s_axi_awqos": {
+                                "width": "((S_IF_COUNT*4)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awsize": "((S_IF_COUNT*3)-1):0"
+                            "s_axi_awsize": {
+                                "width": "((S_IF_COUNT*3)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awvalid": "(S_IF_COUNT-1):0"
+                            "s_axi_awvalid": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_bready": "(S_IF_COUNT-1):0"
+                            "s_axi_bready": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wdata": "((S_IF_COUNT*DATA_WIDTH)-1):0"
+                            "s_axi_wdata": {
+                                "width": "((S_IF_COUNT*DATA_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wid": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0"
+                            "s_axi_wid": {
+                                "width": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wlast": "(S_IF_COUNT-1):0"
+                            "s_axi_wlast": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wstrb": "((S_IF_COUNT*STRB_WIDTH)-1):0"
+                            "s_axi_wstrb": {
+                                "width": "((S_IF_COUNT*STRB_WIDTH)-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wvalid": "(S_IF_COUNT-1):0"
+                            "s_axi_wvalid": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "wr_error_ready": "(S_IF_COUNT-1):0"
+                            "wr_error_ready": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "input"
+                            },
+                            "m_axi_awaddr": {
+                                "width": "((M_IF_COUNT*ADDR_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awburst": {
+                                "width": "((M_IF_COUNT*2)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awid": {
+                                "width": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlen": {
+                                "width": "((M_IF_COUNT*8)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlock": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awqos": {
+                                "width": "((M_IF_COUNT*4)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awsize": {
+                                "width": "((M_IF_COUNT*3)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awvalid": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_bready": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wdata": {
+                                "width": "((M_IF_COUNT*DATA_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wid": {
+                                "width": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wlast": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wstrb": {
+                                "width": "((M_IF_COUNT*STRB_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wvalid": {
+                                "width": "(M_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_awready": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_bid": {
+                                "width": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_bresp": {
+                                "width": "((S_IF_COUNT*2)-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_bvalid": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_wready": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
+                            },
+                            "wr_error_addr": {
+                                "width": "((S_IF_COUNT*ADDR_WIDTH)-1):0",
+                                "direction": "output"
+                            },
+                            "wr_error_valid": {
+                                "width": "(S_IF_COUNT-1):0",
+                                "direction": "output"
                             }
-                        ],
-                        "outputs": [
-                            {
-                                "m_axi_awaddr": "((M_IF_COUNT*ADDR_WIDTH)-1):0"
-                            },
-                            {
-                                "m_axi_awburst": "((M_IF_COUNT*2)-1):0"
-                            },
-                            {
-                                "m_axi_awid": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0"
-                            },
-                            {
-                                "m_axi_awlen": "((M_IF_COUNT*8)-1):0"
-                            },
-                            {
-                                "m_axi_awlock": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "m_axi_awqos": "((M_IF_COUNT*4)-1):0"
-                            },
-                            {
-                                "m_axi_awsize": "((M_IF_COUNT*3)-1):0"
-                            },
-                            {
-                                "m_axi_awvalid": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "m_axi_bready": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "m_axi_wdata": "((M_IF_COUNT*DATA_WIDTH)-1):0"
-                            },
-                            {
-                                "m_axi_wid": "((M_IF_COUNT*M_IF_ID_WIDTH)-1):0"
-                            },
-                            {
-                                "m_axi_wlast": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "m_axi_wstrb": "((M_IF_COUNT*STRB_WIDTH)-1):0"
-                            },
-                            {
-                                "m_axi_wvalid": "(M_IF_COUNT-1):0"
-                            },
-                            {
-                                "s_axi_awready": "(S_IF_COUNT-1):0"
-                            },
-                            {
-                                "s_axi_bid": "((S_IF_COUNT*S_IF_ID_WIDTH)-1):0"
-                            },
-                            {
-                                "s_axi_bresp": "((S_IF_COUNT*2)-1):0"
-                            },
-                            {
-                                "s_axi_bvalid": "(S_IF_COUNT-1):0"
-                            },
-                            {
-                                "s_axi_wready": "(S_IF_COUNT-1):0"
-                            },
-                            {
-                                "wr_error_addr": "((S_IF_COUNT*ADDR_WIDTH)-1):0"
-                            },
-                            {
-                                "wr_error_valid": "(S_IF_COUNT-1):0"
-                            }
-                        ],
-                        "inouts": []
+                        }
                     }
                 },
                 {
-                    "IP_name": "axi_fifo_rd",
+                    "ipName": "axi_fifo_rd",
                     "style": {
                         "width": 80,
                         "height": 60,
@@ -404,132 +412,149 @@
                         "vendor": "ThirdParty",
                         "version": "1.0",
                         "description": null,
-                        "parameters": [
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "ID_WIDTH": "8"
-                            },
-                            {
-                                "AR_FIFO": "1"
-                            },
-                            {
-                                "R_FIFO": "2"
-                            }
-                        ],
+                        "parameters": {
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "ID_WIDTH": "8",
+                            "AR_FIFO": "1",
+                            "R_FIFO": "2"
+                        },
                         "defines": "",
-                        "inputs": [
-                            {
-                                "clk": "1"
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_arready": "1"
+                            "m_axi_arready": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rdata": "(DATA_WIDTH-1):0"
+                            "m_axi_rdata": {
+                                "width": "(DATA_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rid": "(ID_WIDTH-1):0"
+                            "m_axi_rid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rlast": "1"
+                            "m_axi_rlast": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rresp": "1:0"
+                            "m_axi_rresp": {
+                                "width": "1:0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_rvalid": "1"
+                            "m_axi_rvalid": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "rst": "1"
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_araddr": "(ADDR_WIDTH-1):0"
+                            "s_axi_araddr": {
+                                "width": "(ADDR_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arburst": "1:0"
+                            "s_axi_arburst": {
+                                "width": "1:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arid": "(ID_WIDTH-1):0"
+                            "s_axi_arid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arlen": "7:0"
+                            "s_axi_arlen": {
+                                "width": "7:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arlock": "1"
+                            "s_axi_arlock": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arqos": "3:0"
+                            "s_axi_arqos": {
+                                "width": "3:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arsize": "2:0"
+                            "s_axi_arsize": {
+                                "width": "2:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_arvalid": "1"
+                            "s_axi_arvalid": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_rready": "1"
+                            "s_axi_rready": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_araddr": {
+                                "width": "(ADDR_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arburst": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlen": {
+                                "width": "7:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arlock": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_arqos": {
+                                "width": "3:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arsize": {
+                                "width": "2:0",
+                                "direction": "output"
+                            },
+                            "m_axi_arvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_rready": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_arready": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_rdata": {
+                                "width": "(DATA_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_rid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_rlast": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_rresp": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_rvalid": {
+                                "width": "1",
+                                "direction": "output"
                             }
-                        ],
-                        "outputs": [
-                            {
-                                "m_axi_araddr": "(ADDR_WIDTH-1):0"
-                            },
-                            {
-                                "m_axi_arburst": "1:0"
-                            },
-                            {
-                                "m_axi_arid": "(ID_WIDTH-1):0"
-                            },
-                            {
-                                "m_axi_arlen": "7:0"
-                            },
-                            {
-                                "m_axi_arlock": "1"
-                            },
-                            {
-                                "m_axi_arqos": "3:0"
-                            },
-                            {
-                                "m_axi_arsize": "2:0"
-                            },
-                            {
-                                "m_axi_arvalid": "1"
-                            },
-                            {
-                                "m_axi_rready": "1"
-                            },
-                            {
-                                "s_axi_arready": "1"
-                            },
-                            {
-                                "s_axi_rdata": "(DATA_WIDTH-1):0"
-                            },
-                            {
-                                "s_axi_rid": "(ID_WIDTH-1):0"
-                            },
-                            {
-                                "s_axi_rlast": "1"
-                            },
-                            {
-                                "s_axi_rresp": "1:0"
-                            },
-                            {
-                                "s_axi_rvalid": "1"
-                            }
-                        ],
-                        "inouts": []
+                        }
                     }
                 },
                 {
-                    "IP_name": "axi_fifo_wr",
+                    "ipName": "axi_fifo_wr",
                     "style": {
                         "width": 80,
                         "height": 60,
@@ -545,155 +570,178 @@
                         "vendor": "ThirdParty",
                         "version": "1.0",
                         "description": null,
-                        "parameters": [
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "ID_WIDTH": "8"
-                            },
-                            {
-                                "AW_FIFO": "2"
-                            },
-                            {
-                                "W_FIFO": "0"
-                            },
-                            {
-                                "B_FIFO": "0"
-                            }
-                        ],
+                        "parameters": {
+                            "DATA_WIDTH": "32",
+                            "ADDR_WIDTH": "32",
+                            "STRB_WIDTH": "(DATA_WIDTH/8)",
+                            "ID_WIDTH": "8",
+                            "AW_FIFO": "2",
+                            "W_FIFO": "0",
+                            "B_FIFO": "0"
+                        },
                         "defines": "",
-                        "inputs": [
-                            {
-                                "clk": "1"
+                        "ports": {
+                            "clk": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_awready": "1"
+                            "m_axi_awready": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_bid": "(ID_WIDTH-1):0"
+                            "m_axi_bid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_bresp": "1:0"
+                            "m_axi_bresp": {
+                                "width": "1:0",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_bvalid": "1"
+                            "m_axi_bvalid": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "m_axi_wready": "1"
+                            "m_axi_wready": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "rst": "1"
+                            "rst": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awaddr": "(ADDR_WIDTH-1):0"
+                            "s_axi_awaddr": {
+                                "width": "(ADDR_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awburst": "1:0"
+                            "s_axi_awburst": {
+                                "width": "1:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awid": "(ID_WIDTH-1):0"
+                            "s_axi_awid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awlen": "7:0"
+                            "s_axi_awlen": {
+                                "width": "7:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awlock": "1"
+                            "s_axi_awlock": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awqos": "3:0"
+                            "s_axi_awqos": {
+                                "width": "3:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awsize": "2:0"
+                            "s_axi_awsize": {
+                                "width": "2:0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_awvalid": "1"
+                            "s_axi_awvalid": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_bready": "1"
+                            "s_axi_bready": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wdata": "(DATA_WIDTH-1):0"
+                            "s_axi_wdata": {
+                                "width": "(DATA_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wid": "(ID_WIDTH-1):0"
+                            "s_axi_wid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wlast": "1"
+                            "s_axi_wlast": {
+                                "width": "1",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wstrb": "(STRB_WIDTH-1):0"
+                            "s_axi_wstrb": {
+                                "width": "(STRB_WIDTH-1):0",
+                                "direction": "input"
                             },
-                            {
-                                "s_axi_wvalid": "1"
+                            "s_axi_wvalid": {
+                                "width": "1",
+                                "direction": "input"
+                            },
+                            "m_axi_awaddr": {
+                                "width": "(ADDR_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awburst": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlen": {
+                                "width": "7:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awlock": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_awqos": {
+                                "width": "3:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awsize": {
+                                "width": "2:0",
+                                "direction": "output"
+                            },
+                            "m_axi_awvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_bready": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_wdata": {
+                                "width": "(DATA_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wlast": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "m_axi_wstrb": {
+                                "width": "(STRB_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "m_axi_wvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_awready": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_bid": {
+                                "width": "(ID_WIDTH-1):0",
+                                "direction": "output"
+                            },
+                            "s_axi_bresp": {
+                                "width": "1:0",
+                                "direction": "output"
+                            },
+                            "s_axi_bvalid": {
+                                "width": "1",
+                                "direction": "output"
+                            },
+                            "s_axi_wready": {
+                                "width": "1",
+                                "direction": "output"
                             }
-                        ],
-                        "outputs": [
-                            {
-                                "m_axi_awaddr": "(ADDR_WIDTH-1):0"
-                            },
-                            {
-                                "m_axi_awburst": "1:0"
-                            },
-                            {
-                                "m_axi_awid": "(ID_WIDTH-1):0"
-                            },
-                            {
-                                "m_axi_awlen": "7:0"
-                            },
-                            {
-                                "m_axi_awlock": "1"
-                            },
-                            {
-                                "m_axi_awqos": "3:0"
-                            },
-                            {
-                                "m_axi_awsize": "2:0"
-                            },
-                            {
-                                "m_axi_awvalid": "1"
-                            },
-                            {
-                                "m_axi_bready": "1"
-                            },
-                            {
-                                "m_axi_wdata": "(DATA_WIDTH-1):0"
-                            },
-                            {
-                                "m_axi_wid": "(ID_WIDTH-1):0"
-                            },
-                            {
-                                "m_axi_wlast": "1"
-                            },
-                            {
-                                "m_axi_wstrb": "(STRB_WIDTH-1):0"
-                            },
-                            {
-                                "m_axi_wvalid": "1"
-                            },
-                            {
-                                "s_axi_awready": "1"
-                            },
-                            {
-                                "s_axi_bid": "(ID_WIDTH-1):0"
-                            },
-                            {
-                                "s_axi_bresp": "1:0"
-                            },
-                            {
-                                "s_axi_bvalid": "1"
-                            },
-                            {
-                                "s_axi_wready": "1"
-                            }
-                        ],
-                        "inouts": []
+                        }
                     }
                 }
             ]
