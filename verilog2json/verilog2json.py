@@ -1,102 +1,131 @@
+from antlr4 import *
+from SystemVerilogLexer import SystemVerilogLexer
+from SystemVerilogParser import SystemVerilogParser
+from SystemVerilogParserListener import SystemVerilogParserListener
 import re
 import json
 import os
 import argparse
 
-def parse_verilog(verilog_file,lib_modules):
-    with open(verilog_file, 'r') as file:
-        verilog_code = file.read()
-
-    # Regular expressions to match module with parameters, ports, defines, etc.
-    module_re = re.compile(
-        r'module\s+(\w+)(?:\s*#\s*\((.*?)\))?\s*\((.*?)\);\s*(.*?)endmodule',
-        re.DOTALL
-    )
-    param_re = re.compile(r'parameter\s+(\w+)\s*=\s*(.*?)(?:,|\s*$)', re.DOTALL)
-    port_re = re.compile(r'(input|output|inout)\s+(wire\s+)?(\[.*?:.*?\])?\s*(\w+)', re.DOTALL)
-    define_re = re.compile(r'`define\s+(\w+)')
-    ifdefine_re = re.compile(r'`ifdef\s+(\w+)')
-
-
-    for module_match in module_re.finditer(verilog_code):
-        module_name, param_section, ports_section, internals = module_match.groups()
-        # Extract parameters
-        param_matches = param_re.findall(param_section) if param_section else {}
-        port_matches = port_re.findall(ports_section)
-        define_matches = define_re.findall(verilog_code)
-        ifdefine_matches = ifdefine_re.findall(verilog_code)
-
-        parameters = {name : value for name, value in param_matches}
-        ports = {name : {"width":width.strip('[]') if width else '1','direction': direction} for direction, _,width,name in port_matches}
-        # ports = []
-        # for port_match in port_matches:
-        #     direction, _, width, name = port_match
-        #     ports.append(
-        #         {
-        #             name : {
-        #                 'width': width.strip('[]') if width else '1',
-        #                 'direction': direction
-        #             }
-        #         }
-        #         'name': name,
-        #         'width': width.strip('[]') if width else '1',
-        #         'direction': direction
-        #     })
-
-        defines = ' '.join("define " + define + ";" for define in define_matches)
-        ifdefines = ' '.join("ifdef " + ifdef + ";" for ifdef in ifdefine_matches)
-
-        module_info = {
-            "ipName": module_name,
-            "style": {
-                "width": 80,
-                "height": 60,
-                "borderRadius": "10",
-                "fontSize": 12,
-                "fontColor": "#fff",
-                "stroke": "#926390",
-                "fill": "#926390"
-            },
-            "content": {
-                "category": "Peripherial",
-                "ipFullName": module_name,
-                "vendor": "Unknown",
-                "version": "1.0",
-                "description": "No description.",
-                "parameters": parameters,
-                "defines": defines + ifdefines,
-                "ports": ports,
-                # "outputs": [{port['name']:port['width']} for port in ports if port['direction'] == 'output'],
-                # "inouts": [{port['name']:port['width']} for port in ports if port['direction'] == 'inout']
-            }
+# 自定义监听器类
+class ModuleListener(SystemVerilogParserListener):
+    def __init__(self):
+        self.style = {
+            "width": 80,
+            "height": 60,
+            "borderRadius": "10",
+            "fontSize": 12,
+            "fontColor": "#fff",
+            "stroke": "#926390",
+            "fill": "#926390"
         }
-        lib_modules.append(module_info)
+        self.content = {
+            "category": "Peripherial",
+            "ipFullName": {},
+            "vendor": "Unknown",
+            "version": "1.0",
+            "description": "No description.",
+            "parameters": {},
+            "defines": {},
+            "ports": {}
+        }
+        self.modules = {}
+        self.currentModuleName = ""
+        self.currentPortDirection = ""
+        self.currentPortType = ""
+        self.currentPortWidth = ""
 
-def process_filelist(verilog_files,group_name,json_file_name):
-    lib_modules = []
-    # Process each Verilog file and generate JSON
-    for verilog_file_path in verilog_files:
-        if not os.path.exists(verilog_file_path):
-            print(f"File {verilog_file_path} not found.")
-            continue
+    def enterModule_identifier(self, ctx:SystemVerilogParser.Module_identifierContext):
+        self.currentModuleName = ctx.getText()
+        self.modules[self.currentModuleName] = {'style':self.style,'content':self.content}
+        self.modules[self.currentModuleName]['content']['ipFullName'] = self.currentModuleName
+        print(f"Module name: {self.currentModuleName}")
+
+    def enterParameter_declaration(self, ctx:SystemVerilogParser.Parameter_declarationContext):
+        param_name = ctx.list_of_param_assignments().param_assignment()[0].parameter_identifier().getText()
+
+        if ctx.data_type_or_implicit():
+            param_type = ctx.data_type_or_implicit().getText()
+        else:
+            param_type = None
+
+        param_value = ctx.list_of_param_assignments().param_assignment()[0].constant_param_expression().getText()
+        self.modules[self.currentModuleName]['content']['parameters'][param_name] = {'type': param_type, 'value': param_value}
+        print(f"Parameter name: {param_name}, type: {param_type}, value: {param_value}")
+
+    def enterPort_decl(self, ctx:SystemVerilogParser.Port_declContext):
         
+        if ctx.ansi_port_declaration():
+            port_names = ctx.ansi_port_declaration().port_identifier().getText()
+            if ctx.ansi_port_declaration().port_direction():
+                port_direction = ctx.ansi_port_declaration().port_direction().getText()
+                if ctx.ansi_port_declaration().data_type():
+                    port_width = ctx.ansi_port_declaration().data_type().packed_dimension()[0].getText()
+                elif ctx.ansi_port_declaration().implicit_data_type():
+                    port_width = ctx.ansi_port_declaration().implicit_data_type().packed_dimension()[0].getText()
+                else:
+                    port_width = '1'
+            else:
+                port_direction = self.currentPortDirection
+                port_width = self.currentPortWidth
 
-        # Parse the Verilog code
-        parse_verilog(verilog_file_path,lib_modules)
+            if ctx.ansi_port_declaration().variable_dimension():
+                dimension = ctx.ansi_port_declaration().variable_dimension()
+            elif ctx.ansi_port_declaration().unpacked_dimension():
+                dimension = ctx.ansi_port_declaration().unpacked_dimension()
+            else:
+                dimension = None
+            port_dimension = []
+            if dimension:
+                for dim in dimension:
+                    port_dimension.append(dim.getText())
+        else:
+            print("ERROR: Not support non-ansi port declaration")
+        
+        print(f"Port name: {port_names}, direction: {port_direction}, width: {port_width}, dimention: {port_dimension}")
 
-        # Generate JSON file name
-        # json_file_name = os.path.splitext(os.path.basename(verilog_file_path))[0] + '.json'
+        # 添加端口名称到模块信息中
+        self.modules[self.currentModuleName]['content']['ports'][port_names] = {'direction': port_direction, 'width': port_width, 'dimention': port_dimension}
+        self.currentPortDirection = port_direction
+        self.currentPortWidth = port_width
 
-        print(f"Generated JSON for {verilog_file_path}")
+# def pack_to_json(modules):
+#     for module in modules:
+#         print(module)
 
-    ip_lib = {"result":[{"groupName":group_name,"groupData":lib_modules}]}
+
+# 解析SystemVerilog文件
+def parse_systemverilog(files,group_name,json_file_name):
+    # 初始化一个空的字符串，用来存储所有文件内容
+    combined_content = ""
+    
+    # 遍历所有文件路径，将文件内容连接起来
+    for file_path in files:
+        with open(file_path, 'r') as file:
+            # 读取文件内容并连接
+            combined_content += file.read() + "\n"  # 添加换行符确保文件间内容分隔
+
+    input_stream = InputStream(combined_content)
+    lexer = SystemVerilogLexer(input_stream)
+    stream = CommonTokenStream(lexer)
+    parser = SystemVerilogParser(stream)
+    tree = parser.source_text()
+
+    listener = ModuleListener()
+    walker = ParseTreeWalker()
+    walker.walk(listener, tree)
+
+    ip_lib = {"result":[{"groupName":group_name,"groupData":listener.modules}]}
+
     # Convert the parsed modules to JSON format
     json_output = json.dumps(ip_lib, indent=4)
-    # Write the JSON output to a file
+
     with open(json_file_name, 'a') as json_file:
         json_file.write(json_output)
 
 
+
+# 示例：解析一个文件并打印结果
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert Verilog files to JSON.')
     parser.add_argument('-f', '--file', help='Single Verilog file to process')
@@ -118,7 +147,5 @@ if __name__ == '__main__':
 
     with open(args.output, 'w') as json_file:
         json_file.write('')
-
-    process_filelist(files_to_process,args.group,args.output)
-
+    parse_systemverilog(files_to_process,args.group,args.output)
 

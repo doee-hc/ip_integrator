@@ -1,0 +1,2053 @@
+{
+    "result": [
+        {
+            "groupName": "IP_lib",
+            "groupData": {
+                "axi_fifo_rd": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_crossbar_wr",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DATA_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "type": null,
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "AR_FIFO": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "R_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "AW_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "W_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "B_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_REGIONS": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "S_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "M_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "S_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "M_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
+                            },
+                            "M_BASE_ADDR": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_ADDR_WIDTH": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
+                            },
+                            "M_CONNECT": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
+                            },
+                            "S_AR_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_R_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd2}}"
+                            },
+                            "M_AR_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_R_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            },
+                            "S_AW_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_W_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_B_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd1}}"
+                            },
+                            "M_AW_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_W_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd2}}"
+                            },
+                            "M_B_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "clk": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "rst": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "s_axi_arid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_araddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rdata": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rlast": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_araddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rdata": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rlast": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awaddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wdata": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wstrb": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wlast": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awaddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wdata": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wstrb": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wlast": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            }
+                        }
+                    }
+                },
+                "axi_fifo_wr": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_crossbar_wr",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DATA_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "type": null,
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "AR_FIFO": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "R_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "AW_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "W_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "B_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_REGIONS": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "S_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "M_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "S_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "M_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
+                            },
+                            "M_BASE_ADDR": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_ADDR_WIDTH": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
+                            },
+                            "M_CONNECT": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
+                            },
+                            "S_AR_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_R_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd2}}"
+                            },
+                            "M_AR_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_R_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            },
+                            "S_AW_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_W_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_B_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd1}}"
+                            },
+                            "M_AW_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_W_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd2}}"
+                            },
+                            "M_B_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "clk": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "rst": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "s_axi_arid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_araddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rdata": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rlast": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_araddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rdata": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rlast": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awaddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wdata": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wstrb": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wlast": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awaddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wdata": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wstrb": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wlast": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            }
+                        }
+                    }
+                },
+                "axi_crossbar_rd": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_crossbar_wr",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DATA_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "type": null,
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "AR_FIFO": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "R_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "AW_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "W_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "B_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_REGIONS": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "S_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "M_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "S_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "M_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
+                            },
+                            "M_BASE_ADDR": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_ADDR_WIDTH": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
+                            },
+                            "M_CONNECT": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
+                            },
+                            "S_AR_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_R_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd2}}"
+                            },
+                            "M_AR_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_R_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            },
+                            "S_AW_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_W_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_B_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd1}}"
+                            },
+                            "M_AW_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_W_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd2}}"
+                            },
+                            "M_B_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "clk": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "rst": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "s_axi_arid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_araddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rdata": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rlast": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_araddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rdata": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rlast": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awaddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wdata": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wstrb": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wlast": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awaddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wdata": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wstrb": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wlast": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            }
+                        }
+                    }
+                },
+                "axi_crossbar_wr": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "axi_crossbar_wr",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DATA_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "ADDR_WIDTH": {
+                                "type": null,
+                                "value": "32"
+                            },
+                            "STRB_WIDTH": {
+                                "type": null,
+                                "value": "(DATA_WIDTH/8)"
+                            },
+                            "ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "AR_FIFO": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "R_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "AW_FIFO": {
+                                "type": null,
+                                "value": "2"
+                            },
+                            "W_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "B_FIFO": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_REGIONS": {
+                                "type": null,
+                                "value": "1"
+                            },
+                            "S_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "M_IF_COUNT": {
+                                "type": null,
+                                "value": "4"
+                            },
+                            "S_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "8"
+                            },
+                            "M_IF_ID_WIDTH": {
+                                "type": null,
+                                "value": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
+                            },
+                            "M_BASE_ADDR": {
+                                "type": null,
+                                "value": "0"
+                            },
+                            "M_ADDR_WIDTH": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
+                            },
+                            "M_CONNECT": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
+                            },
+                            "S_AR_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_R_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd2}}"
+                            },
+                            "M_AR_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_R_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            },
+                            "S_AW_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_W_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd0}}"
+                            },
+                            "S_B_FIFO": {
+                                "type": null,
+                                "value": "{S_IF_COUNT{2'd1}}"
+                            },
+                            "M_AW_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd1}}"
+                            },
+                            "M_W_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd2}}"
+                            },
+                            "M_B_FIFO": {
+                                "type": null,
+                                "value": "{M_IF_COUNT{2'd0}}"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "clk": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "rst": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimention": []
+                            },
+                            "s_axi_arid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_araddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_arready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rdata": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rlast": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_rready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_araddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_arready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rdata": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rlast": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_rready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awaddr": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlen": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awsize": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awburst": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awlock": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awqos": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_awready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wdata": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wstrb": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wlast": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wvalid": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_wready": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*S_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bresp": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bvalid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "s_axi_bready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awaddr": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlen": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*8-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awsize": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*3-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awburst": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awlock": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awqos": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*4-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_awready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wdata": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*DATA_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wstrb": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT*STRB_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wlast": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wvalid": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_wready": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*M_IF_ID_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bresp": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT*2-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bvalid": {
+                                "direction": "input",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "m_axi_bready": {
+                                "direction": "output",
+                                "width": "[M_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "rd_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_addr": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT*ADDR_WIDTH-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_valid": {
+                                "direction": "output",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            },
+                            "wr_error_ready": {
+                                "direction": "input",
+                                "width": "[S_IF_COUNT-1:0]",
+                                "dimention": []
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
