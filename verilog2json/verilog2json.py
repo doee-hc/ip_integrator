@@ -31,9 +31,12 @@ class ModuleListener(SystemVerilogParserListener):
         }
         self.modules = {}
         self.currentModuleName = ""
+        self.currentParamName = ""
         self.currentPortDirection = ""
         self.currentPortType = ""
         self.currentPortWidth = ""
+        self.iteration = 0
+        self.paramRegion = False
 
     def enterModule_identifier(self, ctx:SystemVerilogParser.Module_identifierContext):
         self.currentModuleName = ctx.getText()
@@ -42,17 +45,80 @@ class ModuleListener(SystemVerilogParserListener):
         print(f"Module name: {self.currentModuleName}")
 
     def enterParameter_declaration(self, ctx:SystemVerilogParser.Parameter_declarationContext):
-        param_name = ctx.list_of_param_assignments().param_assignment()[0].parameter_identifier().getText()
-
+        self.paramRegion = True
+        self.currentParamName = ctx.list_of_param_assignments().param_assignment()[0].parameter_identifier().getText()
+        # 判断是否存在 type
         if ctx.data_type_or_implicit():
-            param_type = ctx.data_type_or_implicit().getText()
+            if ctx.data_type_or_implicit().data_type().packed_dimension():
+                # 判断是否存在 width
+                if ctx.data_type_or_implicit().data_type().integer_vector_type():
+                    param_type = ctx.data_type_or_implicit().data_type().integer_vector_type().getText()
+                elif ctx.data_type_or_implicit().data_type().integer_atom_type():
+                    param_type = ctx.data_type_or_implicit().data_type().integer_atom_type().getText()
+                param_width = ctx.data_type_or_implicit().data_type().packed_dimension()[0].getText()
+            else:
+                param_type = ctx.data_type_or_implicit().getText()
+                param_width = None
         else:
             param_type = None
+            param_width = None
+        
+        # 判断是否存在 dimension
+        if ctx.list_of_param_assignments().param_assignment()[0].unpacked_dimension():
+            dimension = ctx.list_of_param_assignments().param_assignment()[0].unpacked_dimension()
+        else:
+            dimension = None
+
+        if dimension:
+            param_dimension = []
+            for dim in dimension:
+                param_dimension.append(dim.getText())
+        else:
+            param_dimension = None
+        
+
+        if dimension:
+            param_dimension = []
+            for dim in dimension:
+                param_dimension.append(dim.getText())
+        else:
+            param_dimension = None
 
         param_value = ctx.list_of_param_assignments().param_assignment()[0].constant_param_expression().getText()
-        self.modules[self.currentModuleName]['content']['parameters'][param_name] = {'type': param_type, 'value': param_value}
-        print(f"Parameter name: {param_name}, type: {param_type}, value: {param_value}")
+        self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName] = {'value': param_value}
 
+        # 将value转为javascript表达式，便于前端处理
+        js_expression = re.sub(r'\$clog2\((.*?)\)', 'Math.log2(\\1)', param_value)
+        self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = js_expression
+
+        if param_type:
+            self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['type'] = param_type
+        if param_width:
+            self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['width'] = param_width
+
+        print(f"Parameter name: {self.currentParamName}, type: {param_type}, width: {param_width}, dimension: {param_dimension}, value: {param_value}, js_expression: {js_expression}")
+
+    def exitParameter_declaration(self, ctx:SystemVerilogParser.Parameter_declarationContext):
+        self.paramRegion = False
+
+    def enterConstant_expression(self, ctx:SystemVerilogParser.Constant_expressionContext):
+        self.iteration += 1
+        if self.paramRegion:
+            # 判断是否存在 assignment pattern
+            if ctx.constant_primary():
+                if ctx.constant_primary().constant_assignment_pattern_expression():
+                    self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = None
+                elif ctx.constant_primary().constant_multiple_concatenation():
+                    # TODO
+                    self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = None
+        
+        # print(f"Constant expression iteration {self.iteration}: {ctx.getText()}")
+    def exitConstant_expression(self, ctx:SystemVerilogParser.Constant_expressionContext):
+        self.iteration -= 1
+        # print(f"Constant expression iteration {self.iteration}: {ctx.getText()}")
+    # def enterSystem_tf_call(self, ctx:SystemVerilogParser.System_tf_callContext):
+        
+    
     def enterPort_decl(self, ctx:SystemVerilogParser.Port_declContext):
         
         if ctx.ansi_port_declaration():
@@ -75,17 +141,23 @@ class ModuleListener(SystemVerilogParserListener):
                 dimension = ctx.ansi_port_declaration().unpacked_dimension()
             else:
                 dimension = None
-            port_dimension = []
+
             if dimension:
+                port_dimension = []
                 for dim in dimension:
                     port_dimension.append(dim.getText())
+            else:
+                port_dimension = None
+
         else:
             print("ERROR: Not support non-ansi port declaration")
         
-        print(f"Port name: {port_names}, direction: {port_direction}, width: {port_width}, dimention: {port_dimension}")
+        print(f"Port name: {port_names}, direction: {port_direction}, width: {port_width}, dimension: {port_dimension}")
 
         # 添加端口名称到模块信息中
-        self.modules[self.currentModuleName]['content']['ports'][port_names] = {'direction': port_direction, 'width': port_width, 'dimention': port_dimension}
+        self.modules[self.currentModuleName]['content']['ports'][port_names] = {'direction': port_direction, 'width': port_width}
+        if port_dimension:
+            self.modules[self.currentModuleName]['content']['ports'][port_names]['dimension'] = port_dimension
         self.currentPortDirection = port_direction
         self.currentPortWidth = port_width
 
