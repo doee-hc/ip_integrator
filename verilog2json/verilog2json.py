@@ -107,6 +107,7 @@ class ModuleListener(SystemVerilogParserListener):
             # 判断是否存在 assignment pattern
             if ctx.constant_primary():
                 if ctx.constant_primary().constant_assignment_pattern_expression():
+                    # TODO
                     self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = None
                 elif ctx.constant_primary().constant_multiple_concatenation():
                     # TODO
@@ -212,7 +213,7 @@ if __name__ == '__main__':
     elif args.list:
         # Read filelist to get the list of Verilog files
         with open(args.list, 'r') as filelist:
-            files_to_process.extend([line.strip() for line in filelist.readlines() if line.strip().endswith('.v') and not line.strip().startswith('#')])
+            files_to_process.extend([line.strip() for line in filelist.readlines() if (line.strip().endswith('.v') or line.strip().endswith('.sv')) and not line.strip().startswith('#')])
 
     if not files_to_process:
         parser.error('No input files provided. Use -f or -l option.')

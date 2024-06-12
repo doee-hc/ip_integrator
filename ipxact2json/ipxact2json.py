@@ -119,7 +119,7 @@ if __name__ == '__main__':
         files_to_process.append(args.file)
     elif args.list:
         with open(args.list, 'r') as filelist:
-            files_to_process.extend(filelist.read().splitlines())
+            files_to_process.extend([line.strip() for line in filelist.readlines() if line.strip().endswith('.xml') and not line.strip().startswith('#')])
 
     if not files_to_process:
         parser.error('No input files provided. Use -f or -l option.')
