@@ -204,13 +204,16 @@ class ModuleListener(SystemVerilogParserListener):
 
 class IncludeListener(SystemVerilogPreParserListener):
     def __init__(self,origin_source_text,incdirs,included_files=[],defines=[]):
-        self.processed_source_text = origin_source_text
+        self.source_lines = origin_source_text.split('\n')
         self.incdirs = incdirs
         self.included_files = included_files
         self.defines = defines
         self.valid_region = True
         self.added_line_num = 0
-        self.region_tocken_idx = 0
+        self.region_tocken_idx = []
+        self.elsif_mask = False
+
+
 
     # def enterSource_text(self, ctx:SystemVerilogPreParser.Source_textContext):
     #     print(f"source_text: {ctx.getText()}")
@@ -218,6 +221,11 @@ class IncludeListener(SystemVerilogPreParserListener):
     def enterText_macro_definition(self, ctx:SystemVerilogPreParser.Text_macro_definitionContext):
         if not self.valid_region:
             return
+        
+        line_start = ctx.start.line + self.added_line_num
+        del self.source_lines[line_start-1]
+        self.added_line_num -= 1
+
         define = ctx.macro_name().getText()
         self.defines.append(define)
         print(f"define: {define}")
@@ -225,18 +233,22 @@ class IncludeListener(SystemVerilogPreParserListener):
     def enterIfdef_directive(self, ctx:SystemVerilogPreParser.Ifdef_directiveContext):
         if not self.valid_region:
             return
-        line_start = ctx.start
-        line_end = ctx.else_directive().stop
+        
+        line_start = ctx.start.line + self.added_line_num
+        del self.source_lines[line_start-1]
+        self.added_line_num -= 1
 
         else_directive = ctx.else_directive()
-        elif_directive = ctx.elsif_directive()
+        elsif_directive = ctx.elsif_directive()
         endif_directive = ctx.endif_directive()
+
+        if elsif_directive:
+            for elsif in elsif_directive:
+                self.region_tocken_idx.append(elsif.start.tokenIndex)
         if else_directive:
-            self.region_tocken_idx = else_directive.start.tokenIndex
-        elif elif_directive:
-            self.region_tocken_idx = elif_directive.start.tokenIndex
-        elif endif_directive:
-            self.region_tocken_idx = endif_directive.start.tokenIndex
+            self.region_tocken_idx.append(else_directive.start.tokenIndex)
+        if endif_directive:
+            self.region_tocken_idx.append(endif_directive.start.tokenIndex)
         else:
             print(f"Error: Not found endif directive. Line:{line_start}")
 
@@ -251,6 +263,10 @@ class IncludeListener(SystemVerilogPreParserListener):
     def enterGroup_of_lines(self, ctx:SystemVerilogPreParser.Group_of_linesContext):
         if not self.valid_region:
             print(f"This Group_of_lines is discarded: {ctx.getText()}")
+            line_start = ctx.start.line + self.added_line_num
+            line_stop = ctx.stop.line + self.added_line_num
+            del self.source_lines[line_start-1:line_stop]
+            self.added_line_num -= (line_stop - line_start + 1)
             return
         print(f"Group_of_lines{ctx.getText()}")
 
@@ -258,18 +274,22 @@ class IncludeListener(SystemVerilogPreParserListener):
     def enterIfndef_directive(self, ctx:SystemVerilogPreParser.Ifndef_directiveContext):
         if not self.valid_region:
             return
-        line_start = ctx.start
-        line_end = ctx.else_directive().stop
+        
+        line_start = ctx.start.line + self.added_line_num
+        del self.source_lines[line_start-1]
+        self.added_line_num -= 1
 
         else_directive = ctx.else_directive()
-        elif_directive = ctx.elsif_directive()
+        elsif_directive = ctx.elsif_directive()
         endif_directive = ctx.endif_directive()
+
+        if elsif_directive:
+            for elsif in elsif_directive:
+                self.region_tocken_idx.append(elsif.start.tokenIndex)
         if else_directive:
-            self.region_tocken_idx = else_directive.start.tokenIndex
-        elif elif_directive:
-            self.region_tocken_idx = elif_directive.start.tokenIndex
-        elif endif_directive:
-            self.region_tocken_idx = endif_directive.start.tokenIndex
+            self.region_tocken_idx.append(else_directive.start.tokenIndex)
+        if endif_directive:
+            self.region_tocken_idx.append(endif_directive.start.tokenIndex)
         else:
             print(f"Error: Not found endif directive. Line:{line_start}")
 
@@ -281,65 +301,58 @@ class IncludeListener(SystemVerilogPreParserListener):
             print(f"ifndef: {ifndef} is defined")
             self.valid_region = False
 
+    def enterElsif_directive(self, ctx:SystemVerilogPreParser.Elsif_directiveContext):
+        this_tocken_idx = ctx.start.tokenIndex
+        if this_tocken_idx == self.region_tocken_idx[0]:
+            self.region_tocken_idx.pop(0)
+
+            line_start = ctx.start.line + self.added_line_num
+            del self.source_lines[line_start-1]
+            self.added_line_num -= 1
+
+            if self.valid_region == False :
+                if self.elsif_mask == False:
+                    ifdef = ctx.macro_identifier().getText()
+                    if ifdef in self.defines:
+                        print(f"ifdef: {ifdef} is defined")
+                        self.valid_region = True
+                    else:
+                        print(f"ifdef: {ifdef} not define")
+                        self.valid_region = False
+            else:
+                self.valid_region = False
+                self.elsif_mask = True  # 屏蔽后续的elsif,直到endif
+
     def enterElse_directive(self, ctx:SystemVerilogPreParser.Else_directiveContext):
         this_tocken_idx = ctx.start.tokenIndex
-        if this_tocken_idx == self.region_tocken_idx:
-            self.valid_region = not self.valid_region
-
-    # def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
-    #     self.includes.append(ctx.getText())
-    #     filename = ctx.filename().getText()
-    #     start = ctx.start.line
-    #     stop = ctx.stop.line
-    #     print(f"inlcuded {filename} ; line start:{start},stop:{stop}")
+        if this_tocken_idx == self.region_tocken_idx[0]:
+            self.region_tocken_idx.pop(0)
+            line_start = ctx.start.line + self.added_line_num
+            del self.source_lines[line_start-1]
+            self.added_line_num -= 1
+            if self.elsif_mask == False:
+                self.valid_region = not self.valid_region
 
 
-    #     if filename in self.included_files:
-    #         print(f"Error: Detected a loop include. Include file {filename} is already included.")
-    #         return
+    def enterEndif_directive(self, ctx:SystemVerilogPreParser.Endif_directiveContext):
+        this_tocken_idx = ctx.start.tokenIndex
+        if this_tocken_idx == self.region_tocken_idx[0]:
+            self.region_tocken_idx.pop(0)
 
-    #     # Find the file in the include directories
-    #     file_content = None
-    #     for dir_path in self.incdirs:
-    #         potential_path = os.path.join(dir_path, filename)
-    #         if os.path.isfile(potential_path):
-    #             with open(potential_path, 'r') as file:
-    #                 file_content = file.read()
-    #             break
-
-    #     if file_content is None:
-    #         print(f"Error: Include file {filename} not found in include directories.")
-    #         return
-
-    #     # Insert the content of the include file into the processed source text
-    #     # Assuming that the line numbers start at 1 and that the source text is a list of lines
-    #     source_lines = self.processed_source_text.split('\n')
-
-    #     del source_lines[start-1:stop]
-
-    #     # Adjust for 0-based indexing used in Python lists
-    #     insertion_point = start - 1
-    #     # Insert the include file content into the original source text
-    #     source_lines[insertion_point:insertion_point] = file_content.split('\n')
-
-    #     # Update the processed source text
-    #     self.processed_source_text = '\n'.join(source_lines)
-
-    #     # print(self.processed_source_text)
-
-    #     # 递归处理include嵌套情况
-    #     # 当嵌套include同一个文件时要防止死循环
-    #     self.included_files.append(filename)
-    #     preparse_systemverilog(self.processed_source_text,self.incdirs,self.included_files)
+            line_start = ctx.start.line + self.added_line_num
+            del self.source_lines[line_start-1]
+            self.added_line_num -= 1
+            self.elsif_mask = False
+            self.valid_region = True
 
     def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
-        # if not self.valid_region:
-        #     return
+        if not self.valid_region:
+            return
         filename = ctx.filename().getText()
         start_line = ctx.start.line + self.added_line_num
         stop_line = ctx.stop.line + self.added_line_num
-        start_col = ctx.start.column
-        stop_col = ctx.stop.column
+        # start_col = ctx.start.column
+        # stop_col = ctx.stop.column
 
 
         if filename in self.included_files:
@@ -360,27 +373,27 @@ class IncludeListener(SystemVerilogPreParserListener):
             return
         
         self.included_files.append(filename)
-        text_to_add = preparse_systemverilog(file_content,self.incdirs,self.included_files,self.defines)
+        lines_to_add = preparse_systemverilog(file_content,self.incdirs,self.included_files,self.defines)
 
         # Insert the content of the include file into the processed source text
         # Assuming that the line numbers start at 1 and that the source text is a list of lines
-        source_lines = self.processed_source_text.split('\n')
 
-        source_lines = delete_lines_and_shift_remaining(source_lines,(start_line,start_col),(stop_line,stop_col))
-        # del source_lines[start_line-1:stop_line]
+        # source_lines = delete_lines_and_shift_remaining(source_lines,(start_line,start_col),(stop_line,stop_col))
+        del self.source_lines[start_line-1:stop_line]
 
         # Adjust for 0-based indexing used in Python lists
-        insertion_point = stop_line
+        insertion_point = stop_line-1
         # Insert the include file content into the original source text
-        source_lines[insertion_point:insertion_point] = text_to_add.split('\n')
+        self.source_lines[insertion_point:insertion_point] = lines_to_add
 
         # Update the processed source text
-        self.processed_source_text = '\n'.join(source_lines)
+        # self.processed_source_text = '\n'.join(source_lines)
 
-        self.added_line_num += (len(text_to_add.split('\n')) - 1)
+        self.added_line_num += (len(lines_to_add) - 1)
+
         print(f"Add {self.added_line_num} line.")
 
-        print(self.processed_source_text)
+        print('\n'.join(self.source_lines))
 
 
 
@@ -412,7 +425,7 @@ def preparse_systemverilog(content,include_dirs,included_files=[],defines=[]):
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
 
-    return listener.processed_source_text
+    return listener.source_lines
 
 
 # 解析SystemVerilog文件
