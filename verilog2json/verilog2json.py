@@ -11,6 +11,37 @@ import json
 import os
 import argparse
 
+def delete_lines_and_shift_remaining(source_lines, start_pos, end_pos):
+    """
+    删除行列表中从指定的开始位置到结束位置之间的文本，并将剩余的文本移动到新的一行。
+
+    :param source_lines: 源文本行列表。
+    :param start_pos: 开始位置，形式为 (行号, 列号)。
+    :param end_pos: 结束位置，形式为 (行号, 列号)。
+    :return: 处理后的行列表。
+    """
+    # 调整索引以适应Python的0索引
+    start_line, start_col = start_pos[0]-1 , start_pos[1]
+    end_line, end_col = end_pos[0]-1, end_pos[1]+1
+
+    # 删除指定范围的文本
+    if start_line == end_line:
+        # 如果开始和结束在同一行，将剩余文本移动到新的一行
+        remaining_text = source_lines[start_line][end_col:]
+        source_lines[start_line] = source_lines[start_line][:start_col]
+        source_lines.insert(start_line + 1, remaining_text)
+        # if remaining_text:
+        #     # 如果有剩余文本，将其添加为新的一行
+        #     source_lines.insert(start_line + 1, remaining_text)
+    else:
+        # 如果开始和结束不在同一行，修改开始和结束行，并删除中间的行
+        source_lines[start_line] = source_lines[start_line][:start_col]
+        source_lines[end_line] = source_lines[end_line][end_col:]
+        # 删除中间的行以及原结束行
+        del source_lines[start_line + 1:end_line -1]
+
+    return source_lines
+
 # 自定义监听器类
 class ModuleListener(SystemVerilogParserListener):
     def __init__(self):
@@ -172,17 +203,88 @@ class ModuleListener(SystemVerilogParserListener):
 
 
 class IncludeListener(SystemVerilogPreParserListener):
-    def __init__(self,origin_source_text,incdirs,included_files=[]):
-        self.includes = []
+    def __init__(self,origin_source_text,incdirs,included_files=[],defines=[]):
         self.processed_source_text = origin_source_text
         self.incdirs = incdirs
         self.included_files = included_files
+        self.defines = defines
+        self.valid_region = True
+        self.added_line_num = 0
+        self.region_tocken_idx = 0
 
-    def enterSource_text(self, ctx:SystemVerilogPreParser.Source_textContext):
-        print(f"source_text: {ctx.getText()}")
+    # def enterSource_text(self, ctx:SystemVerilogPreParser.Source_textContext):
+    #     print(f"source_text: {ctx.getText()}")
 
     def enterText_macro_definition(self, ctx:SystemVerilogPreParser.Text_macro_definitionContext):
-        print(f"macro: {ctx.getText()}")
+        if not self.valid_region:
+            return
+        define = ctx.macro_name().getText()
+        self.defines.append(define)
+        print(f"define: {define}")
+
+    def enterIfdef_directive(self, ctx:SystemVerilogPreParser.Ifdef_directiveContext):
+        if not self.valid_region:
+            return
+        line_start = ctx.start
+        line_end = ctx.else_directive().stop
+
+        else_directive = ctx.else_directive()
+        elif_directive = ctx.elsif_directive()
+        endif_directive = ctx.endif_directive()
+        if else_directive:
+            self.region_tocken_idx = else_directive.start.tokenIndex
+        elif elif_directive:
+            self.region_tocken_idx = elif_directive.start.tokenIndex
+        elif endif_directive:
+            self.region_tocken_idx = endif_directive.start.tokenIndex
+        else:
+            print(f"Error: Not found endif directive. Line:{line_start}")
+
+        ifdef = ctx.macro_identifier().getText()
+        if ifdef in self.defines:
+            print(f"ifdef: {ifdef} is defined")
+            self.valid_region = True
+        else:
+            print(f"ifdef: {ifdef} not define")
+            self.valid_region = False
+
+    def enterGroup_of_lines(self, ctx:SystemVerilogPreParser.Group_of_linesContext):
+        if not self.valid_region:
+            print(f"This Group_of_lines is discarded: {ctx.getText()}")
+            return
+        print(f"Group_of_lines{ctx.getText()}")
+
+
+    def enterIfndef_directive(self, ctx:SystemVerilogPreParser.Ifndef_directiveContext):
+        if not self.valid_region:
+            return
+        line_start = ctx.start
+        line_end = ctx.else_directive().stop
+
+        else_directive = ctx.else_directive()
+        elif_directive = ctx.elsif_directive()
+        endif_directive = ctx.endif_directive()
+        if else_directive:
+            self.region_tocken_idx = else_directive.start.tokenIndex
+        elif elif_directive:
+            self.region_tocken_idx = elif_directive.start.tokenIndex
+        elif endif_directive:
+            self.region_tocken_idx = endif_directive.start.tokenIndex
+        else:
+            print(f"Error: Not found endif directive. Line:{line_start}")
+
+        ifndef = ctx.macro_identifier().getText()
+        if ifndef not in self.defines:
+            print(f"ifndef: {ifndef} not define")
+            self.valid_region = True
+        else:
+            print(f"ifndef: {ifndef} is defined")
+            self.valid_region = False
+
+    def enterElse_directive(self, ctx:SystemVerilogPreParser.Else_directiveContext):
+        this_tocken_idx = ctx.start.tokenIndex
+        if this_tocken_idx == self.region_tocken_idx:
+            self.valid_region = not self.valid_region
 
     # def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
     #     self.includes.append(ctx.getText())
@@ -231,11 +333,13 @@ class IncludeListener(SystemVerilogPreParserListener):
     #     preparse_systemverilog(self.processed_source_text,self.incdirs,self.included_files)
 
     def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
-        self.includes.append(ctx.getText())
+        # if not self.valid_region:
+        #     return
         filename = ctx.filename().getText()
-        start = ctx.start.line
-        stop = ctx.stop.line
-        print(f"inlcuded {filename} ; line start:{start},stop:{stop}")
+        start_line = ctx.start.line + self.added_line_num
+        stop_line = ctx.stop.line + self.added_line_num
+        start_col = ctx.start.column
+        stop_col = ctx.stop.column
 
 
         if filename in self.included_files:
@@ -256,32 +360,29 @@ class IncludeListener(SystemVerilogPreParserListener):
             return
         
         self.included_files.append(filename)
-        text_to_add = preparse_systemverilog(file_content,self.incdirs,self.included_files)
+        text_to_add = preparse_systemverilog(file_content,self.incdirs,self.included_files,self.defines)
 
         # Insert the content of the include file into the processed source text
         # Assuming that the line numbers start at 1 and that the source text is a list of lines
         source_lines = self.processed_source_text.split('\n')
 
-        del source_lines[start-1:stop]
+        source_lines = delete_lines_and_shift_remaining(source_lines,(start_line,start_col),(stop_line,stop_col))
+        # del source_lines[start_line-1:stop_line]
 
         # Adjust for 0-based indexing used in Python lists
-        insertion_point = start - 1
+        insertion_point = stop_line
         # Insert the include file content into the original source text
         source_lines[insertion_point:insertion_point] = text_to_add.split('\n')
 
         # Update the processed source text
         self.processed_source_text = '\n'.join(source_lines)
 
+        self.added_line_num += (len(text_to_add.split('\n')) - 1)
+        print(f"Add {self.added_line_num} line.")
+
         print(self.processed_source_text)
 
-    def enterCelldefine_directive(self, ctx:SystemVerilogPreParser.Celldefine_directiveContext):
-        print(f"celldefine: {ctx.macro_identifier().getText()}")
 
-    def enterIfdef_directive(self, ctx:SystemVerilogPreParser.Ifdef_directiveContext):
-        print(f"ifdef: {ctx.macro_identifier().getText()}")
-
-    def enterIfndef_directive(self, ctx:SystemVerilogPreParser.Ifndef_directiveContext):
-        print(f"ifndef: {ctx.macro_identifier().getText()}")
 
 # 自定义Visitor类
 # class IncludeFinder(SystemVerilogPreParserVisitor):
@@ -295,7 +396,7 @@ class IncludeListener(SystemVerilogPreParserListener):
 #         self.includes.append(include_statement)
 #         return self.visitChildren(ctx)
 
-def preparse_systemverilog(content,include_dirs,included_files=[]):
+def preparse_systemverilog(content,include_dirs,included_files=[],defines=[]):
 
     input_stream = InputStream(content)
     lexer = SystemVerilogLexer(input_stream)
