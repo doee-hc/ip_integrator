@@ -1,5 +1,4 @@
 from antlr4 import *
-from antlr4.BufferedTokenStream import BufferedTokenStream
 from SystemVerilogLexer import SystemVerilogLexer
 from SystemVerilogParser import SystemVerilogParser
 from SystemVerilogParserListener import SystemVerilogParserListener
@@ -171,17 +170,65 @@ class ModuleListener(SystemVerilogParserListener):
         self.currentPortDirection = port_direction
         self.currentPortWidth = port_width
 
-# def pack_to_json(modules):
-#     for module in modules:
-#         print(module)
+
 class IncludeListener(SystemVerilogPreParserListener):
-    def __init__(self,origin_source_text,incdirs):
+    def __init__(self,origin_source_text,incdirs,included_files=[]):
         self.includes = []
         self.processed_source_text = origin_source_text
         self.incdirs = incdirs
+        self.included_files = included_files
 
     def enterSource_text(self, ctx:SystemVerilogPreParser.Source_textContext):
         print(f"source_text: {ctx.getText()}")
+
+    def enterText_macro_definition(self, ctx:SystemVerilogPreParser.Text_macro_definitionContext):
+        print(f"macro: {ctx.getText()}")
+
+    # def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
+    #     self.includes.append(ctx.getText())
+    #     filename = ctx.filename().getText()
+    #     start = ctx.start.line
+    #     stop = ctx.stop.line
+    #     print(f"inlcuded {filename} ; line start:{start},stop:{stop}")
+
+
+    #     if filename in self.included_files:
+    #         print(f"Error: Detected a loop include. Include file {filename} is already included.")
+    #         return
+
+    #     # Find the file in the include directories
+    #     file_content = None
+    #     for dir_path in self.incdirs:
+    #         potential_path = os.path.join(dir_path, filename)
+    #         if os.path.isfile(potential_path):
+    #             with open(potential_path, 'r') as file:
+    #                 file_content = file.read()
+    #             break
+
+    #     if file_content is None:
+    #         print(f"Error: Include file {filename} not found in include directories.")
+    #         return
+
+    #     # Insert the content of the include file into the processed source text
+    #     # Assuming that the line numbers start at 1 and that the source text is a list of lines
+    #     source_lines = self.processed_source_text.split('\n')
+
+    #     del source_lines[start-1:stop]
+
+    #     # Adjust for 0-based indexing used in Python lists
+    #     insertion_point = start - 1
+    #     # Insert the include file content into the original source text
+    #     source_lines[insertion_point:insertion_point] = file_content.split('\n')
+
+    #     # Update the processed source text
+    #     self.processed_source_text = '\n'.join(source_lines)
+
+    #     # print(self.processed_source_text)
+
+    #     # 递归处理include嵌套情况
+    #     # 当嵌套include同一个文件时要防止死循环
+    #     self.included_files.append(filename)
+    #     preparse_systemverilog(self.processed_source_text,self.incdirs,self.included_files)
 
     def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
         self.includes.append(ctx.getText())
@@ -189,6 +236,11 @@ class IncludeListener(SystemVerilogPreParserListener):
         start = ctx.start.line
         stop = ctx.stop.line
         print(f"inlcuded {filename} ; line start:{start},stop:{stop}")
+
+
+        if filename in self.included_files:
+            print(f"Error: Detected a loop include. Include file {filename} is already included.")
+            return
 
         # Find the file in the include directories
         file_content = None
@@ -202,6 +254,9 @@ class IncludeListener(SystemVerilogPreParserListener):
         if file_content is None:
             print(f"Error: Include file {filename} not found in include directories.")
             return
+        
+        self.included_files.append(filename)
+        text_to_add = preparse_systemverilog(file_content,self.incdirs,self.included_files)
 
         # Insert the content of the include file into the processed source text
         # Assuming that the line numbers start at 1 and that the source text is a list of lines
@@ -212,18 +267,21 @@ class IncludeListener(SystemVerilogPreParserListener):
         # Adjust for 0-based indexing used in Python lists
         insertion_point = start - 1
         # Insert the include file content into the original source text
-        source_lines[insertion_point:insertion_point] = file_content.split('\n')
+        source_lines[insertion_point:insertion_point] = text_to_add.split('\n')
 
         # Update the processed source text
         self.processed_source_text = '\n'.join(source_lines)
 
         print(self.processed_source_text)
 
-        # 递归处理include嵌套情况
-        # TODO 当嵌套include同一个文件时要防止死循环
-        preparse_systemverilog(self.processed_source_text,self.incdirs)
+    def enterCelldefine_directive(self, ctx:SystemVerilogPreParser.Celldefine_directiveContext):
+        print(f"celldefine: {ctx.macro_identifier().getText()}")
 
-   
+    def enterIfdef_directive(self, ctx:SystemVerilogPreParser.Ifdef_directiveContext):
+        print(f"ifdef: {ctx.macro_identifier().getText()}")
+
+    def enterIfndef_directive(self, ctx:SystemVerilogPreParser.Ifndef_directiveContext):
+        print(f"ifndef: {ctx.macro_identifier().getText()}")
 
 # 自定义Visitor类
 # class IncludeFinder(SystemVerilogPreParserVisitor):
@@ -237,19 +295,23 @@ class IncludeListener(SystemVerilogPreParserListener):
 #         self.includes.append(include_statement)
 #         return self.visitChildren(ctx)
 
-def preparse_systemverilog(content,include_dirs):
+def preparse_systemverilog(content,include_dirs,included_files=[]):
 
     input_stream = InputStream(content)
     lexer = SystemVerilogLexer(input_stream)
     stream = CommonTokenStream(lexer, channel=SystemVerilogLexer.DIRECTIVES)
     parser = SystemVerilogPreParser(stream)
     tree = parser.source_text()
+    print(tree.getRuleContext())
+    
+    # t = parser.expr().tree
+    # print(t.toStringTree(recog=parser))
 
-    listener = IncludeListener(content,include_dirs)
+    listener = IncludeListener(content,include_dirs,included_files)
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
 
-    return listener.includes
+    return listener.processed_source_text
 
 
 # 解析SystemVerilog文件
