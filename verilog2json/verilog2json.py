@@ -166,9 +166,20 @@ class ModuleListener(SystemVerilogParserListener):
             if ctx.ansi_port_declaration().port_direction():
                 port_direction = ctx.ansi_port_declaration().port_direction().getText()
                 if ctx.ansi_port_declaration().data_type():
-                    port_width = ctx.ansi_port_declaration().data_type().packed_dimension()[0].getText()
+                    if(ctx.ansi_port_declaration().data_type().packed_dimension()):
+                        port_width = ctx.ansi_port_declaration().data_type().packed_dimension()[0].getText()
+                    else:
+                        port_width = '1'
                 elif ctx.ansi_port_declaration().implicit_data_type():
-                    port_width = ctx.ansi_port_declaration().implicit_data_type().packed_dimension()[0].getText()
+                    if(ctx.ansi_port_declaration().data_type().packed_dimension()):
+                        port_width = ctx.ansi_port_declaration().implicit_data_type().packed_dimension()[0].getText()
+                    else:
+                        port_width = '1'
+                elif ctx.ansi_port_declaration().net_type():
+                    if ctx.ansi_port_declaration().data_type_or_implicit():
+                        port_width = ctx.ansi_port_declaration().data_type_or_implicit().getText()
+                    else:
+                        port_width = '1'
                 else:
                     port_width = '1'
             else:
@@ -259,7 +270,6 @@ class IncludeListener(SystemVerilogPreParserListener):
         else:
             print(f"Error: {macro} is not defined")
 
-        pass
     def enterIfdef_directive(self, ctx:SystemVerilogPreParser.Ifdef_directiveContext):
         if not self.valid_region:
             return
@@ -425,16 +435,16 @@ class IncludeListener(SystemVerilogPreParserListener):
 
 
 # 自定义Visitor类
-# class IncludeFinder(SystemVerilogPreParserVisitor):
-#     def __init__(self):
-#         # 初始化一个列表来保存找到的include语句
-#         self.includes = []
+class PortFinder(SystemVerilogPreParserVisitor):
+    def __init__(self):
+        # 初始化一个列表来保存找到的include语句
+        self.port = []
 
-#     def visitInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
-#         # 从上下文中提取include语句并添加到列表中
-#         include_statement = ctx.getText()
-#         self.includes.append(include_statement)
-#         return self.visitChildren(ctx)
+    def visitList_of_port_declarations(self, ctx:SystemVerilogParser.List_of_port_declarationsContext):
+        # 从上下文中提取include语句并添加到列表中
+        include_statement = ctx.getText()
+        self.includes.append(include_statement)
+        return self.visitChildren(ctx)
 
 def preparse_systemverilog(content,include_dirs,included_files=[],defines=[]):
 
@@ -454,64 +464,35 @@ def preparse_systemverilog(content,include_dirs,included_files=[],defines=[]):
 
 
 # 解析SystemVerilog文件
-def parse_systemverilog(files,group_name,json_file_name):
-    # 初始化一个空的字符串，用来存储所有文件内容
-    combined_content = ""
-    
-    # 遍历所有文件路径，将文件内容连接起来
-    for file_path in files:
-        with open(file_path, 'r') as file:
-            # 读取文件内容并连接
-            combined_content += file.read() + "\n"  # 添加换行符确保文件间内容分隔
+def parse_systemverilog(text,group_name,json_file_name):
 
-    input_stream = InputStream(combined_content)
+    input_stream = InputStream(text)
     lexer = SystemVerilogLexer(input_stream)
+    stream = CommonTokenStream(lexer)
+    parser = SystemVerilogParser(stream)
 
-    # 获取所有tokens，包括非默认通道上的
-    # all_tokens = lexer.getAllTokens()
-    # for token in all_tokens:
-    #     print(token)
-    # directive_tokens = [token for token in all_tokens if token.channel == lexer.DIRECTIVES]
-    # tokens_on_default_channel = [token for token in all_tokens if token.channel == lexer.DEFAULT_TOKEN_CHANNEL]
-    # stream = BufferedTokenStream(directive_tokens)
-
-    stream = CommonTokenStream(lexer, channel=SystemVerilogLexer.DIRECTIVES)
-
-    parser = SystemVerilogPreParser(stream)
     tree = parser.source_text()
     
-    listener = IncludeListener()
-    walker = ParseTreeWalker()
-    walker.walk(listener, tree)
-
-
-
-
-    # visitor = IncludeFinder()
+    # visitor = PortFinder()
     # # 遍历解析树
     # visitor.visit(tree)
     # 打印找到的include语句
-    # print(visitor.includes)
-
-
+    # print(visitor.port)
 
     
-    # lexer = SystemVerilogLexer(input_stream)
-    # stream = CommonTokenStream(lexer)
-    # parser = SystemVerilogParser(stream)
-    # tree = parser.source_text()
 
-    # listener = ModuleListener()
-    # walker = ParseTreeWalker()
-    # walker.walk(listener, tree)
 
-    # ip_lib = {"result":[{"groupName":group_name,"groupData":listener.modules}]}
+    listener = ModuleListener()
+    walker = ParseTreeWalker()
+    walker.walk(listener, tree)
 
-    # # Convert the parsed modules to JSON format
-    # json_output = json.dumps(ip_lib, indent=4)
+    ip_lib = {"result":[{"groupName":group_name,"groupData":listener.modules}]}
 
-    # with open(json_file_name, 'a') as json_file:
-    #     json_file.write(json_output)
+    # Convert the parsed modules to JSON format
+    json_output = json.dumps(ip_lib, indent=4)
+
+    with open(json_file_name, 'a') as json_file:
+        json_file.write(json_output)
 
 
 
@@ -531,6 +512,7 @@ if __name__ == '__main__':
     if args.file:
         files_to_process.append(args.file)
     elif args.list:
+        pre_path = os.path.dirname(args.list)
         # Read filelist to get the list of Verilog files and include directories
         with open(args.list, 'r') as filelist:
             for line in filelist:
@@ -538,9 +520,9 @@ if __name__ == '__main__':
                 # Check for include directory command in filelist
                 if stripped_line.startswith('+incdir+'):
                     dir_path = stripped_line[len('+incdir+'):]
-                    include_dirs.append(dir_path)
+                    include_dirs.append(pre_path + '/' + dir_path)
                 elif (stripped_line.endswith('.v') or stripped_line.endswith('.sv')) and not stripped_line.startswith('#'):
-                    files_to_process.append(stripped_line)
+                    files_to_process.append(pre_path +'/'+stripped_line)
 
     # Include directories specified by command line arguments
     if args.incdir:
@@ -555,18 +537,22 @@ if __name__ == '__main__':
 
     # 初始化一个空的字符串，用来存储所有文件内容
     combined_content = ""
-    
+
     # 遍历所有文件路径，将文件内容连接起来
     for file_path in files_to_process:
         with open(file_path, 'r') as file:
-            # 读取文件内容并连接
-            combined_content += file.read() + "\n"  # 添加换行符确保文件间内容分隔
+            preprocessed_source_text = '\n'.join(preparse_systemverilog(file.read(),include_dirs))
+            combined_content += preprocessed_source_text+'\n'
 
-    preprocessed_source_text = '\n'.join(preparse_systemverilog(combined_content,include_dirs))
+    with open("preproced_verilog.v", 'w') as json_file:
+        json_file.write(preprocessed_source_text)
+    
     print("============Preprocessed source text=============")
     print(preprocessed_source_text)
     print("============Preprocessed source text=============")
 
+    parse_systemverilog(preprocessed_source_text,args.group,args.output)
 
-    #parse_systemverilog(files_to_process,args.group,args.output)
+
+  
 
