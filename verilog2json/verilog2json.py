@@ -545,13 +545,13 @@ if __name__ == '__main__':
             combined_content += preprocessed_source_text+'\n'
 
     with open("preproced_verilog.v", 'w') as json_file:
-        json_file.write(preprocessed_source_text)
+        json_file.write(combined_content)
     
     print("============Preprocessed source text=============")
-    print(preprocessed_source_text)
+    # print(combined_content)
     print("============Preprocessed source text=============")
 
-    parse_systemverilog(preprocessed_source_text,args.group,args.output)
+    parse_systemverilog(combined_content,args.group,args.output)
 
 
   
