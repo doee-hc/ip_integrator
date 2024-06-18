@@ -1,0 +1,4 @@
+sidCmdLineBehaviorAnalysisOpt -incr -clockSkew 0 -loopUnroll 0 -bboxEmptyModule 0  -cellModel 0 -bboxIgnoreProtected 0 
+debImport "-ssv" "-ssy" "-2012" "-f" "rtl.lst" "-top" "arbiter"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+debExit

@@ -1,0 +1,125 @@
+0 
+45
++itf+/iccad/Synopsys/vcs/T-2022.06/linux64/lib/vcsdp.tab
++lint=TFIPC-L
++memcbk
++nospecify
++notimingcheck
++v2k
++vcsd
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/iccad/Synopsys/vcs/T-2022.06/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mexternalobj=
+-Mldflags= -rdynamic
+-Mobjects= /iccad/Synopsys/vcs/T-2022.06/linux64/lib/libvirsim.so /iccad/Synopsys/vcs/T-2022.06/linux64/lib/liberrorinf.so /iccad/Synopsys/vcs/T-2022.06/linux64/lib/libsnpsmalloc.so /iccad/Synopsys/vcs/T-2022.06/linux64/lib/libvfs.so
+-Mout=simv
+-Msaverestoreobj=/iccad/Synopsys/vcs/T-2022.06/linux64/lib/vcs_save_restore_new.o
+-Msyslibs=/iccad/Synopsys/verdi/T-2022.06/share/PLI/VCS/LINUX64/pli.a -ldl
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/iccad/Synopsys/vcs/T-2022.06/include
+-Mxllcflags=
+-P
+-Xcmopt=0x2
+-debug_acc+dmptf
+-debug_access+all+bc
+-debug_region+cell
+-debug_region+cell+encrypt
+-f rtl.lst
+-fsdb
+-full64
+-gen_obj
+-lca
+-picarchive
+-sverilog
+-timescale=1ns/10ps
+-top
+-v2005
+/iccad/Synopsys/vcs/T-2022.06/linux64/bin/vcs1
+arbiter
+/iccad/Synopsys/verdi/T-2022.06/share/PLI/VCS/LINUX64/verdi.tab
+rtl.lst
+60
+no_proxy=192.168.*,172.31.*,172.30.*,172.29.*,172.28.*,172.27.*,172.26.*,172.25.*,172.24.*,172.23.*,172.22.*,172.21.*,172.20.*,172.19.*,172.18.*,172.17.*,172.16.*,10.*,127.*,localhost,<local>
+https_proxy=http://127.0.0.1:7890
+http_proxy=http://127.0.0.1:7890
+_P9K_TTY=/dev/pts/7
+_P9K_SSH_TTY=/dev/pts/7
+ZSH=/home/doee/.oh-my-zsh
+XMODIFIERS=@im=ibus
+XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+WT_SESSION=699392f3-ce67-4324-91f7-c6c1ae729e7f
+WT_PROFILE_ID={ff215250-7efd-59b0-a72a-bd47560460c0}
+WSL_INTEROP=/run/WSL/3131_interop
+WSL_DISTRO_NAME=CentOS7.9
+WSLENV=WT_SESSION:WT_PROFILE_ID:
+WSL2_GUI_APPS_ENABLED=1
+WAYLAND_DISPLAY=wayland-0
+VMR_MODE_FLAG=64
+VERDI_HOME=/iccad/Synopsys/verdi/T-2022.06
+VCS_UVM_HOME=/iccad/Synopsys/vcs/T-2022.06/etc/uvm-1.1
+VCS_PATHMAP_PRELOAD_DONE=1
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_LCAMSG_PRINT_OFF=1
+VCS_HOME=/iccad/Synopsys/vcs/T-2022.06
+VCS_EXEC_DONE=1
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux64
+UNAME=/bin/uname
+TOOL_HOME=/iccad/Synopsys/vcs/T-2022.06/linux64
+TB_SRC_DIR=/home/doee/Workspace/verilog_demo
+Syn_HOME=/iccad/Synopsys/syn/U-2022.12-SP1
+Starrc_HOME=/iccad/Synopsys/Starrc2018/starrc/O-2018.06-SP1
+SYNOPSYS_DIR=/iccad/Synopsys
+SNPS_VCS_CLANG_PATH=/iccad/Synopsys/vcs/T-2022.06/linux64/clang
+SNPS_INTERNAL_VCS_LINUX_OS=linux
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+SCL_HOME=/iccad/Synopsys/scl
+RTL_PATH=/home/doee/Workspace/verilog_demo
+QT_IM_MODULE=ibus
+PrimeTime_HOME=/iccad/Synopsys/PrimeTime2018/pts/O-2018.06-SP1
+PULSE_SERVER=unix:/mnt/wslg/PulseServer
+P9K_TTY=old
+P9K_SSH=0
+OVA_UUM=0
+NO_PROXY=192.168.*,172.31.*,172.30.*,172.29.*,172.28.*,172.27.*,172.26.*,172.25.*,172.24.*,172.23.*,172.22.*,172.21.*,172.20.*,172.19.*,172.18.*,172.17.*,172.16.*,10.*,127.*,localhost,<local>
+NOVAS_HOME=/iccad/Synopsys/verdi/T-2022.06
+NAME=DESKTOP-L968BPL
+MFLAGS=
+MAKELEVEL=1
+MAKEFLAGS=
+LSCOLORS=Gxfxcxdxbxegedabagacad
+LESS=-R
+LC_ALL=C
+HTTP_PROXY=http://127.0.0.1:7890
+HTTPS_PROXY=http://127.0.0.1:7890
+HOSTTYPE=x86_64
+GTK_IM_MODULE=ibus
+Formality_HOME=/iccad/Synopsys/fm/T-2022.03/linux64/fm/bin
+DESIGNWARE_HOME=/iccad/Synopsys/designware
+0
+0
+7
+1717037123 priority_encoder.v
+1717036715 arbiter_config_0.vh
+1717037393 config.vh
+1717037793 /home/doee/Workspace/verilog_demo/arbiter.v
+1717036302 rtl.lst
+1653825972 /iccad/Synopsys/verdi/T-2022.06/share/PLI/VCS/LINUX64/verdi.tab
+1654052745 /iccad/Synopsys/vcs/T-2022.06/linux64/lib/vcsdp.tab
+4
+1654054205 /iccad/Synopsys/vcs/T-2022.06/linux64/lib/libvirsim.so
+1654053585 /iccad/Synopsys/vcs/T-2022.06/linux64/lib/liberrorinf.so
+1654053489 /iccad/Synopsys/vcs/T-2022.06/linux64/lib/libsnpsmalloc.so
+1654053565 /iccad/Synopsys/vcs/T-2022.06/linux64/lib/libvfs.so
+1717037798 simv.daidir
+-1 partitionlib

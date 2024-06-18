@@ -1,711 +1,547 @@
-{
-    "result": [
-        {
-            "groupName": "IP_lib0",
-            "groupData": [
-                {
-                    "IP_name": "axi_fifo_rd",
-                    "style": {
-                        "width": 80,
-                        "height": 60,
-                        "borderRadius": "10",
-                        "fontSize": 12,
-                        "fontColor": "#fff",
-                        "stroke": "#926390",
-                        "fill": "#926390"
-                    },
-                    "content": {
-                        "category": "Peripherial",
-                        "IP_full_name": "axi_fifo_rd",
-                        "vendor": "Unknown",
-                        "version": "1.0",
-                        "description": "No description.",
-                        "parameters": [
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "ID_WIDTH": "8"
-                            },
-                            {
-                                "AR_FIFO": "1"
-                            },
-                            {
-                                "R_FIFO": "2"
-                            }
-                        ],
-                        "defines": "",
-                        "inputs": [
-                            {
-                                "clk": "1"
-                            },
-                            {
-                                "rst": "1"
-                            },
-                            {
-                                "s_axi_arid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_araddr": "ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_arlen": "7:0"
-                            },
-                            {
-                                "s_axi_arsize": "2:0"
-                            },
-                            {
-                                "s_axi_arburst": "1:0"
-                            },
-                            {
-                                "s_axi_arlock": "1"
-                            },
-                            {
-                                "s_axi_arqos": "3:0"
-                            },
-                            {
-                                "s_axi_arvalid": "1"
-                            },
-                            {
-                                "s_axi_rready": "1"
-                            },
-                            {
-                                "m_axi_arready": "1"
-                            },
-                            {
-                                "m_axi_rid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_rdata": "DATA_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_rresp": "1:0"
-                            },
-                            {
-                                "m_axi_rlast": "1"
-                            },
-                            {
-                                "m_axi_rvalid": "1"
-                            }
-                        ],
-                        "outputs": [
-                            {
-                                "s_axi_arready": "1"
-                            },
-                            {
-                                "s_axi_rid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_rdata": "DATA_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_rresp": "1:0"
-                            },
-                            {
-                                "s_axi_rlast": "1"
-                            },
-                            {
-                                "s_axi_rvalid": "1"
-                            },
-                            {
-                                "m_axi_arid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_araddr": "ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_arlen": "7:0"
-                            },
-                            {
-                                "m_axi_arsize": "2:0"
-                            },
-                            {
-                                "m_axi_arburst": "1:0"
-                            },
-                            {
-                                "m_axi_arlock": "1"
-                            },
-                            {
-                                "m_axi_arqos": "3:0"
-                            },
-                            {
-                                "m_axi_arvalid": "1"
-                            },
-                            {
-                                "m_axi_rready": "1"
-                            }
-                        ],
-                        "inouts": []
-                    }
-                },
-                {
-                    "IP_name": "axi_fifo_wr",
-                    "style": {
-                        "width": 80,
-                        "height": 60,
-                        "borderRadius": "10",
-                        "fontSize": 12,
-                        "fontColor": "#fff",
-                        "stroke": "#926390",
-                        "fill": "#926390"
-                    },
-                    "content": {
-                        "category": "Peripherial",
-                        "IP_full_name": "axi_fifo_wr",
-                        "vendor": "Unknown",
-                        "version": "1.0",
-                        "description": "No description.",
-                        "parameters": [
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "ID_WIDTH": "8"
-                            },
-                            {
-                                "AW_FIFO": "2"
-                            },
-                            {
-                                "W_FIFO": "0"
-                            },
-                            {
-                                "B_FIFO": "0"
-                            }
-                        ],
-                        "defines": "",
-                        "inputs": [
-                            {
-                                "clk": "1"
-                            },
-                            {
-                                "rst": "1"
-                            },
-                            {
-                                "s_axi_awid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_awaddr": "ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_awlen": "7:0"
-                            },
-                            {
-                                "s_axi_awsize": "2:0"
-                            },
-                            {
-                                "s_axi_awburst": "1:0"
-                            },
-                            {
-                                "s_axi_awlock": "1"
-                            },
-                            {
-                                "s_axi_awqos": "3:0"
-                            },
-                            {
-                                "s_axi_awvalid": "1"
-                            },
-                            {
-                                "s_axi_wid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_wdata": "DATA_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_wstrb": "STRB_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_wlast": "1"
-                            },
-                            {
-                                "s_axi_wvalid": "1"
-                            },
-                            {
-                                "s_axi_bready": "1"
-                            },
-                            {
-                                "m_axi_awready": "1"
-                            },
-                            {
-                                "m_axi_wready": "1"
-                            },
-                            {
-                                "m_axi_bid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_bresp": "1:0"
-                            },
-                            {
-                                "m_axi_bvalid": "1"
-                            }
-                        ],
-                        "outputs": [
-                            {
-                                "s_axi_awready": "1"
-                            },
-                            {
-                                "s_axi_wready": "1"
-                            },
-                            {
-                                "s_axi_bid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_bresp": "1:0"
-                            },
-                            {
-                                "s_axi_bvalid": "1"
-                            },
-                            {
-                                "m_axi_awid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_awaddr": "ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_awlen": "7:0"
-                            },
-                            {
-                                "m_axi_awsize": "2:0"
-                            },
-                            {
-                                "m_axi_awburst": "1:0"
-                            },
-                            {
-                                "m_axi_awlock": "1"
-                            },
-                            {
-                                "m_axi_awqos": "3:0"
-                            },
-                            {
-                                "m_axi_awvalid": "1"
-                            },
-                            {
-                                "m_axi_wid": "ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_wdata": "DATA_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_wstrb": "STRB_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_wlast": "1"
-                            },
-                            {
-                                "m_axi_wvalid": "1"
-                            },
-                            {
-                                "m_axi_bready": "1"
-                            }
-                        ],
-                        "inouts": []
-                    }
-                },
-                {
-                    "IP_name": "axi_crossbar_rd",
-                    "style": {
-                        "width": 80,
-                        "height": 60,
-                        "borderRadius": "10",
-                        "fontSize": 12,
-                        "fontColor": "#fff",
-                        "stroke": "#926390",
-                        "fill": "#926390"
-                    },
-                    "content": {
-                        "category": "Peripherial",
-                        "IP_full_name": "axi_crossbar_rd",
-                        "vendor": "Unknown",
-                        "version": "1.0",
-                        "description": "No description.",
-                        "parameters": [
-                            {
-                                "M_REGIONS": "1"
-                            },
-                            {
-                                "S_IF_COUNT": "4"
-                            },
-                            {
-                                "M_IF_COUNT": "4"
-                            },
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "S_IF_ID_WIDTH": "8"
-                            },
-                            {
-                                "M_IF_ID_WIDTH": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
-                            },
-                            {
-                                "M_BASE_ADDR": "0"
-                            },
-                            {
-                                "M_ADDR_WIDTH": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
-                            },
-                            {
-                                "M_CONNECT": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
-                            },
-                            {
-                                "S_AR_FIFO": "{S_IF_COUNT{2'd0}}"
-                            },
-                            {
-                                "S_R_FIFO": "{S_IF_COUNT{2'd2}}"
-                            },
-                            {
-                                "M_AR_FIFO": "{M_IF_COUNT{2'd1}}"
-                            },
-                            {
-                                "M_R_FIFO": "{M_IF_COUNT{2'd0}}"
-                            }
-                        ],
-                        "defines": "",
-                        "ports": {
-                            "clk": {
-                                "width": "1",
-                                "direction" : "input"
-                            },
-                            "ws": {
-                                "width": "1",
-                                "direction" : "input"
-                            }
-                        }
-                            {
-                                "clk": "1"
-                            },
-                            {
-                                "rst": "1"
-                            },
-                            {
-                                "s_axi_arid": "S_IF_COUNT*S_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_araddr": "S_IF_COUNT*ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_arlen": "S_IF_COUNT*8-1:0"
-                            },
-                            {
-                                "s_axi_arsize": "S_IF_COUNT*3-1:0"
-                            },
-                            {
-                                "s_axi_arburst": "S_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "s_axi_arlock": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_arqos": "S_IF_COUNT*4-1:0"
-                            },
-                            {
-                                "s_axi_arvalid": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_rready": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_arready": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_rid": "M_IF_COUNT*M_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_rdata": "M_IF_COUNT*DATA_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_rresp": "M_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "m_axi_rlast": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_rvalid": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "rd_error_ready": "S_IF_COUNT-1:0"
-                            }
-                        ],
-                        "outputs": [
-                            {
-                                "s_axi_arready": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_rid": "S_IF_COUNT*S_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_rdata": "S_IF_COUNT*DATA_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_rresp": "S_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "s_axi_rlast": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_rvalid": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_arid": "M_IF_COUNT*M_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_araddr": "M_IF_COUNT*ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_arlen": "M_IF_COUNT*8-1:0"
-                            },
-                            {
-                                "m_axi_arsize": "M_IF_COUNT*3-1:0"
-                            },
-                            {
-                                "m_axi_arburst": "M_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "m_axi_arlock": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_arqos": "M_IF_COUNT*4-1:0"
-                            },
-                            {
-                                "m_axi_arvalid": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_rready": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "rd_error_addr": "S_IF_COUNT*ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "rd_error_valid": "S_IF_COUNT-1:0"
-                            }
-                        ],
-                        "inouts": []
-                    }
-                },
-                {
-                    "IP_name": "axi_crossbar_wr",
-                    "style": {
-                        "width": 80,
-                        "height": 60,
-                        "borderRadius": "10",
-                        "fontSize": 12,
-                        "fontColor": "#fff",
-                        "stroke": "#926390",
-                        "fill": "#926390"
-                    },
-                    "content": {
-                        "category": "Peripherial",
-                        "IP_full_name": "axi_crossbar_wr",
-                        "vendor": "Unknown",
-                        "version": "1.0",
-                        "description": "No description.",
-                        "parameters": [
-                            {
-                                "M_REGIONS": "1"
-                            },
-                            {
-                                "S_IF_COUNT": "4"
-                            },
-                            {
-                                "M_IF_COUNT": "4"
-                            },
-                            {
-                                "DATA_WIDTH": "32"
-                            },
-                            {
-                                "ADDR_WIDTH": "32"
-                            },
-                            {
-                                "STRB_WIDTH": "(DATA_WIDTH/8)"
-                            },
-                            {
-                                "S_IF_ID_WIDTH": "8"
-                            },
-                            {
-                                "M_IF_ID_WIDTH": "S_IF_ID_WIDTH+$clog2(S_IF_COUNT)"
-                            },
-                            {
-                                "M_BASE_ADDR": "0"
-                            },
-                            {
-                                "M_ADDR_WIDTH": "{M_IF_COUNT{{M_REGIONS{32'd24}}}}"
-                            },
-                            {
-                                "M_CONNECT": "{M_IF_COUNT{{S_IF_COUNT{1'b1}}}}"
-                            },
-                            {
-                                "S_AW_FIFO": "{S_IF_COUNT{2'd0}}"
-                            },
-                            {
-                                "S_W_FIFO": "{S_IF_COUNT{2'd0}}"
-                            },
-                            {
-                                "S_B_FIFO": "{S_IF_COUNT{2'd1}}"
-                            },
-                            {
-                                "M_AW_FIFO": "{M_IF_COUNT{2'd1}}"
-                            },
-                            {
-                                "M_W_FIFO": "{M_IF_COUNT{2'd2}}"
-                            },
-                            {
-                                "M_B_FIFO": "{M_IF_COUNT{2'd0}}"
-                            }
-                        ],
-                        "defines": "",
-                        "inputs": [
-                            {
-                                "clk": "1"
-                            },
-                            {
-                                "rst": "1"
-                            },
-                            {
-                                "s_axi_awid": "S_IF_COUNT*S_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_awaddr": "S_IF_COUNT*ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_awlen": "S_IF_COUNT*8-1:0"
-                            },
-                            {
-                                "s_axi_awsize": "S_IF_COUNT*3-1:0"
-                            },
-                            {
-                                "s_axi_awburst": "S_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "s_axi_awlock": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_awqos": "S_IF_COUNT*4-1:0"
-                            },
-                            {
-                                "s_axi_awvalid": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_wid": "S_IF_COUNT*S_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_wdata": "S_IF_COUNT*DATA_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_wstrb": "S_IF_COUNT*STRB_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_wlast": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_wvalid": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_bready": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_awready": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_wready": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_bid": "M_IF_COUNT*M_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_bresp": "M_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "m_axi_bvalid": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "wr_error_ready": "S_IF_COUNT-1:0"
-                            }
-                        ],
-                        "outputs": [
-                            {
-                                "s_axi_awready": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_wready": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "s_axi_bid": "S_IF_COUNT*S_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "s_axi_bresp": "S_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "s_axi_bvalid": "S_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_awid": "M_IF_COUNT*M_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_awaddr": "M_IF_COUNT*ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_awlen": "M_IF_COUNT*8-1:0"
-                            },
-                            {
-                                "m_axi_awsize": "M_IF_COUNT*3-1:0"
-                            },
-                            {
-                                "m_axi_awburst": "M_IF_COUNT*2-1:0"
-                            },
-                            {
-                                "m_axi_awlock": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_awqos": "M_IF_COUNT*4-1:0"
-                            },
-                            {
-                                "m_axi_awvalid": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_wid": "M_IF_COUNT*M_IF_ID_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_wdata": "M_IF_COUNT*DATA_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_wstrb": "M_IF_COUNT*STRB_WIDTH-1:0"
-                            },
-                            {
-                                "m_axi_wlast": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_wvalid": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "m_axi_bready": "M_IF_COUNT-1:0"
-                            },
-                            {
-                                "wr_error_addr": "S_IF_COUNT*ADDR_WIDTH-1:0"
-                            },
-                            {
-                                "wr_error_valid": "S_IF_COUNT-1:0"
-                            }
-                        ],
-                        "inouts": []
-                    }
-                }
-            ]
-        }
-    ]
-}
+// -----------------------------------------------------------------------------
+// Auto-Generated by:        __   _ __      _  __
+//                          / /  (_) /____ | |/_/
+//                         / /__/ / __/ -_)>  <
+//                        /____/_/\__/\__/_/|_|
+//                     Build your hardware, easily!
+//                   https://github.com/enjoy-digital/litex
+//
+// Filename   : litedram_core.v
+// Device     : 
+// LiteX sha1 : 81b70d1
+// Date       : 2024-06-15 18:21:38
+//------------------------------------------------------------------------------
+
+`timescale 1ns / 1ps
+
+//------------------------------------------------------------------------------
+// Module
+//------------------------------------------------------------------------------
+
+module litedram_core (
+    input  wire          clk,
+    output wire   [13:0] ddram_a,
+    output wire    [2:0] ddram_ba,
+    output wire          ddram_cas_n,
+    output wire          ddram_cke,
+    output wire          ddram_clk_n,
+    output wire          ddram_clk_p,
+    output wire          ddram_cs_n,
+    output wire    [1:0] ddram_dm,
+    inout  wire   [15:0] ddram_dq,
+    inout  wire    [1:0] ddram_dqs_n,
+    inout  wire    [1:0] ddram_dqs_p,
+    output wire          ddram_odt,
+    output wire          ddram_ras_n,
+    output wire          ddram_reset_n,
+    output wire          ddram_we_n,
+    output wire          init_done,
+    output wire          init_error,
+    output wire          pll_locked,
+    input  wire          rst,
+    input  wire          uart_rx,
+    output reg           uart_tx,
+    output wire          user_clk,
+    input  wire  [127:0] user_fifo_fifo_0_in_data,
+    output wire          user_fifo_fifo_0_in_ready,
+    input  wire          user_fifo_fifo_0_in_valid,
+    output wire  [127:0] user_fifo_fifo_0_out_data,
+    input  wire          user_fifo_fifo_0_out_ready,
+    output wire          user_fifo_fifo_0_out_valid,
+    input  wire   [23:0] user_port_avalon_0_address,
+    input  wire    [7:0] user_port_avalon_0_burstcount,
+    input  wire   [15:0] user_port_avalon_0_byteenable,
+    input  wire          user_port_avalon_0_read,
+    output wire  [127:0] user_port_avalon_0_readdata,
+    output wire          user_port_avalon_0_readdatavalid,
+    output wire          user_port_avalon_0_waitrequest,
+    input  wire          user_port_avalon_0_write,
+    input  wire  [127:0] user_port_avalon_0_writedata,
+    input  wire   [27:0] user_port_axi_0_araddr,
+    input  wire    [1:0] user_port_axi_0_arburst,
+    input  wire   [31:0] user_port_axi_0_arid,
+    input  wire    [7:0] user_port_axi_0_arlen,
+    output wire          user_port_axi_0_arready,
+    input  wire    [3:0] user_port_axi_0_arsize,
+    input  wire          user_port_axi_0_arvalid,
+    input  wire   [27:0] user_port_axi_0_awaddr,
+    input  wire    [1:0] user_port_axi_0_awburst,
+    input  wire   [31:0] user_port_axi_0_awid,
+    input  wire    [7:0] user_port_axi_0_awlen,
+    output wire          user_port_axi_0_awready,
+    input  wire    [3:0] user_port_axi_0_awsize,
+    input  wire          user_port_axi_0_awvalid,
+    output wire   [31:0] user_port_axi_0_bid,
+    input  wire          user_port_axi_0_bready,
+    output wire    [1:0] user_port_axi_0_bresp,
+    output wire          user_port_axi_0_bvalid,
+    output wire  [127:0] user_port_axi_0_rdata,
+    output wire   [31:0] user_port_axi_0_rid,
+    output wire          user_port_axi_0_rlast,
+    input  wire          user_port_axi_0_rready,
+    output wire    [1:0] user_port_axi_0_rresp,
+    output wire          user_port_axi_0_rvalid,
+    input  wire  [127:0] user_port_axi_0_wdata,
+    input  wire          user_port_axi_0_wlast,
+    output wire          user_port_axi_0_wready,
+    input  wire   [15:0] user_port_axi_0_wstrb,
+    input  wire          user_port_axi_0_wvalid,
+    input  wire   [23:0] user_port_native_0_cmd_addr,
+    output wire          user_port_native_0_cmd_ready,
+    input  wire          user_port_native_0_cmd_valid,
+    input  wire          user_port_native_0_cmd_we,
+    output wire  [127:0] user_port_native_0_rdata_data,
+    input  wire          user_port_native_0_rdata_ready,
+    output wire          user_port_native_0_rdata_valid,
+    input  wire  [127:0] user_port_native_0_wdata_data,
+    output wire          user_port_native_0_wdata_ready,
+    input  wire          user_port_native_0_wdata_valid,
+    input  wire   [15:0] user_port_native_0_wdata_we,
+    output wire          user_port_wishbone_0_ack,
+    input  wire   [23:0] user_port_wishbone_0_adr,
+    input  wire          user_port_wishbone_0_cyc,
+    output wire  [127:0] user_port_wishbone_0_dat_r,
+    input  wire  [127:0] user_port_wishbone_0_dat_w,
+    output wire          user_port_wishbone_0_err,
+    input  wire   [15:0] user_port_wishbone_0_sel,
+    input  wire          user_port_wishbone_0_stb,
+    input  wire          user_port_wishbone_0_we,
+    output wire          user_rst
+);
+
+endmodule
+
+// -----------------------------------------------------------------------------
+//  Auto-Generated by LiteX on 2024-06-15 18:21:39.
+//------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Auto-Generated by:        __   _ __      _  __
+//                          / /  (_) /____ | |/_/
+//                         / /__/ / __/ -_)>  <
+//                        /____/_/\__/\__/_/|_|
+//                     Build your hardware, easily!
+//                   https://github.com/enjoy-digital/litex
+//
+// Filename   : liteeth_core.v
+// Device     : 
+// LiteX sha1 : 81b70d1
+// Date       : 2024-06-15 18:30:03
+//------------------------------------------------------------------------------
+
+`timescale 1ns / 1ps
+
+//------------------------------------------------------------------------------
+// Module
+//------------------------------------------------------------------------------
+
+module liteeth_core (
+    input  wire   [31:0] bus_araddr,
+    input  wire    [2:0] bus_arprot,
+    output wire          bus_arready,
+    input  wire          bus_arvalid,
+    input  wire   [31:0] bus_awaddr,
+    input  wire    [2:0] bus_awprot,
+    output wire          bus_awready,
+    input  wire          bus_awvalid,
+    input  wire          bus_bready,
+    output wire    [1:0] bus_bresp,
+    output wire          bus_bvalid,
+    output wire   [31:0] bus_rdata,
+    input  wire          bus_rready,
+    output wire    [1:0] bus_rresp,
+    output wire          bus_rvalid,
+    input  wire   [31:0] bus_wdata,
+    output wire          bus_wready,
+    input  wire    [3:0] bus_wstrb,
+    input  wire          bus_wvalid,
+    output wire          interrupt,
+    input  wire          mii_clocks_rx,
+    input  wire          mii_clocks_tx,
+    input  wire          mii_col,
+    input  wire          mii_crs,
+    output wire          mii_mdc,
+    inout  wire          mii_mdio,
+    output wire          mii_rst_n,
+    input  wire    [3:0] mii_rx_data,
+    input  wire          mii_rx_dv,
+    input  wire          mii_rx_er,
+    output reg     [3:0] mii_tx_data,
+    output reg           mii_tx_en,
+    input  wire          sys_clock,
+    input  wire          sys_reset
+);
+
+
+endmodule
+
+// -----------------------------------------------------------------------------
+//  Auto-Generated by LiteX on 2024-06-15 18:30:03.
+//------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Auto-Generated by:        __   _ __      _  __
+//                          / /  (_) /____ | |/_/
+//                         / /__/ / __/ -_)>  <
+//                        /____/_/\__/\__/_/|_|
+//                     Build your hardware, easily!
+//                   https://github.com/enjoy-digital/litex
+//
+// Filename   : litepcie_core.v
+// Device     : xc7a
+// LiteX sha1 : 81b70d1
+// Date       : 2024-06-15 18:32:50
+//------------------------------------------------------------------------------
+
+`timescale 1ns / 1ps
+
+//------------------------------------------------------------------------------
+// Module
+//------------------------------------------------------------------------------
+
+module litepcie_core (
+    output wire          clk,
+    output wire  [127:0] dma0_reader_axi_tdata,
+    output wire          dma0_reader_axi_tlast,
+    input  wire          dma0_reader_axi_tready,
+    output wire          dma0_reader_axi_tuser,
+    output wire          dma0_reader_axi_tvalid,
+    output wire          dma0_status_reader_enable,
+    output wire          dma0_status_writer_enable,
+    input  wire  [127:0] dma0_writer_axi_tdata,
+    input  wire          dma0_writer_axi_tlast,
+    output wire          dma0_writer_axi_tready,
+    input  wire          dma0_writer_axi_tuser,
+    input  wire          dma0_writer_axi_tvalid,
+    output wire  [127:0] dma1_reader_axi_tdata,
+    output wire          dma1_reader_axi_tlast,
+    input  wire          dma1_reader_axi_tready,
+    output wire          dma1_reader_axi_tuser,
+    output wire          dma1_reader_axi_tvalid,
+    output wire          dma1_status_reader_enable,
+    output wire          dma1_status_writer_enable,
+    input  wire  [127:0] dma1_writer_axi_tdata,
+    input  wire          dma1_writer_axi_tlast,
+    output wire          dma1_writer_axi_tready,
+    input  wire          dma1_writer_axi_tuser,
+    input  wire          dma1_writer_axi_tvalid,
+    output wire  [127:0] dma2_reader_axi_tdata,
+    output wire          dma2_reader_axi_tlast,
+    input  wire          dma2_reader_axi_tready,
+    output wire          dma2_reader_axi_tuser,
+    output wire          dma2_reader_axi_tvalid,
+    output wire          dma2_status_reader_enable,
+    output wire          dma2_status_writer_enable,
+    input  wire  [127:0] dma2_writer_axi_tdata,
+    input  wire          dma2_writer_axi_tlast,
+    output wire          dma2_writer_axi_tready,
+    input  wire          dma2_writer_axi_tuser,
+    input  wire          dma2_writer_axi_tvalid,
+    output wire  [127:0] dma3_reader_axi_tdata,
+    output wire          dma3_reader_axi_tlast,
+    input  wire          dma3_reader_axi_tready,
+    output wire          dma3_reader_axi_tuser,
+    output wire          dma3_reader_axi_tvalid,
+    output wire          dma3_status_reader_enable,
+    output wire          dma3_status_writer_enable,
+    input  wire  [127:0] dma3_writer_axi_tdata,
+    input  wire          dma3_writer_axi_tlast,
+    output wire          dma3_writer_axi_tready,
+    input  wire          dma3_writer_axi_tuser,
+    input  wire          dma3_writer_axi_tvalid,
+    output wire   [31:0] mmap_axi_lite_araddr,
+    output wire    [2:0] mmap_axi_lite_arprot,
+    input  wire          mmap_axi_lite_arready,
+    output wire          mmap_axi_lite_arvalid,
+    output wire   [31:0] mmap_axi_lite_awaddr,
+    output wire    [2:0] mmap_axi_lite_awprot,
+    input  wire          mmap_axi_lite_awready,
+    output wire          mmap_axi_lite_awvalid,
+    output wire          mmap_axi_lite_bready,
+    input  wire    [1:0] mmap_axi_lite_bresp,
+    input  wire          mmap_axi_lite_bvalid,
+    input  wire   [31:0] mmap_axi_lite_rdata,
+    output wire          mmap_axi_lite_rready,
+    input  wire    [1:0] mmap_axi_lite_rresp,
+    input  wire          mmap_axi_lite_rvalid,
+    output wire   [31:0] mmap_axi_lite_wdata,
+    input  wire          mmap_axi_lite_wready,
+    output wire    [3:0] mmap_axi_lite_wstrb,
+    output wire          mmap_axi_lite_wvalid,
+    input  wire   [31:0] mmap_slave_axi_araddr,
+    input  wire    [1:0] mmap_slave_axi_arburst,
+    input  wire    [3:0] mmap_slave_axi_arcache,
+    input  wire          mmap_slave_axi_arid,
+    input  wire    [7:0] mmap_slave_axi_arlen,
+    input  wire          mmap_slave_axi_arlock,
+    input  wire    [2:0] mmap_slave_axi_arprot,
+    input  wire    [3:0] mmap_slave_axi_arqos,
+    output wire          mmap_slave_axi_arready,
+    input  wire    [3:0] mmap_slave_axi_arregion,
+    input  wire    [2:0] mmap_slave_axi_arsize,
+    input  wire          mmap_slave_axi_aruser,
+    input  wire          mmap_slave_axi_arvalid,
+    input  wire   [31:0] mmap_slave_axi_awaddr,
+    input  wire    [1:0] mmap_slave_axi_awburst,
+    input  wire    [3:0] mmap_slave_axi_awcache,
+    input  wire          mmap_slave_axi_awid,
+    input  wire    [7:0] mmap_slave_axi_awlen,
+    input  wire          mmap_slave_axi_awlock,
+    input  wire    [2:0] mmap_slave_axi_awprot,
+    input  wire    [3:0] mmap_slave_axi_awqos,
+    output wire          mmap_slave_axi_awready,
+    input  wire    [3:0] mmap_slave_axi_awregion,
+    input  wire    [2:0] mmap_slave_axi_awsize,
+    input  wire          mmap_slave_axi_awuser,
+    input  wire          mmap_slave_axi_awvalid,
+    output wire          mmap_slave_axi_bid,
+    input  wire          mmap_slave_axi_bready,
+    output wire    [1:0] mmap_slave_axi_bresp,
+    output wire          mmap_slave_axi_buser,
+    output wire          mmap_slave_axi_bvalid,
+    output wire  [127:0] mmap_slave_axi_rdata,
+    output wire          mmap_slave_axi_rid,
+    output wire          mmap_slave_axi_rlast,
+    input  wire          mmap_slave_axi_rready,
+    output wire    [1:0] mmap_slave_axi_rresp,
+    output wire          mmap_slave_axi_ruser,
+    output wire          mmap_slave_axi_rvalid,
+    input  wire  [127:0] mmap_slave_axi_wdata,
+    input  wire          mmap_slave_axi_wlast,
+    output wire          mmap_slave_axi_wready,
+    input  wire   [15:0] mmap_slave_axi_wstrb,
+    input  wire          mmap_slave_axi_wuser,
+    input  wire          mmap_slave_axi_wvalid,
+    input  wire   [15:0] msi_irqs,
+    input  wire          pcie_clk_n,
+    (* dont_touch = "true" *)
+    input  wire          pcie_clk_p,
+    input  wire          pcie_rst_n,
+    input  wire    [3:0] pcie_rx_n,
+    input  wire    [3:0] pcie_rx_p,
+    output wire    [3:0] pcie_tx_n,
+    output wire    [3:0] pcie_tx_p,
+    output wire          rst
+);
+
+endmodule
+
+// -----------------------------------------------------------------------------
+//  Auto-Generated by LiteX on 2024-06-15 18:32:51.
+//------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Auto-Generated by:        __   _ __      _  __
+//                          / /  (_) /____ | |/_/
+//                         / /__/ / __/ -_)>  <
+//                        /____/_/\__/\__/_/|_|
+//                     Build your hardware, easily!
+//                   https://github.com/enjoy-digital/litex
+//
+// Filename   : litesata_core.v
+// Device     : xc7a
+// LiteX sha1 : 81b70d1
+// Date       : 2024-06-15 18:35:00
+//------------------------------------------------------------------------------
+
+`timescale 1ns / 1ps
+
+//------------------------------------------------------------------------------
+// Module
+//------------------------------------------------------------------------------
+
+module litesata_core (
+    input  wire          clk,
+    input  wire          enable,
+    output wire          ready,
+    input  wire          rst,
+    input  wire          sata_clk_n,
+    input  wire          sata_clk_p,
+    input  wire          sata_rx_n,
+    input  wire          sata_rx_p,
+    output wire          sata_tx_n,
+    output wire          sata_tx_p,
+    input  wire   [15:0] user_port_native_0_sink_count,
+    input  wire   [31:0] user_port_native_0_sink_data,
+    input  wire          user_port_native_0_sink_identify,
+    input  wire          user_port_native_0_sink_last,
+    input  wire          user_port_native_0_sink_read,
+    output wire          user_port_native_0_sink_ready,
+    input  wire   [47:0] user_port_native_0_sink_sector,
+    input  wire          user_port_native_0_sink_valid,
+    input  wire          user_port_native_0_sink_write,
+    output wire   [31:0] user_port_native_0_source_data,
+    output wire          user_port_native_0_source_end,
+    output wire          user_port_native_0_source_failed,
+    output wire          user_port_native_0_source_identify,
+    output wire          user_port_native_0_source_last,
+    output wire          user_port_native_0_source_read,
+    input  wire          user_port_native_0_source_ready,
+    output wire          user_port_native_0_source_valid,
+    output wire          user_port_native_0_source_write
+);
+
+endmodule
+
+// -----------------------------------------------------------------------------
+//  Auto-Generated by LiteX on 2024-06-15 18:35:00.
+//------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Auto-Generated by:        __   _ __      _  __
+//                          / /  (_) /____ | |/_/
+//                         / /__/ / __/ -_)>  <
+//                        /____/_/\__/\__/_/|_|
+//                     Build your hardware, easily!
+//                   https://github.com/enjoy-digital/litex
+//
+// Filename   : litesdcard_core.v
+// Device     : 
+// LiteX sha1 : 81b70d1
+// Date       : 2024-06-15 18:36:43
+//------------------------------------------------------------------------------
+
+`timescale 1ns / 1ps
+
+//------------------------------------------------------------------------------
+// Module
+//------------------------------------------------------------------------------
+
+module litesdcard_core (
+    input  wire          clk,
+    output wire          irq,
+    input  wire          rst,
+    input  wire          sdcard_cd,
+    output reg           sdcard_clk,
+    inout  wire          sdcard_cmd,
+    output reg           sdcard_cmd_dir,
+    output reg           sdcard_dat0_dir,
+    output reg           sdcard_dat13_dir,
+    inout  wire    [3:0] sdcard_data,
+    output wire          wb_ctrl_ack,
+    input  wire   [29:0] wb_ctrl_adr,
+    input  wire    [1:0] wb_ctrl_bte,
+    input  wire    [2:0] wb_ctrl_cti,
+    input  wire          wb_ctrl_cyc,
+    output wire   [31:0] wb_ctrl_dat_r,
+    input  wire   [31:0] wb_ctrl_dat_w,
+    output wire          wb_ctrl_err,
+    input  wire    [3:0] wb_ctrl_sel,
+    input  wire          wb_ctrl_stb,
+    input  wire          wb_ctrl_we,
+    input  wire          wb_dma_ack,
+    output wire   [29:0] wb_dma_adr,
+    output wire    [1:0] wb_dma_bte,
+    output wire    [2:0] wb_dma_cti,
+    output wire          wb_dma_cyc,
+    input  wire   [31:0] wb_dma_dat_r,
+    output wire   [31:0] wb_dma_dat_w,
+    input  wire          wb_dma_err,
+    output wire    [3:0] wb_dma_sel,
+    output wire          wb_dma_stb,
+    output wire          wb_dma_we
+);
+endmodule
+
+// -----------------------------------------------------------------------------
+//  Auto-Generated by LiteX on 2024-06-15 18:36:43.
+//------------------------------------------------------------------------------
+
+
+
+`timescale 1ns / 1ps
+
+//------------------------------------------------------------------------------
+// Module
+//------------------------------------------------------------------------------
+
+module litespi_core_axi_lite (
+    input  wire   [31:0] bus_araddr,
+    input  wire    [2:0] bus_arprot,
+    output wire          bus_arready,
+    input  wire          bus_arvalid,
+    input  wire   [31:0] bus_awaddr,
+    input  wire    [2:0] bus_awprot,
+    output wire          bus_awready,
+    input  wire          bus_awvalid,
+    input  wire          bus_bready,
+    output wire    [1:0] bus_bresp,
+    output wire          bus_bvalid,
+    output wire   [31:0] bus_rdata,
+    input  wire          bus_rready,
+    output wire    [1:0] bus_rresp,
+    output wire          bus_rvalid,
+    input  wire   [31:0] bus_wdata,
+    output wire          bus_wready,
+    input  wire    [3:0] bus_wstrb,
+    input  wire          bus_wvalid,
+    input  wire          clk,
+    input  wire          rst,
+    output reg           spiflash_clk,
+    output wire          spiflash_cs_n,
+    input  wire          spiflash_hold,
+    input  wire          spiflash_miso,
+    output reg           spiflash_mosi,
+    input  wire          spiflash_wp
+);
+
+
+
+//------------------------------------------------------------------------------
+// Specialized Logic
+//------------------------------------------------------------------------------
+
+endmodule
+
+// -----------------------------------------------------------------------------
+//  Auto-Generated by LiteX on 2024-06-15 18:04:14.
+//------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Auto-Generated by:        __   _ __      _  __
+//                          / /  (_) /____ | |/_/
+//                         / /__/ / __/ -_)>  <
+//                        /____/_/\__/\__/_/|_|
+//                     Build your hardware, easily!
+//                   https://github.com/enjoy-digital/litex
+//
+// Filename   : litespi_core.v
+// Device     : 
+// LiteX sha1 : 81b70d1
+// Date       : 2024-06-15 18:10:07
+//------------------------------------------------------------------------------
+
+`timescale 1ns / 1ps
+
+//------------------------------------------------------------------------------
+// Module
+//------------------------------------------------------------------------------
+
+module litespi_core_wishbone (
+    output wire          bus_ack,
+    input  wire   [29:0] bus_adr,
+    input  wire    [1:0] bus_bte,
+    input  wire    [2:0] bus_cti,
+    input  wire          bus_cyc,
+    output wire   [31:0] bus_dat_r,
+    input  wire   [31:0] bus_dat_w,
+    output wire          bus_err,
+    input  wire    [3:0] bus_sel,
+    input  wire          bus_stb,
+    input  wire          bus_we,
+    input  wire          clk,
+    input  wire          rst,
+    output reg           spiflash_clk,
+    output wire          spiflash_cs_n,
+    input  wire          spiflash_hold,
+    input  wire          spiflash_miso,
+    output reg           spiflash_mosi,
+    input  wire          spiflash_wp
+);
+
+endmodule
+
+// -----------------------------------------------------------------------------
+//  Auto-Generated by LiteX on 2024-06-15 18:10:07.
+//------------------------------------------------------------------------------
+

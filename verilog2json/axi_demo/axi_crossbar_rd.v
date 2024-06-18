@@ -54,4 +54,28 @@ module axi_crossbar_rd #
     output [S_IF_COUNT-1:0]               rd_error_valid,
     input  [S_IF_COUNT-1:0]               rd_error_ready
 );
+
+
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+
+    cpu cpu0();
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+    logic a;
+
 endmodule

@@ -2,5 +2,17 @@
 #./axi_demo/axi_fifo_wr.v
 #./axi_demo/axi_crossbar_rd.v
 #./axi_demo/axi_crossbar_wr.v
-./axi_demo/ahblite_interconnect.sv
 
+# liteX ip
+#./open_source_ip/litex_ip/litedram_core.v
+#./open_source_ip/litex_ip/liteeth_core.v
+#./open_source_ip/litex_ip/litepcie_core.v
+#./open_source_ip/litex_ip/litesata_core.v
+#./open_source_ip/litex_ip/litesdcard_core.v
+#./open_source_ip/litex_ip/litespi_core_axi_lite.v
+#./open_source_ip/litex_ip/litespi_core_wishbone.v
+
+# preproc test
+./preproc_demo/./arbiter.v
+./preproc_demo/./priority_encoder.v
++incdir+./preproc_demo

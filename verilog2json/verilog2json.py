@@ -11,36 +11,6 @@ import json
 import os
 import argparse
 
-def delete_lines_and_shift_remaining(source_lines, start_pos, end_pos):
-    """
-    删除行列表中从指定的开始位置到结束位置之间的文本，并将剩余的文本移动到新的一行。
-
-    :param source_lines: 源文本行列表。
-    :param start_pos: 开始位置，形式为 (行号, 列号)。
-    :param end_pos: 结束位置，形式为 (行号, 列号)。
-    :return: 处理后的行列表。
-    """
-    # 调整索引以适应Python的0索引
-    start_line, start_col = start_pos[0]-1 , start_pos[1]
-    end_line, end_col = end_pos[0]-1, end_pos[1]+1
-
-    # 删除指定范围的文本
-    if start_line == end_line:
-        # 如果开始和结束在同一行，将剩余文本移动到新的一行
-        remaining_text = source_lines[start_line][end_col:]
-        source_lines[start_line] = source_lines[start_line][:start_col]
-        source_lines.insert(start_line + 1, remaining_text)
-        # if remaining_text:
-        #     # 如果有剩余文本，将其添加为新的一行
-        #     source_lines.insert(start_line + 1, remaining_text)
-    else:
-        # 如果开始和结束不在同一行，修改开始和结束行，并删除中间的行
-        source_lines[start_line] = source_lines[start_line][:start_col]
-        source_lines[end_line] = source_lines[end_line][end_col:]
-        # 删除中间的行以及原结束行
-        del source_lines[start_line + 1:end_line -1]
-
-    return source_lines
 
 # 自定义监听器类
 class ModuleListener(SystemVerilogParserListener):
@@ -126,16 +96,17 @@ class ModuleListener(SystemVerilogParserListener):
         param_value = ctx.list_of_param_assignments().param_assignment()[0].constant_param_expression().getText()
         self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName] = {'value': param_value}
 
-        # 将value转为javascript表达式，便于前端处理
-        js_expression = re.sub(r'\$clog2\((.*?)\)', 'Math.log2(\\1)', param_value)
-        self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = js_expression
+        # # 将value转为javascript表达式，便于前端处理
+        # js_expression = re.sub(r'\$clog2\((.*?)\)', 'Math.log2(\\1)', param_value)
+        # self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = js_expression
 
         if param_type:
             self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['type'] = param_type
         if param_width:
             self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['width'] = param_width
 
-        print(f"Parameter name: {self.currentParamName}, type: {param_type}, width: {param_width}, dimension: {param_dimension}, value: {param_value}, js_expression: {js_expression}")
+        # print(f"Parameter name: {self.currentParamName}, type: {param_type}, width: {param_width}, dimension: {param_dimension}, value: {param_value}, js_expression: {js_expression}")
+        print(f"Parameter name: {self.currentParamName}, type: {param_type}, width: {param_width}, dimension: {param_dimension}, value: {param_value}")
 
     def exitParameter_declaration(self, ctx:SystemVerilogParser.Parameter_declarationContext):
         self.paramRegion = False
@@ -171,7 +142,7 @@ class ModuleListener(SystemVerilogParserListener):
                     else:
                         port_width = '1'
                 elif ctx.ansi_port_declaration().implicit_data_type():
-                    if(ctx.ansi_port_declaration().data_type().packed_dimension()):
+                    if(ctx.ansi_port_declaration().implicit_data_type().packed_dimension()):
                         port_width = ctx.ansi_port_declaration().implicit_data_type().packed_dimension()[0].getText()
                     else:
                         port_width = '1'
@@ -213,54 +184,71 @@ class ModuleListener(SystemVerilogParserListener):
         self.currentPortWidth = port_width
 
 
+# 自定义Listener类，支持include展开和ifdef处理
 class IncludeListener(SystemVerilogPreParserListener):
     def __init__(self,origin_source_text,incdirs,included_files=[],defines={}):
+
+        # 源码
         self.source_lines = origin_source_text.split('\n')
+
+        # include文件的查找路径，用户通过命令行传入
         self.incdirs = incdirs
+
+        # 记录已经include过的文件名，防止循环include
         self.included_files = included_files
+
+        # 用户定义的define
         self.defines = defines
+
+        # 表示ifdef/ifndef的代码区是否有效
         self.valid_region = True
+
+        # 记录相对于原文添加的行数，当include展开时或被ifdef/ifndef屏蔽的区域被删除时需要记录行数变动
         self.added_line_num = 0
+
+        # 记录嵌套的ifdef/elsif/else的tocken，当进入一个ifdef或ifndef时记录与之匹配elsif、else、endif的tocken index，这些index是唯一的，用于在对应的回调函数中设置self.valid_region
         self.region_tocken_idx = []
+
+        # 当连续的 ifdef/elsif 在某处条件成立时，后续的elsif/else被屏蔽
         self.elsif_mask = False
 
-
-
-    # def enterSource_text(self, ctx:SystemVerilogPreParser.Source_textContext):
-    #     print(f"source_text: {ctx.getText()}")
-
+    # define回调函数
     def enterText_macro_definition(self, ctx:SystemVerilogPreParser.Text_macro_definitionContext):
+        # 判断是否在有效区 (若被ifdef或ifndef屏蔽，则无效)
         if not self.valid_region:
             return
         
+        # 删除这句预处理命令
         line_start = ctx.start.line + self.added_line_num
         del self.source_lines[line_start-1]
         self.added_line_num -= 1
+
+        # 获取define的名称和内容
         define_name = ctx.macro_name().getText()
         define_text = ctx.macro_text().macro_text_()
-
         if define_text:
             self.defines[define_name] = define_text[0].getText()
         else:
             self.defines[define_name] = ''
-        
+
         print(f"self.defines: {self.defines}")
 
-    def exitMacro_quote(self, ctx:SystemVerilogPreParser.Macro_quoteContext):
-        pass
-    def exitMacro_text(self, ctx:SystemVerilogPreParser.Macro_textContext):
-        pass
-    def enterMacro_text_(self, ctx:SystemVerilogPreParser.Macro_text_Context):
-        pass
+    # 当define过的宏被使用时的回调函数
     def enterText_macro_usage(self, ctx:SystemVerilogPreParser.Text_macro_usageContext):
+        # 判断是否在有效区 (若被ifdef或ifndef屏蔽，则无效)
         if not self.valid_region:
             return
+        
         line_start = ctx.start.line + self.added_line_num
         line_stop = ctx.stop.line + self.added_line_num
         col_start = ctx.start.column
         col_stop = ctx.stop.column
+
+        # 获取宏的名称
         macro_directive = ctx.getText()
         macro = ctx.macro_usage().getText()
+
+        # 替换宏
         if macro in self.defines.keys():
             macro_text = self.defines[macro]
             if macro_text:
@@ -270,18 +258,40 @@ class IncludeListener(SystemVerilogPreParserListener):
         else:
             print(f"Error: {macro} is not defined")
 
+    # undef回调函数
+    def enterUndef_directive(self, ctx:SystemVerilogPreParser.Undef_directiveContext):
+        if not self.valid_region:
+            return
+        # 删除这句预处理命令
+        line_start = ctx.start.line + self.added_line_num
+        del self.source_lines[line_start-1]
+        self.added_line_num -= 1
+        # 获取undef的名称
+        undef = ctx.macro_identifier().getText()
+        # 删除define
+        if undef in self.defines.keys():
+            del self.defines[undef]
+        else:
+            print(f"Warnning: {undef} is not defined")
+        print(f"self.defines: {self.defines}")
+
+    # ifdef回调函数
     def enterIfdef_directive(self, ctx:SystemVerilogPreParser.Ifdef_directiveContext):
+        # 判断是否在有效区 (若被ifdef或ifndef屏蔽，则无效)
         if not self.valid_region:
             return
         
+        # 删除这句预处理命令
         line_start = ctx.start.line + self.added_line_num
         del self.source_lines[line_start-1]
         self.added_line_num -= 1
 
-        else_directive = ctx.else_directive()
+        # 获取这句ifdef匹配的所有elsif、else、endif
         elsif_directive = ctx.elsif_directive()
+        else_directive = ctx.else_directive()
         endif_directive = ctx.endif_directive()
 
+        # 记录tocken index顺序
         if elsif_directive:
             for elsif in elsif_directive:
                 self.region_tocken_idx.append(elsif.start.tokenIndex)
@@ -292,6 +302,7 @@ class IncludeListener(SystemVerilogPreParserListener):
         else:
             print(f"Error: Not found endif directive. Line:{line_start}")
 
+        # 判断 ifdef 条件， 设置self.valid_region
         ifdef = ctx.macro_identifier().getText()
         if ifdef in self.defines.keys():
             print(f"ifdef: {ifdef} is defined")
@@ -300,17 +311,7 @@ class IncludeListener(SystemVerilogPreParserListener):
             print(f"ifdef: {ifdef} not define")
             self.valid_region = False
 
-    def enterGroup_of_lines(self, ctx:SystemVerilogPreParser.Group_of_linesContext):
-        if not self.valid_region:
-            print(f"This Group_of_lines is discarded: {ctx.getText()}")
-            line_start = ctx.start.line + self.added_line_num
-            line_stop = ctx.stop.line + self.added_line_num
-            del self.source_lines[line_start-1:line_stop]
-            self.added_line_num -= (line_stop - line_start + 1)
-            return
-        print(f"Group_of_lines{ctx.getText()}")
-
-
+    # ifndef回调函数,与ifdef一致
     def enterIfndef_directive(self, ctx:SystemVerilogPreParser.Ifndef_directiveContext):
         if not self.valid_region:
             return
@@ -319,8 +320,8 @@ class IncludeListener(SystemVerilogPreParserListener):
         del self.source_lines[line_start-1]
         self.added_line_num -= 1
 
-        else_directive = ctx.else_directive()
         elsif_directive = ctx.elsif_directive()
+        else_directive = ctx.else_directive()
         endif_directive = ctx.endif_directive()
 
         if elsif_directive:
@@ -340,16 +341,35 @@ class IncludeListener(SystemVerilogPreParserListener):
         else:
             print(f"ifndef: {ifndef} not define")
             self.valid_region = True
+            
+    # 遇到ifdef elsif else预处理命令之间的代码 的回调函数
+    def enterGroup_of_lines(self, ctx:SystemVerilogPreParser.Group_of_linesContext):
+        # 当前区域无效时，删除这段代码
+        if not self.valid_region:
+            print(f"This Group_of_lines is discarded:\n{ctx.getText()}")
+            line_start = ctx.start.line + self.added_line_num
+            line_stop = line_start + len(ctx.getText().split('\n')) - 1
+            # line_stop = ctx.stop.line + self.added_line_num
+            del self.source_lines[line_start-1:line_stop]
+            self.added_line_num -= (line_stop - line_start + 1)
+            return
+        print(f"Group_of_lines\n{ctx.getText()}")
 
+    # elsif回调函数
     def enterElsif_directive(self, ctx:SystemVerilogPreParser.Elsif_directiveContext):
+        # 获取当前的tocken index
         this_tocken_idx = ctx.start.tokenIndex
+        # 判断与此前的indef的匹配关系
         if this_tocken_idx == self.region_tocken_idx[0]:
+            # 如果匹配则pop
             self.region_tocken_idx.pop(0)
 
+            # 删除这句预处理命令
             line_start = ctx.start.line + self.added_line_num
             del self.source_lines[line_start-1]
             self.added_line_num -= 1
 
+            # 之前的if无效时，判断这个elsif条件
             if self.valid_region == False :
                 if self.elsif_mask == False:
                     ifdef = ctx.macro_identifier().getText()
@@ -360,9 +380,11 @@ class IncludeListener(SystemVerilogPreParserListener):
                         print(f"ifdef: {ifdef} not define")
                         self.valid_region = False
             else:
+                # 如果之前的if有效，则本次以及后续elsif和else都无效
                 self.valid_region = False
                 self.elsif_mask = True  # 屏蔽后续的elsif,直到endif
 
+    # else 回调函数
     def enterElse_directive(self, ctx:SystemVerilogPreParser.Else_directiveContext):
         this_tocken_idx = ctx.start.tokenIndex
         if this_tocken_idx == self.region_tocken_idx[0]:
@@ -373,7 +395,7 @@ class IncludeListener(SystemVerilogPreParserListener):
             if self.elsif_mask == False:
                 self.valid_region = not self.valid_region
 
-
+    # endif 回调函数
     def enterEndif_directive(self, ctx:SystemVerilogPreParser.Endif_directiveContext):
         this_tocken_idx = ctx.start.tokenIndex
         if this_tocken_idx == self.region_tocken_idx[0]:
@@ -385,15 +407,13 @@ class IncludeListener(SystemVerilogPreParserListener):
             self.elsif_mask = False
             self.valid_region = True
 
+    # include 回调函数
     def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
         if not self.valid_region:
             return
         filename = ctx.filename().getText()
         start_line = ctx.start.line + self.added_line_num
         stop_line = ctx.stop.line + self.added_line_num
-        # start_col = ctx.start.column
-        # stop_col = ctx.stop.column
-
 
         if filename in self.included_files:
             print(f"Error: Detected a loop include. Include file {filename} is already included.")
@@ -413,7 +433,10 @@ class IncludeListener(SystemVerilogPreParserListener):
             return
         
         self.included_files.append(filename)
+
+        print(f"Enter include file {filename}")
         lines_to_add = preparse_systemverilog(file_content,self.incdirs,self.included_files,self.defines)
+        print(f"Exit include file {filename}")
 
         # Insert the content of the include file into the processed source text
         # Assuming that the line numbers start at 1 and that the source text is a list of lines
@@ -432,19 +455,6 @@ class IncludeListener(SystemVerilogPreParserListener):
         self.added_line_num += (len(lines_to_add) - 1)
 
         print(f"Add {self.added_line_num} line.")
-
-
-# 自定义Visitor类
-class PortFinder(SystemVerilogPreParserVisitor):
-    def __init__(self):
-        # 初始化一个列表来保存找到的include语句
-        self.port = []
-
-    def visitList_of_port_declarations(self, ctx:SystemVerilogParser.List_of_port_declarationsContext):
-        # 从上下文中提取include语句并添加到列表中
-        include_statement = ctx.getText()
-        self.includes.append(include_statement)
-        return self.visitChildren(ctx)
 
 def preparse_systemverilog(content,include_dirs,included_files=[],defines=[]):
 
@@ -472,15 +482,8 @@ def parse_systemverilog(text,group_name,json_file_name):
     parser = SystemVerilogParser(stream)
 
     tree = parser.source_text()
-    
-    # visitor = PortFinder()
-    # # 遍历解析树
-    # visitor.visit(tree)
-    # 打印找到的include语句
-    # print(visitor.port)
-
-    
-
+    # 打印解析树
+    print(f'Parse Tree: {tree.toStringTree(recog=parser)}')
 
     listener = ModuleListener()
     walker = ParseTreeWalker()
@@ -513,6 +516,8 @@ if __name__ == '__main__':
         files_to_process.append(args.file)
     elif args.list:
         pre_path = os.path.dirname(args.list)
+        if not pre_path:
+            pre_path = '.'
         # Read filelist to get the list of Verilog files and include directories
         with open(args.list, 'r') as filelist:
             for line in filelist:
@@ -551,7 +556,13 @@ if __name__ == '__main__':
     # print(combined_content)
     print("============Preprocessed source text=============")
 
-    parse_systemverilog(combined_content,args.group,args.output)
+
+    # 删掉module中的逻辑内容只保留port list，避免过多tocken导致antlr处理速度过慢
+    pattern = r'(module\s+.*?\(.*?\)\s?;).*?(endmodule)'
+    filted_code = re.sub(pattern, r'\1 \n \2', combined_content, flags=re.DOTALL)
+    print(f'Filted code :{filted_code}')
+
+    parse_systemverilog(filted_code,args.group,args.output)
 
 
   

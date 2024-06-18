@@ -1,0 +1,7 @@
+./litex_ip/litedram_core.v
+./litex_ip/liteeth_core.v
+./litex_ip/litepcie_core.v
+./litex_ip/litesata_core.v
+./litex_ip/litesdcard_core.v
+./litex_ip/litespi_core_axi_lite.v
+./litex_ip/litespi_core_wishbone.v

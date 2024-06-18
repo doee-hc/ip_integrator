@@ -1,0 +1,26 @@
+*design* DebussyLib (btIdent Verdi_T-2022.06)
+Command arguments:
+    +define+verilog
+    -ssv
+    -ssy
+    -2012
+    -f rtl.lst
+        ./arbiter.v
+        ./priority_encoder.v
+        +incdir+.
+    -top
+    arbiter
+
+
+*Warning* macro ARBITER_WIDTH redefined from (3) to (5)
+"config.vh", 3: 
+
+*Warning* macro PORTS redefined from (`ARBITER_WIDTH) to (4)
+"priority_encoder.v", 27: 
+
+*Error* Module priority_encoder redefined
+"./priority_encoder.v", 33: 
+Highest level modules:
+arbiter
+
+Total	1 error(s),   2 warning(s)
