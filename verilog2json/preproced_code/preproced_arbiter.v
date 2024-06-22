@@ -28,6 +28,19 @@ THE SOFTWARE.
 
 
 
+// `define add_pseudo_instr(instr_n, instr_format, instr_category, instr_group)  \
+//   constraint riscv_``instr_group``_``instr_n``_c { \
+//     if (pseudo_instr_name  == ``instr_n) { \
+//         format             == ``instr_format; \
+//         category           == ``instr_category; \
+//         group              == ``instr_group; \
+//     } \
+//   }
+  
+// `define ADD(a,b) a  \
+//                 +   \
+//                 b
+
 /*
 
 Copyright (c) 2014-2021 Alex Forencich

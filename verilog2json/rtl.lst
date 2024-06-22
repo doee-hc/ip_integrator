@@ -14,5 +14,5 @@
 
 # preproc test
 ./preproc_demo/./arbiter.v
-./preproc_demo/./priority_encoder.v
+#./preproc_demo/./priority_encoder.v
 +incdir+./preproc_demo

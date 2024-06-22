@@ -1,0 +1,77 @@
+
+{
+    "adHocConnections": {
+        // 假设m_axi_arid的维度是[2:0][3:0][4:0],width 为 32
+        // 假设s_axi_arid的维度是[3:0][4:0]，width 为 16
+        "m_axi_fifo_rd_instance_m_axi_arid_s0_axi_fifo_rd_instance_s_axi_arid_0": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": "m_axi_arid[2:0][3:0][4:0]",
+                "port": "m_axi_arid[0]",
+                "width": "15:0"
+            },
+            "target": {
+                "instanceRef": "s0_axi_fifo_rd_instance",
+                "portRef": "s_axi_arid[3:0][4:0]",
+                "port": "s_axi_arid",
+                "width": "15:0"
+            }
+        },
+        "m_axi_fifo_rd_instance_m_axi_arid_s1_axi_fifo_rd_instance_s_axi_arid_0": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": "m_axi_arid[2:0][3:0][4:0]",
+                "port": "m_axi_arid[1]",
+                "width": "31:16"
+            },
+            "target": {
+                "instanceRef": "s1_axi_fifo_rd_instance",
+                "portRef": "s_axi_arid[3:0][4:0]",
+                "port": "s_axi_arid",
+                "width": "15:0"
+            }
+        },
+        "m_axi_fifo_rd_instance_m_axi_arid_s2_axi_fifo_rd_instance_s_axi_arid_0": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": "m_axi_arid[2:0][3:0][4:0]",
+                "port": "m_axi_arid[2][0]",
+                "width": "15:0"
+            },
+            "target": {
+                "instanceRef": "s2_axi_fifo_rd_instance",
+                "portRef": "s_axi_arid[3:0][4:0]",
+                "port": "s_axi_arid[0]",
+                "width": "15:0"
+            }
+        },
+        "m_axi_fifo_rd_instance_m_axi_arid_s2_axi_fifo_rd_instance_s_axi_arid_1": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": "m_axi_arid[2:0][3:0][4:0]",
+                "port": "m_axi_arid[2][0]",
+                "width": "31:16"
+            },
+            "target": {
+                "instanceRef": "s2_axi_fifo_rd_instance",
+                "portRef": "s_axi_arid[3:0][4:0]",
+                "port": "s_axi_arid[1]",
+                "width": "15:0"
+            }
+        },
+        "m_axi_fifo_rd_instance_m_axi_arid_s2_axi_fifo_rd_instance_s_axi_arid_3": {
+            "initiator": {
+                "instanceRef": "m_axi_fifo_rd_instance",
+                "portRef": "m_axi_arid[2:0][3:0][4:0]",
+                "port": "m_axi_arid[2][1]",
+                "width": "15:0"
+            },
+            "target": {
+                "instanceRef": "s2_axi_fifo_rd_instance",
+                "portRef": "s_axi_arid[3:0][4:0]",
+                "port": "s_axi_arid[2]",
+                "width": "15:0"
+            }
+        }
+    }
+}

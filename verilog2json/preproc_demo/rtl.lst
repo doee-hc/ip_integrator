@@ -1,4 +1,4 @@
 ./arbiter.v
-./priority_encoder.v
+#./priority_encoder.v
 +incdir+.
 
