@@ -10,7 +10,7 @@ def clog2(x):
 
 # 安全环境，只包含我们允许的运算符和函数
 safe_dict = {
-    'clog2': clog2, 
+    'clog2': clog2,
 }
 
 # 添加安全的运算符

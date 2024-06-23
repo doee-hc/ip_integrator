@@ -225,11 +225,19 @@ class IncludeListener(SystemVerilogPreParserListener):
 
         # 获取define的名称和内容
         define_name = ctx.macro_name().getText()
-        define_text = ctx.macro_text().macro_text_()
-        if define_text:
-            self.defines[define_name] = define_text[0].getText()
+        define_texts = ctx.macro_text().macro_text_()
+        define_text = ""
+        
+        if define_texts:
+            for text in define_texts:
+                define_text += text.getText()
+            text_to_replace = preparse_systemverilog(define_text,self.incdirs,self.included_files,self.defines)[0]
+            print(f"{define_text} translate to {text_to_replace}")
+            self.defines[define_name] = text_to_replace
         else:
             self.defines[define_name] = ''
+
+
 
         print(f"self.defines: {self.defines}")
 
@@ -252,9 +260,11 @@ class IncludeListener(SystemVerilogPreParserListener):
         if macro in self.defines.keys():
             macro_text = self.defines[macro]
             if macro_text:
+                print(f"Replace {macro} with {macro_text}")
+
                 self.source_lines[line_start-1] = self.source_lines[line_start-1].replace(macro_directive,macro_text)
             else:
-                print(f"Warrning: define {macro} has no text.")
+                print(f"Error: define {macro} has no text.")
         else:
             print(f"Error: {macro} is not defined")
 
