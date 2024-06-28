@@ -132,11 +132,26 @@ class ModuleListener(SystemVerilogParserListener):
     
     def enterPort_decl(self, ctx:SystemVerilogParser.Port_declContext):
         
+        port_package = None
+        port_struct = None
         if ctx.ansi_port_declaration():
             port_names = ctx.ansi_port_declaration().port_identifier().getText()
             if ctx.ansi_port_declaration().port_direction():
                 port_direction = ctx.ansi_port_declaration().port_direction().getText()
                 if ctx.ansi_port_declaration().data_type():
+                    # For opentitan ip
+                    if ctx.ansi_port_declaration().data_type().class_type():
+                        if(ctx.ansi_port_declaration().data_type().packed_dimension()):
+                            port_package = ctx.ansi_port_declaration().data_type().class_type().getText()
+                            port_struct = ctx.ansi_port_declaration().data_type().type_identifier().getText()
+                        else:
+                            class_ref = ctx.ansi_port_declaration().data_type().class_type().class_ref()
+                            if len(class_ref) == 1:
+                                port_struct = class_ref[0].getText()
+                            elif len(class_ref) == 2:
+                                port_package = class_ref[0].getText()
+                                port_struct = class_ref[1].getText()
+
                     if(ctx.ansi_port_declaration().data_type().packed_dimension()):
                         port_width = ctx.ansi_port_declaration().data_type().packed_dimension()[0].getText()
                     else:
@@ -178,6 +193,12 @@ class ModuleListener(SystemVerilogParserListener):
 
         # 添加端口名称到模块信息中
         self.modules[self.currentModuleName]['content']['ports'][port_names] = {'direction': port_direction, 'width': port_width}
+
+        # for opentitan ip
+        if port_package:
+            self.modules[self.currentModuleName]['content']['ports'][port_names]['package'] = port_package
+            self.modules[self.currentModuleName]['content']['ports'][port_names]['struct'] = port_struct
+            
         if port_dimension:
             self.modules[self.currentModuleName]['content']['ports'][port_names]['dimension'] = port_dimension
         self.currentPortDirection = port_direction
@@ -231,6 +252,8 @@ class IncludeListener(SystemVerilogPreParserListener):
         if define_texts:
             for text in define_texts:
                 define_text += text.getText()
+                # TODO 多行define的处理:下例
+                # '                                                             `ifdef UVM                                                                                 uvm_pkg::uvm_report_error(, `PRIM_STRINGIFY(__name), uvm_pkg::UVM_NONE,                             `__FILE__, `__LINE__, , 1);                                `else                                                                                      $error(, $time, `__FILE__, `__LINE__,                  `PRIM_STRINGIFY(__name));                                                       `endif'
             text_to_replace = preparse_systemverilog(define_text,self.incdirs,self.included_files,self.defines)[0]
             print(f"{define_text} translate to {text_to_replace}")
             self.defines[define_name] = text_to_replace
@@ -493,7 +516,7 @@ def parse_systemverilog(text,group_name,json_file_name):
 
     tree = parser.source_text()
     # 打印解析树
-    print(f'Parse Tree: {tree.toStringTree(recog=parser)}')
+    #print(f'Parse Tree: {tree.toStringTree(recog=parser)}')
 
     listener = ModuleListener()
     walker = ParseTreeWalker()
