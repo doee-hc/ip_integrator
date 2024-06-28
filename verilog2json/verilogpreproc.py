@@ -240,19 +240,12 @@ class IncludeListener(SystemVerilogPreParserListener):
         lines_to_add = preparse_systemverilog(file_content,self.incdirs,self.included_files,self.defines)
         print(f"Exit include file {filename}")
 
-        # Insert the content of the include file into the processed source text
-        # Assuming that the line numbers start at 1 and that the source text is a list of lines
-
-        # source_lines = delete_lines_and_shift_remaining(source_lines,(start_line,start_col),(stop_line,stop_col))
         del self.source_lines[start_line-1:stop_line]
 
         # Adjust for 0-based indexing used in Python lists
         insertion_point = stop_line-1
         # Insert the include file content into the original source text
         self.source_lines[insertion_point:insertion_point] = lines_to_add
-
-        # Update the processed source text
-        # self.processed_source_text = '\n'.join(source_lines)
 
         self.added_line_num += (len(lines_to_add) - 1)
 

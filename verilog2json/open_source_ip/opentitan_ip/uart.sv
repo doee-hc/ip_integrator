@@ -7,6 +7,15 @@
 module uart
     import uart_reg_pkg::*;
 #(
+  
+  // Param list
+  parameter int RxFifoDepth = 64,
+  parameter int TxFifoDepth = 32,
+  parameter int NumAlerts = 1,
+
+  // Address widths within the block
+  parameter int BlockAw = 6,
+
   parameter logic [NumAlerts-1:0] AlertAsyncOn = {NumAlerts{1'b1}}
 ) (
   input           clk_i,

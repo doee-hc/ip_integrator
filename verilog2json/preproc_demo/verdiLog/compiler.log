@@ -6,8 +6,6 @@ Command arguments:
     -2012
     -f rtl.lst
         ./arbiter.v
-        ./priority_encoder.v
-        +incdir+.
     -top
     arbiter
 
@@ -15,12 +13,15 @@ Command arguments:
 *Warning* macro ARBITER_WIDTH redefined from (3) to (5)
 "config.vh", 3: 
 
-*Warning* macro PORTS redefined from (`ARBITER_WIDTH) to (4)
-"priority_encoder.v", 27: 
-
-*Error* Module priority_encoder redefined
-"./priority_encoder.v", 33: 
+*Error* `include file "priority_encoder.v" cannot be read
+"./arbiter.v", 27: 
 Highest level modules:
 arbiter
 
-Total	1 error(s),   2 warning(s)
+
+*Error* view priority_encoder is not defined for instance priority_encoder_inst
+"./arbiter.v", 77: 
+
+*Error* view priority_encoder is not defined for instance priority_encoder_masked
+"./arbiter.v", 107: 
+Total	3 error(s),   1 warning(s)

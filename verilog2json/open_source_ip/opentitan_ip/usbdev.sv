@@ -12,6 +12,13 @@ module usbdev
   import usbdev_reg_pkg::*;
   import prim_util_pkg::vbits;
 #(
+  
+  // Param list
+  parameter int NEndpoints = 12;
+  parameter int NumAlerts = 1;
+
+  // Address widths within the block
+  parameter int BlockAw = 12;
   parameter bit Stub = 1'b0,
   parameter logic [NumAlerts-1:0] AlertAsyncOn = {NumAlerts{1'b1}},
   // Max time (in microseconds) from rx_enable_o high to the

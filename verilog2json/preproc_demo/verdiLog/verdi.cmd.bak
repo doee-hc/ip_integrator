@@ -1,4 +1,7 @@
 sidCmdLineBehaviorAnalysisOpt -incr -clockSkew 0 -loopUnroll 0 -bboxEmptyModule 0  -cellModel 0 -bboxIgnoreProtected 0 
 debImport "-ssv" "-ssy" "-2012" "-f" "rtl.lst" "-top" "arbiter"
 verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
-debExit
+verdiWindowResize -win $_Verdi_1 "146" -13 "1644" "1436"
+nsMsgSelect -range {0 1-1}
+verdiSetActWin -dock widgetDock_<Message>
+nsMsgSelect -range {0 0-0}

@@ -10,6 +10,74 @@ import re
 import json
 import os
 import argparse
+import ast
+import operator
+
+def clog2(x):
+    if x <= 0:
+        raise ValueError("clog2 is undefined for non-positive values")
+    return x.bit_length() - (1 if x & (x - 1) == 0 else 0)
+
+# 安全环境，只包含我们允许的运算符和函数
+safe_dict = {
+    'clog2': clog2,
+}
+
+# 添加安全的运算符
+safe_operators = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+    ast.Mod: operator.mod,
+    ast.Pow: operator.pow,
+    ast.BitXor: operator.xor,
+    ast.USub: operator.neg
+}
+
+def eval_expr(expr, params):
+    """
+    安全地计算表达式的值。
+    Args:
+        expr (str): 要计算的表达式。
+        params (dict): 参数名称和值的映射。
+    Returns:
+        int: 表达式的计算结果。
+    """
+    # 解析表达式
+    tree = ast.parse(expr, mode='eval').body
+
+    # 计算表达式的值
+    def _eval(node):
+        if isinstance(node, ast.Num):  # <number>
+            return node.n
+        elif isinstance(node, ast.BinOp):  # <left> <operator> <right>
+            return safe_operators[type(node.op)](_eval(node.left), _eval(node.right))
+        elif isinstance(node, ast.UnaryOp):  # <operator> <operand> e.g., -1
+            return safe_operators[type(node.op)](_eval(node.operand))
+        elif isinstance(node, ast.Name):  # <variable>
+            if node.id in params:
+                value = params[node.id]["value"]
+                try:
+                    # 尝试将参数值从字符串转换为整数
+                    value = int(value)
+                except ValueError:
+                    # 如果转换失败，保持原样
+                    pass
+                return value
+            else:
+                raise ValueError(f"Unknown identifier: {node.id}")
+        elif isinstance(node, ast.Call):  # <func>(<args>)
+            if node.func.id in safe_dict:
+                func = safe_dict[node.func.id]
+                args = [_eval(arg) for arg in node.args]
+                return func(*args)
+            else:
+                raise ValueError(f"Unknown function: {node.func.id}")
+        else:
+            raise TypeError(node)
+
+    return _eval(tree)
 
 
 # 自定义监听器类
@@ -111,17 +179,17 @@ class ModuleListener(SystemVerilogParserListener):
     def exitParameter_declaration(self, ctx:SystemVerilogParser.Parameter_declarationContext):
         self.paramRegion = False
 
-    def enterConstant_expression(self, ctx:SystemVerilogParser.Constant_expressionContext):
-        self.iteration += 1
-        if self.paramRegion:
-            # 判断是否存在 assignment pattern
-            if ctx.constant_primary():
-                if ctx.constant_primary().constant_assignment_pattern_expression():
-                    # TODO
-                    self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = None
-                elif ctx.constant_primary().constant_multiple_concatenation():
-                    # TODO
-                    self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = None
+    # def enterConstant_expression(self, ctx:SystemVerilogParser.Constant_expressionContext):
+    #     self.iteration += 1
+    #     if self.paramRegion:
+    #         # 判断是否存在 assignment pattern
+    #         if ctx.constant_primary():
+    #             if ctx.constant_primary().constant_assignment_pattern_expression():
+    #                 # TODO
+    #                 self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = None
+    #             elif ctx.constant_primary().constant_multiple_concatenation():
+    #                 # TODO
+    #                 self.modules[self.currentModuleName]['content']['parameters'][self.currentParamName]['js_expression'] = None
         
         # print(f"Constant expression iteration {self.iteration}: {ctx.getText()}")
     def exitConstant_expression(self, ctx:SystemVerilogParser.Constant_expressionContext):
@@ -191,6 +259,21 @@ class ModuleListener(SystemVerilogParserListener):
         
         print(f"Port name: {port_names}, direction: {port_direction}, width: {port_width}, dimension: {port_dimension}")
 
+        port_width = port_width.strip("[]")
+        parts = port_width.split(':')
+        params = self.modules[self.currentModuleName]['content']['parameters']
+        # 将width解析成纯数字
+        if len(parts) == 2:
+            # 多位宽的情况
+            width_l = eval_expr(parts[0], params)
+            width_r = eval_expr(parts[1], params)
+            if width_l == width_r == 0:
+                port_width = '1'
+            else:
+                port_width = f"[{width_l}:{width_r}]"
+        
+
+        
         # 添加端口名称到模块信息中
         self.modules[self.currentModuleName]['content']['ports'][port_names] = {'direction': port_direction, 'width': port_width}
 

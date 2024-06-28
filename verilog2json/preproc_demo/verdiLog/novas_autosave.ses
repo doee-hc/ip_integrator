@@ -25,14 +25,14 @@ fdb_proj =
 fdb_campaign = 
 fdb_tool = 
 [hb]
-viewport = 921 90 852 679 0 0 219 850
+viewport = 178 19 1644 1436 0 0 268 1642
 activeNode = "arbiter"
 activeScope = "arbiter"
-activeFile = "./arbiter.v"
+activeFile = "priority_encoder.v"
 interactiveMode = False
 viewType = Source
 simulatorMode = False
-sourceBeginLine = 169
+sourceBeginLine = 20
 baMode = False
 srcLineNum = True
 AutoWrap = True
@@ -50,8 +50,6 @@ leadingZero = False
 signalPane = False
 SourceVerticalScrollLines = 5
 Scope1 = "arbiter"
-Scope2 = "arbiter.priority_encoder_masked"
-Scope3 = "arbiter.priority_encoder_inst"
 sdfCheckUndef = FALSE
 simFlow = FALSE
 [hb.design]
@@ -59,5 +57,5 @@ importCmd = "-ssv" "-ssy" "-2012" "-f" "rtl.lst" "-top" "arbiter"
 invokeDir = /home/doee/Workspace/ip_integrator/verilog2json/preproc_demo
 [hb.sourceTab.1]
 scope = arbiter
-File = /home/doee/Workspace/ip_integrator/verilog2json/preproc_demo/arbiter.v
-Line = 170
+File = /home/doee/Workspace/ip_integrator/verilog2json/preproc_demo/priority_encoder.v
+Line = 21

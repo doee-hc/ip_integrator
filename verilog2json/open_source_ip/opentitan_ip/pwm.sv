@@ -6,6 +6,14 @@
 module pwm
   import pwm_reg_pkg::*;
 #(
+  
+  // Param list
+  parameter int NOutputs = 6,
+  parameter int NumAlerts = 1,
+
+  // Address widths within the block
+  parameter int BlockAw = 7,
+
   parameter logic [NumAlerts-1:0] AlertAsyncOn = {NumAlerts{1'b1}},
   parameter int PhaseCntDw = 16,
   parameter int BeatCntDw = 27

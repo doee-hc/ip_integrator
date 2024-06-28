@@ -12,6 +12,15 @@ module rv_core_ibex
   import rv_core_ibex_pkg::*;
   import rv_core_ibex_reg_pkg::*;
 #(
+    // Param list
+  parameter int NumSwAlerts = 2,
+  parameter int NumRegions = 2,
+  parameter int NumScratchWords = 8,
+  parameter int NumAlerts = 4,
+
+  // Address widths within the block
+  parameter int CfgAw = 8,
+
   parameter logic [NumAlerts-1:0] AlertAsyncOn     = {NumAlerts{1'b1}},
   parameter bit                   PMPEnable        = 1'b1,
   parameter int unsigned          PMPGranularity   = 0,

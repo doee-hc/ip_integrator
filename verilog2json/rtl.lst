@@ -13,16 +13,16 @@
 #./open_source_ip/litex_ip/litespi_core_wishbone.v
 
 # preproc test
-./preproc_demo/./arbiter.v
-#./preproc_demo/./priority_encoder.v
-+incdir+./preproc_demo
+#./preproc_demo/./arbiter.v
+##./preproc_demo/./priority_encoder.v
+#+incdir+./preproc_demo
 
 # opentitan ip
-#./open_source_ip/opentitan_ip/i2c.sv
-#./open_source_ip/opentitan_ip/pwm.sv
-#./open_source_ip/opentitan_ip/rv_core_ibex.sv
-#./open_source_ip/opentitan_ip/rv_dm.sv
-#./open_source_ip/opentitan_ip/spi_host.sv
-#./open_source_ip/opentitan_ip/uart.sv
-#./open_source_ip/opentitan_ip/usbdev.sv
-#+incdir+./open_source_ip/opentitan_ip
+./open_source_ip/opentitan_ip/i2c.sv
+./open_source_ip/opentitan_ip/pwm.sv
+./open_source_ip/opentitan_ip/rv_core_ibex.sv
+./open_source_ip/opentitan_ip/rv_dm.sv
+./open_source_ip/opentitan_ip/spi_host.sv
+./open_source_ip/opentitan_ip/uart.sv
+./open_source_ip/opentitan_ip/usbdev.sv
++incdir+./open_source_ip/opentitan_ip

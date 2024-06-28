@@ -20,15 +20,34 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
+                            "FifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "AcqFifoDepth": {
+                                "value": "268",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BlockAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "AlertAsyncOn": {
                                 "value": "{NumAlerts{1'b1}}",
                                 "type": "logic",
-                                "width": "[NumAlerts-1:0]",
-                                "js_expression": null
+                                "width": "[NumAlerts-1:0]"
                             },
                             "InputDelayCycles": {
                                 "value": "0",
                                 "type": "intunsigned"
+                            },
+                            "NOutputs": {
+                                "value": "6",
+                                "type": "int"
                             },
                             "PhaseCntDw": {
                                 "value": "16",
@@ -36,6 +55,22 @@
                             },
                             "BeatCntDw": {
                                 "value": "27",
+                                "type": "int"
+                            },
+                            "NumSwAlerts": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumRegions": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumScratchWords": {
+                                "value": "8",
+                                "type": "int"
+                            },
+                            "CfgAw": {
+                                "value": "8",
                                 "type": "int"
                             },
                             "PMPEnable": {
@@ -140,10 +175,54 @@
                                 "type": "logic",
                                 "width": "[ibex_pkg::SCRAMBLE_NONCE_W-1:0]"
                             },
+                            "NrHarts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "MemAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "IdcodeValue": {
                                 "value": "32'h0000_0001",
                                 "type": "logic",
                                 "width": "[31:0]"
+                            },
+                            "ByteOrder": {
+                                "value": "1",
+                                "type": "logic"
+                            },
+                            "NumCS": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "TxDepth": {
+                                "value": "72",
+                                "type": "int"
+                            },
+                            "RxDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "CmdDepth": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "RxFifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "TxFifoDepth": {
+                                "value": "32",
+                                "type": "int"
+                            },
+                            "NEndpoints": {
+                                "value": "12",
+                                "type": "int"
                             },
                             "Stub": {
                                 "value": "1'b0",
@@ -184,13 +263,13 @@
                             },
                             "alert_rx_i": {
                                 "direction": "input",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_rx_t"
                             },
                             "alert_tx_o": {
                                 "direction": "output",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_tx_t"
                             },
@@ -288,11 +367,11 @@
                             },
                             "cio_pwm_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "cio_pwm_en_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
@@ -504,11 +583,11 @@
                             },
                             "debug_req_o": {
                                 "direction": "output",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "unavailable_i": {
                                 "direction": "input",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
@@ -568,11 +647,11 @@
                             },
                             "cio_csb_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_csb_en_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -643,174 +722,6 @@
                                 "width": "1"
                             },
                             "intr_rx_parity_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "rst_aon_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_sense_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_suspend_req_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_ack_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_reset_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_sense_lost_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_not_idle_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_detect_active_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_received_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_sent_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_powered_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_disconnected_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_host_lost_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_reset_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_suspend_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_resume_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_out_empty_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_full_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_overflow_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_in_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_out_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_crc_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_pid_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_bitstuff_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_frame_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_setup_empty_o": {
                                 "direction": "output",
                                 "width": "1"
                             }
@@ -834,15 +745,34 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
+                            "FifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "AcqFifoDepth": {
+                                "value": "268",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BlockAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "AlertAsyncOn": {
                                 "value": "{NumAlerts{1'b1}}",
                                 "type": "logic",
-                                "width": "[NumAlerts-1:0]",
-                                "js_expression": null
+                                "width": "[NumAlerts-1:0]"
                             },
                             "InputDelayCycles": {
                                 "value": "0",
                                 "type": "intunsigned"
+                            },
+                            "NOutputs": {
+                                "value": "6",
+                                "type": "int"
                             },
                             "PhaseCntDw": {
                                 "value": "16",
@@ -850,6 +780,22 @@
                             },
                             "BeatCntDw": {
                                 "value": "27",
+                                "type": "int"
+                            },
+                            "NumSwAlerts": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumRegions": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumScratchWords": {
+                                "value": "8",
+                                "type": "int"
+                            },
+                            "CfgAw": {
+                                "value": "8",
                                 "type": "int"
                             },
                             "PMPEnable": {
@@ -954,10 +900,54 @@
                                 "type": "logic",
                                 "width": "[ibex_pkg::SCRAMBLE_NONCE_W-1:0]"
                             },
+                            "NrHarts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "MemAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "IdcodeValue": {
                                 "value": "32'h0000_0001",
                                 "type": "logic",
                                 "width": "[31:0]"
+                            },
+                            "ByteOrder": {
+                                "value": "1",
+                                "type": "logic"
+                            },
+                            "NumCS": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "TxDepth": {
+                                "value": "72",
+                                "type": "int"
+                            },
+                            "RxDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "CmdDepth": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "RxFifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "TxFifoDepth": {
+                                "value": "32",
+                                "type": "int"
+                            },
+                            "NEndpoints": {
+                                "value": "12",
+                                "type": "int"
                             },
                             "Stub": {
                                 "value": "1'b0",
@@ -998,13 +988,13 @@
                             },
                             "alert_rx_i": {
                                 "direction": "input",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_rx_t"
                             },
                             "alert_tx_o": {
                                 "direction": "output",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_tx_t"
                             },
@@ -1102,11 +1092,11 @@
                             },
                             "cio_pwm_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "cio_pwm_en_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
@@ -1318,11 +1308,11 @@
                             },
                             "debug_req_o": {
                                 "direction": "output",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "unavailable_i": {
                                 "direction": "input",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
@@ -1382,11 +1372,11 @@
                             },
                             "cio_csb_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_csb_en_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -1457,174 +1447,6 @@
                                 "width": "1"
                             },
                             "intr_rx_parity_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "rst_aon_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_sense_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_suspend_req_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_ack_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_reset_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_sense_lost_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_not_idle_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_detect_active_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_received_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_sent_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_powered_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_disconnected_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_host_lost_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_reset_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_suspend_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_resume_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_out_empty_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_full_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_overflow_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_in_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_out_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_crc_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_pid_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_bitstuff_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_frame_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_setup_empty_o": {
                                 "direction": "output",
                                 "width": "1"
                             }
@@ -1648,15 +1470,34 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
+                            "FifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "AcqFifoDepth": {
+                                "value": "268",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BlockAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "AlertAsyncOn": {
                                 "value": "{NumAlerts{1'b1}}",
                                 "type": "logic",
-                                "width": "[NumAlerts-1:0]",
-                                "js_expression": null
+                                "width": "[NumAlerts-1:0]"
                             },
                             "InputDelayCycles": {
                                 "value": "0",
                                 "type": "intunsigned"
+                            },
+                            "NOutputs": {
+                                "value": "6",
+                                "type": "int"
                             },
                             "PhaseCntDw": {
                                 "value": "16",
@@ -1664,6 +1505,22 @@
                             },
                             "BeatCntDw": {
                                 "value": "27",
+                                "type": "int"
+                            },
+                            "NumSwAlerts": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumRegions": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumScratchWords": {
+                                "value": "8",
+                                "type": "int"
+                            },
+                            "CfgAw": {
+                                "value": "8",
                                 "type": "int"
                             },
                             "PMPEnable": {
@@ -1768,10 +1625,54 @@
                                 "type": "logic",
                                 "width": "[ibex_pkg::SCRAMBLE_NONCE_W-1:0]"
                             },
+                            "NrHarts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "MemAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "IdcodeValue": {
                                 "value": "32'h0000_0001",
                                 "type": "logic",
                                 "width": "[31:0]"
+                            },
+                            "ByteOrder": {
+                                "value": "1",
+                                "type": "logic"
+                            },
+                            "NumCS": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "TxDepth": {
+                                "value": "72",
+                                "type": "int"
+                            },
+                            "RxDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "CmdDepth": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "RxFifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "TxFifoDepth": {
+                                "value": "32",
+                                "type": "int"
+                            },
+                            "NEndpoints": {
+                                "value": "12",
+                                "type": "int"
                             },
                             "Stub": {
                                 "value": "1'b0",
@@ -1812,13 +1713,13 @@
                             },
                             "alert_rx_i": {
                                 "direction": "input",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_rx_t"
                             },
                             "alert_tx_o": {
                                 "direction": "output",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_tx_t"
                             },
@@ -1916,11 +1817,11 @@
                             },
                             "cio_pwm_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "cio_pwm_en_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
@@ -2132,11 +2033,11 @@
                             },
                             "debug_req_o": {
                                 "direction": "output",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "unavailable_i": {
                                 "direction": "input",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
@@ -2196,11 +2097,11 @@
                             },
                             "cio_csb_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_csb_en_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -2271,174 +2172,6 @@
                                 "width": "1"
                             },
                             "intr_rx_parity_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "rst_aon_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_sense_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_suspend_req_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_ack_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_reset_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_sense_lost_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_not_idle_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_detect_active_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_received_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_sent_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_powered_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_disconnected_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_host_lost_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_reset_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_suspend_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_resume_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_out_empty_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_full_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_overflow_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_in_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_out_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_crc_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_pid_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_bitstuff_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_frame_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_setup_empty_o": {
                                 "direction": "output",
                                 "width": "1"
                             }
@@ -2462,15 +2195,34 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
+                            "FifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "AcqFifoDepth": {
+                                "value": "268",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BlockAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "AlertAsyncOn": {
                                 "value": "{NumAlerts{1'b1}}",
                                 "type": "logic",
-                                "width": "[NumAlerts-1:0]",
-                                "js_expression": null
+                                "width": "[NumAlerts-1:0]"
                             },
                             "InputDelayCycles": {
                                 "value": "0",
                                 "type": "intunsigned"
+                            },
+                            "NOutputs": {
+                                "value": "6",
+                                "type": "int"
                             },
                             "PhaseCntDw": {
                                 "value": "16",
@@ -2478,6 +2230,22 @@
                             },
                             "BeatCntDw": {
                                 "value": "27",
+                                "type": "int"
+                            },
+                            "NumSwAlerts": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumRegions": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumScratchWords": {
+                                "value": "8",
+                                "type": "int"
+                            },
+                            "CfgAw": {
+                                "value": "8",
                                 "type": "int"
                             },
                             "PMPEnable": {
@@ -2582,10 +2350,54 @@
                                 "type": "logic",
                                 "width": "[ibex_pkg::SCRAMBLE_NONCE_W-1:0]"
                             },
+                            "NrHarts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "MemAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "IdcodeValue": {
                                 "value": "32'h0000_0001",
                                 "type": "logic",
                                 "width": "[31:0]"
+                            },
+                            "ByteOrder": {
+                                "value": "1",
+                                "type": "logic"
+                            },
+                            "NumCS": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "TxDepth": {
+                                "value": "72",
+                                "type": "int"
+                            },
+                            "RxDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "CmdDepth": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "RxFifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "TxFifoDepth": {
+                                "value": "32",
+                                "type": "int"
+                            },
+                            "NEndpoints": {
+                                "value": "12",
+                                "type": "int"
                             },
                             "Stub": {
                                 "value": "1'b0",
@@ -2626,13 +2438,13 @@
                             },
                             "alert_rx_i": {
                                 "direction": "input",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_rx_t"
                             },
                             "alert_tx_o": {
                                 "direction": "output",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_tx_t"
                             },
@@ -2730,11 +2542,11 @@
                             },
                             "cio_pwm_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "cio_pwm_en_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
@@ -2946,11 +2758,11 @@
                             },
                             "debug_req_o": {
                                 "direction": "output",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "unavailable_i": {
                                 "direction": "input",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
@@ -3010,11 +2822,11 @@
                             },
                             "cio_csb_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_csb_en_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -3085,174 +2897,6 @@
                                 "width": "1"
                             },
                             "intr_rx_parity_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "rst_aon_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_sense_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_suspend_req_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_ack_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_reset_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_sense_lost_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_not_idle_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_detect_active_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_received_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_sent_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_powered_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_disconnected_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_host_lost_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_reset_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_suspend_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_resume_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_out_empty_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_full_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_overflow_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_in_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_out_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_crc_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_pid_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_bitstuff_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_frame_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_setup_empty_o": {
                                 "direction": "output",
                                 "width": "1"
                             }
@@ -3276,15 +2920,34 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
+                            "FifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "AcqFifoDepth": {
+                                "value": "268",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BlockAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "AlertAsyncOn": {
                                 "value": "{NumAlerts{1'b1}}",
                                 "type": "logic",
-                                "width": "[NumAlerts-1:0]",
-                                "js_expression": null
+                                "width": "[NumAlerts-1:0]"
                             },
                             "InputDelayCycles": {
                                 "value": "0",
                                 "type": "intunsigned"
+                            },
+                            "NOutputs": {
+                                "value": "6",
+                                "type": "int"
                             },
                             "PhaseCntDw": {
                                 "value": "16",
@@ -3292,6 +2955,22 @@
                             },
                             "BeatCntDw": {
                                 "value": "27",
+                                "type": "int"
+                            },
+                            "NumSwAlerts": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumRegions": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumScratchWords": {
+                                "value": "8",
+                                "type": "int"
+                            },
+                            "CfgAw": {
+                                "value": "8",
                                 "type": "int"
                             },
                             "PMPEnable": {
@@ -3396,10 +3075,54 @@
                                 "type": "logic",
                                 "width": "[ibex_pkg::SCRAMBLE_NONCE_W-1:0]"
                             },
+                            "NrHarts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "MemAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "IdcodeValue": {
                                 "value": "32'h0000_0001",
                                 "type": "logic",
                                 "width": "[31:0]"
+                            },
+                            "ByteOrder": {
+                                "value": "1",
+                                "type": "logic"
+                            },
+                            "NumCS": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "TxDepth": {
+                                "value": "72",
+                                "type": "int"
+                            },
+                            "RxDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "CmdDepth": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "RxFifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "TxFifoDepth": {
+                                "value": "32",
+                                "type": "int"
+                            },
+                            "NEndpoints": {
+                                "value": "12",
+                                "type": "int"
                             },
                             "Stub": {
                                 "value": "1'b0",
@@ -3440,13 +3163,13 @@
                             },
                             "alert_rx_i": {
                                 "direction": "input",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_rx_t"
                             },
                             "alert_tx_o": {
                                 "direction": "output",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_tx_t"
                             },
@@ -3544,11 +3267,11 @@
                             },
                             "cio_pwm_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "cio_pwm_en_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
@@ -3760,11 +3483,11 @@
                             },
                             "debug_req_o": {
                                 "direction": "output",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "unavailable_i": {
                                 "direction": "input",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
@@ -3824,11 +3547,11 @@
                             },
                             "cio_csb_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_csb_en_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -3899,174 +3622,6 @@
                                 "width": "1"
                             },
                             "intr_rx_parity_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "rst_aon_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_sense_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_suspend_req_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_ack_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_reset_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_sense_lost_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_not_idle_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_detect_active_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_received_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_sent_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_powered_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_disconnected_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_host_lost_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_reset_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_suspend_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_resume_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_out_empty_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_full_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_overflow_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_in_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_out_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_crc_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_pid_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_bitstuff_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_frame_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_setup_empty_o": {
                                 "direction": "output",
                                 "width": "1"
                             }
@@ -4090,15 +3645,34 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
+                            "FifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "AcqFifoDepth": {
+                                "value": "268",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BlockAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "AlertAsyncOn": {
                                 "value": "{NumAlerts{1'b1}}",
                                 "type": "logic",
-                                "width": "[NumAlerts-1:0]",
-                                "js_expression": null
+                                "width": "[NumAlerts-1:0]"
                             },
                             "InputDelayCycles": {
                                 "value": "0",
                                 "type": "intunsigned"
+                            },
+                            "NOutputs": {
+                                "value": "6",
+                                "type": "int"
                             },
                             "PhaseCntDw": {
                                 "value": "16",
@@ -4106,6 +3680,22 @@
                             },
                             "BeatCntDw": {
                                 "value": "27",
+                                "type": "int"
+                            },
+                            "NumSwAlerts": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumRegions": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumScratchWords": {
+                                "value": "8",
+                                "type": "int"
+                            },
+                            "CfgAw": {
+                                "value": "8",
                                 "type": "int"
                             },
                             "PMPEnable": {
@@ -4210,10 +3800,54 @@
                                 "type": "logic",
                                 "width": "[ibex_pkg::SCRAMBLE_NONCE_W-1:0]"
                             },
+                            "NrHarts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "MemAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "IdcodeValue": {
                                 "value": "32'h0000_0001",
                                 "type": "logic",
                                 "width": "[31:0]"
+                            },
+                            "ByteOrder": {
+                                "value": "1",
+                                "type": "logic"
+                            },
+                            "NumCS": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "TxDepth": {
+                                "value": "72",
+                                "type": "int"
+                            },
+                            "RxDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "CmdDepth": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "RxFifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "TxFifoDepth": {
+                                "value": "32",
+                                "type": "int"
+                            },
+                            "NEndpoints": {
+                                "value": "12",
+                                "type": "int"
                             },
                             "Stub": {
                                 "value": "1'b0",
@@ -4254,13 +3888,13 @@
                             },
                             "alert_rx_i": {
                                 "direction": "input",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_rx_t"
                             },
                             "alert_tx_o": {
                                 "direction": "output",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_tx_t"
                             },
@@ -4358,11 +3992,11 @@
                             },
                             "cio_pwm_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "cio_pwm_en_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
@@ -4574,11 +4208,11 @@
                             },
                             "debug_req_o": {
                                 "direction": "output",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "unavailable_i": {
                                 "direction": "input",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
@@ -4638,11 +4272,11 @@
                             },
                             "cio_csb_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_csb_en_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -4713,174 +4347,6 @@
                                 "width": "1"
                             },
                             "intr_rx_parity_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "rst_aon_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_sense_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_suspend_req_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_ack_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_reset_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_sense_lost_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_not_idle_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_detect_active_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_received_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_sent_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_powered_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_disconnected_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_host_lost_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_reset_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_suspend_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_resume_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_out_empty_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_full_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_overflow_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_in_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_out_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_crc_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_pid_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_bitstuff_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_frame_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_setup_empty_o": {
                                 "direction": "output",
                                 "width": "1"
                             }
@@ -4904,15 +4370,34 @@
                         "version": "1.0",
                         "description": "No description.",
                         "parameters": {
+                            "FifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "AcqFifoDepth": {
+                                "value": "268",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BlockAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "AlertAsyncOn": {
                                 "value": "{NumAlerts{1'b1}}",
                                 "type": "logic",
-                                "width": "[NumAlerts-1:0]",
-                                "js_expression": null
+                                "width": "[NumAlerts-1:0]"
                             },
                             "InputDelayCycles": {
                                 "value": "0",
                                 "type": "intunsigned"
+                            },
+                            "NOutputs": {
+                                "value": "6",
+                                "type": "int"
                             },
                             "PhaseCntDw": {
                                 "value": "16",
@@ -4920,6 +4405,22 @@
                             },
                             "BeatCntDw": {
                                 "value": "27",
+                                "type": "int"
+                            },
+                            "NumSwAlerts": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumRegions": {
+                                "value": "2",
+                                "type": "int"
+                            },
+                            "NumScratchWords": {
+                                "value": "8",
+                                "type": "int"
+                            },
+                            "CfgAw": {
+                                "value": "8",
                                 "type": "int"
                             },
                             "PMPEnable": {
@@ -5024,10 +4525,54 @@
                                 "type": "logic",
                                 "width": "[ibex_pkg::SCRAMBLE_NONCE_W-1:0]"
                             },
+                            "NrHarts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "MemAw": {
+                                "value": "12",
+                                "type": "int"
+                            },
                             "IdcodeValue": {
                                 "value": "32'h0000_0001",
                                 "type": "logic",
                                 "width": "[31:0]"
+                            },
+                            "ByteOrder": {
+                                "value": "1",
+                                "type": "logic"
+                            },
+                            "NumCS": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "TxDepth": {
+                                "value": "72",
+                                "type": "int"
+                            },
+                            "RxDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "CmdDepth": {
+                                "value": "4",
+                                "type": "int"
+                            },
+                            "RxFifoDepth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "TxFifoDepth": {
+                                "value": "32",
+                                "type": "int"
+                            },
+                            "NEndpoints": {
+                                "value": "12",
+                                "type": "int"
                             },
                             "Stub": {
                                 "value": "1'b0",
@@ -5068,13 +4613,13 @@
                             },
                             "alert_rx_i": {
                                 "direction": "input",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_rx_t"
                             },
                             "alert_tx_o": {
                                 "direction": "output",
-                                "width": "[NumAlerts-1:0]",
+                                "width": "1",
                                 "package": "prim_alert_pkg",
                                 "struct": "alert_tx_t"
                             },
@@ -5172,11 +4717,11 @@
                             },
                             "cio_pwm_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "cio_pwm_en_o": {
                                 "direction": "output",
-                                "width": "[NOutputs-1:0]"
+                                "width": "[5:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
@@ -5388,11 +4933,11 @@
                             },
                             "debug_req_o": {
                                 "direction": "output",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "unavailable_i": {
                                 "direction": "input",
-                                "width": "[NrHarts-1:0]"
+                                "width": "1"
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
@@ -5452,11 +4997,11 @@
                             },
                             "cio_csb_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_csb_en_o": {
                                 "direction": "output",
-                                "width": "[NumCS-1:0]"
+                                "width": "1"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -5527,174 +5072,6 @@
                                 "width": "1"
                             },
                             "intr_rx_parity_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "rst_aon_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dp_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_usb_dn_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "cio_sense_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_suspend_req_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_ack_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_reset_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_sense_lost_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_bus_not_idle_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_aon_wake_detect_active_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_received_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_pkt_sent_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_powered_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_disconnected_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_host_lost_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_reset_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_suspend_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_resume_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_out_empty_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_full_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_overflow_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_in_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_link_out_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_crc_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_pid_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_rx_bitstuff_err_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_frame_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "intr_av_setup_empty_o": {
                                 "direction": "output",
                                 "width": "1"
                             }

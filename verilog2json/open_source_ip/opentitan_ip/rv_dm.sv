@@ -14,6 +14,15 @@
 module rv_dm
   import rv_dm_reg_pkg::*;
 #(
+  
+  // Param list
+  parameter int NrHarts = 1,
+  parameter int NumAlerts = 1,
+
+  // Address widths within the block
+  parameter int RegsAw = 4,
+  parameter int MemAw = 12,
+
   parameter logic [NumAlerts-1:0] AlertAsyncOn = {NumAlerts{1'b1}},
   parameter logic [31:0]          IdcodeValue  = 32'h 0000_0001
 ) (

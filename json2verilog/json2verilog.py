@@ -47,7 +47,7 @@ def eval_expr(expr, params):
             return safe_operators[type(node.op)](_eval(node.operand))
         elif isinstance(node, ast.Name):  # <variable>
             if node.id in params:
-                value = params[node.id]
+                value = params[node.id]['value']
                 try:
                     # 尝试将参数值从字符串转换为整数
                     value = int(value)
@@ -74,15 +74,26 @@ def generate_wire_declaration(connection, data):
     params = data['instances'][instance_ref]['parameters']
     port = connection['portRef']
     width = connection['width']
+    package = connection['package']
+    struct = connection['struct']
+
+    if struct:
+        if package:
+            port_type = package + "::" + struct
+        else:
+            port_type = struct
+    else:
+        port_type = "logic"
+
     parts = width.split(':')
     if len(parts) == 1:
         # 1bit
-        return f"      wire {instance_ref}_{port};\n"
+        return f"      {port_type} {instance_ref}_{port};\n"
     elif len(parts) == 2:
         # 多位宽的情况
         width_l = eval_expr(parts[0], params)
         width_r = eval_expr(parts[1], params)
-        return f"      wire [{width_l}:{width_r}] {instance_ref}_{port};\n"
+        return f"      {port_type} [{width_l}:{width_r}] {instance_ref}_{port};\n"
     else:
         # 如果分割后的部分不是1也不是2，抛出异常
         raise ValueError(f"Invalid width format: {width}")
@@ -112,9 +123,9 @@ def generate_verilog(json_file_name,verilog_file_name):
 
     for connection in data['adHocConnections'].values():
         target_inst = connection['target']['instanceRef']
-        target_port = connection['target']['portRef']
+        target_port = connection['target']['port']
         initiator_inst = connection['initiator']['instanceRef']
-        initiator_port = connection['initiator']['portRef']
+        initiator_port = connection['initiator']['port']
         instances_ports[target_inst].append(target_port)
         instances_ports[initiator_inst].append(initiator_port)
         verilog_code += generate_wire_declaration(connection['initiator'], data)
@@ -156,5 +167,4 @@ if __name__ == '__main__':
     generate_verilog(args.file, args.output)
     # Output Verilog code
     print(f"{args.file} translate to {args.output}")
-
 
