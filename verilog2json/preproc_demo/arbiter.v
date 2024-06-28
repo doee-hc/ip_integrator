@@ -70,27 +70,64 @@ wire [$clog2(PORTS)-1:0] request_index;
 wire [PORTS-1:0] request_mask;
 
 `ifdef ARB_LSB_HIGH_PRIORITY
-    priority_encoder #(
-        .WIDTH(PORTS),
-        .LSB_HIGH_PRIORITY(1)
-    )
-    priority_encoder_inst (
-        .input_unencoded(request),
-        .output_valid(request_valid),
-        .output_encoded(request_index),
-        .output_unencoded(request_mask)
-    );
+    `ifdef AAA
+        priority_encoder #(
+            .WIDTH(PORTS),
+            .LSB_HIGH_PRIORITY(3)
+        )
+        priority_encoder_inst (
+            .input_unencoded(request),
+            .output_valid(request_valid),
+            .output_encoded(request_index),
+            .output_unencoded(request_mask)
+        );
+    `elsif BBB
+        priority_encoder #(
+            .WIDTH(PORTS),
+            .LSB_HIGH_PRIORITY(2)
+        )
+        priority_encoder_inst (
+            .input_unencoded(request),
+            .output_valid(request_valid),
+            .output_encoded(request_index),
+            .output_unencoded(request_mask)
+        );
+    `else 
+        priority_encoder #(
+            .WIDTH(PORTS),
+            .LSB_HIGH_PRIORITY(1)
+        )
+        priority_encoder_inst (
+            .input_unencoded(request),
+            .output_valid(request_valid),
+            .output_encoded(request_index),
+            .output_unencoded(request_mask)
+        );
+    `endif
 `else
-    priority_encoder #(
-        .WIDTH(PORTS),
-        .LSB_HIGH_PRIORITY(0)
-    )
-    priority_encoder_inst (
-        .input_unencoded(request),
-        .output_valid(request_valid),
-        .output_encoded(request_index),
-        .output_unencoded(request_mask)
-    );
+    `ifdef AAA
+        priority_encoder #(
+            .WIDTH(PORTS),
+            .LSB_HIGH_PRIORITY(3)
+        )
+        priority_encoder_inst (
+            .input_unencoded(request),
+            .output_valid(request_valid),
+            .output_encoded(request_index),
+            .output_unencoded(request_mask)
+        );
+    `elsif BBB
+        priority_encoder #(
+            .WIDTH(PORTS),
+            .LSB_HIGH_PRIORITY(0)
+        )
+        priority_encoder_inst (
+            .input_unencoded(request),
+            .output_valid(request_valid),
+            .output_encoded(request_index),
+            .output_unencoded(request_mask)
+        );
+    `endif
 `endif
 
 reg [PORTS-1:0] mask_reg = 0, mask_next;

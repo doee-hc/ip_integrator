@@ -204,7 +204,6 @@ class ModuleListener(SystemVerilogParserListener):
         self.currentPortDirection = port_direction
         self.currentPortWidth = port_width
 
-
 # 自定义Listener类，支持include展开和ifdef处理
 class IncludeListener(SystemVerilogPreParserListener):
     def __init__(self,origin_source_text,incdirs,included_files=[],defines={}):
@@ -222,7 +221,7 @@ class IncludeListener(SystemVerilogPreParserListener):
         self.defines = defines
 
         # 表示ifdef/ifndef的代码区是否有效
-        self.valid_region = True
+        self.valid_region = [True]
 
         # 记录相对于原文添加的行数，当include展开时或被ifdef/ifndef屏蔽的区域被删除时需要记录行数变动
         self.added_line_num = 0
@@ -236,7 +235,7 @@ class IncludeListener(SystemVerilogPreParserListener):
     # define回调函数
     def enterText_macro_definition(self, ctx:SystemVerilogPreParser.Text_macro_definitionContext):
         # 判断是否在有效区 (若被ifdef或ifndef屏蔽，则无效)
-        if not self.valid_region:
+        if not self.valid_region[-1]:
             return
         
         # 删除这句预处理命令
@@ -252,8 +251,6 @@ class IncludeListener(SystemVerilogPreParserListener):
         if define_texts:
             for text in define_texts:
                 define_text += text.getText()
-                # TODO 多行define的处理:下例
-                # '                                                             `ifdef UVM                                                                                 uvm_pkg::uvm_report_error(, `PRIM_STRINGIFY(__name), uvm_pkg::UVM_NONE,                             `__FILE__, `__LINE__, , 1);                                `else                                                                                      $error(, $time, `__FILE__, `__LINE__,                  `PRIM_STRINGIFY(__name));                                                       `endif'
             text_to_replace = preparse_systemverilog(define_text,self.incdirs,self.included_files,self.defines)[0]
             print(f"{define_text} translate to {text_to_replace}")
             self.defines[define_name] = text_to_replace
@@ -267,7 +264,7 @@ class IncludeListener(SystemVerilogPreParserListener):
     # 当define过的宏被使用时的回调函数
     def enterText_macro_usage(self, ctx:SystemVerilogPreParser.Text_macro_usageContext):
         # 判断是否在有效区 (若被ifdef或ifndef屏蔽，则无效)
-        if not self.valid_region:
+        if not self.valid_region[-1]:
             return
         
         line_start = ctx.start.line + self.added_line_num
@@ -293,7 +290,7 @@ class IncludeListener(SystemVerilogPreParserListener):
 
     # undef回调函数
     def enterUndef_directive(self, ctx:SystemVerilogPreParser.Undef_directiveContext):
-        if not self.valid_region:
+        if not self.valid_region[-1]:
             return
         # 删除这句预处理命令
         line_start = ctx.start.line + self.added_line_num
@@ -311,7 +308,8 @@ class IncludeListener(SystemVerilogPreParserListener):
     # ifdef回调函数
     def enterIfdef_directive(self, ctx:SystemVerilogPreParser.Ifdef_directiveContext):
         # 判断是否在有效区 (若被ifdef或ifndef屏蔽，则无效)
-        if not self.valid_region:
+        if not self.valid_region[-1]:
+            self.valid_region.append(False)
             return
         
         # 删除这句预处理命令
@@ -319,130 +317,100 @@ class IncludeListener(SystemVerilogPreParserListener):
         del self.source_lines[line_start-1]
         self.added_line_num -= 1
 
-        # 获取这句ifdef匹配的所有elsif、else、endif
-        elsif_directive = ctx.elsif_directive()
-        else_directive = ctx.else_directive()
-        endif_directive = ctx.endif_directive()
-
-        # 记录tocken index顺序
-        if elsif_directive:
-            for elsif in elsif_directive:
-                self.region_tocken_idx.append(elsif.start.tokenIndex)
-        if else_directive:
-            self.region_tocken_idx.append(else_directive.start.tokenIndex)
-        if endif_directive:
-            self.region_tocken_idx.append(endif_directive.start.tokenIndex)
-        else:
-            print(f"Error: Not found endif directive. Line:{line_start}")
-
         # 判断 ifdef 条件， 设置self.valid_region
         ifdef = ctx.macro_identifier().getText()
         if ifdef in self.defines.keys():
+            self.valid_region.append(True)
             print(f"ifdef: {ifdef} is defined")
-            self.valid_region = True
         else:
+            self.valid_region.append(False)
             print(f"ifdef: {ifdef} not define")
-            self.valid_region = False
 
     # ifndef回调函数,与ifdef一致
     def enterIfndef_directive(self, ctx:SystemVerilogPreParser.Ifndef_directiveContext):
-        if not self.valid_region:
+        if not self.valid_region[-1]:
+            self.valid_region.append(False)
             return
         
         line_start = ctx.start.line + self.added_line_num
         del self.source_lines[line_start-1]
         self.added_line_num -= 1
 
-        elsif_directive = ctx.elsif_directive()
-        else_directive = ctx.else_directive()
-        endif_directive = ctx.endif_directive()
-
-        if elsif_directive:
-            for elsif in elsif_directive:
-                self.region_tocken_idx.append(elsif.start.tokenIndex)
-        if else_directive:
-            self.region_tocken_idx.append(else_directive.start.tokenIndex)
-        if endif_directive:
-            self.region_tocken_idx.append(endif_directive.start.tokenIndex)
-        else:
-            print(f"Error: Not found endif directive. Line:{line_start}")
-
         ifndef = ctx.macro_identifier().getText()
         if ifndef in self.defines.keys():
             print(f"ifndef: {ifndef} is defined")
-            self.valid_region = False
+            self.valid_region.append(False)
         else:
             print(f"ifndef: {ifndef} not define")
-            self.valid_region = True
+            self.valid_region.append(True)
             
     # 遇到ifdef elsif else预处理命令之间的代码 的回调函数
     def enterGroup_of_lines(self, ctx:SystemVerilogPreParser.Group_of_linesContext):
         # 当前区域无效时，删除这段代码
-        if not self.valid_region:
-            print(f"This Group_of_lines is discarded:\n{ctx.getText()}")
+        if not self.valid_region[-1] and self.valid_region[-2] :
+            text_to_discard = ctx.getText()
+            print(f"This Group_of_lines is discarded:\n{text_to_discard}")
+            line_to_discard = text_to_discard.split('\n')
+
             line_start = ctx.start.line + self.added_line_num
-            line_stop = line_start + len(ctx.getText().split('\n')) - 1
-            # line_stop = ctx.stop.line + self.added_line_num
-            del self.source_lines[line_start-1:line_stop]
-            self.added_line_num -= (line_stop - line_start + 1)
+
+            line_stop = ctx.stop.line + self.added_line_num
+            # This code sloves Antlr bug: get the line stop error.
+            if line_start == line_stop:
+                line_stop = line_start + len(line_to_discard) - 1
+            else:
+                line_stop += 1
+
+            del self.source_lines[line_start-1:line_stop-1]
+            self.added_line_num -= (line_stop - line_start)
             return
-        print(f"Group_of_lines\n{ctx.getText()}")
+        elif self.valid_region[-1]:
+            print(f"This Group_of_lines is reserved:\n{ctx.getText()}")
 
     # elsif回调函数
     def enterElsif_directive(self, ctx:SystemVerilogPreParser.Elsif_directiveContext):
-        # 获取当前的tocken index
-        this_tocken_idx = ctx.start.tokenIndex
-        # 判断与此前的indef的匹配关系
-        if this_tocken_idx == self.region_tocken_idx[0]:
-            # 如果匹配则pop
-            self.region_tocken_idx.pop(0)
-
+        if self.valid_region[-2]:
             # 删除这句预处理命令
             line_start = ctx.start.line + self.added_line_num
             del self.source_lines[line_start-1]
             self.added_line_num -= 1
 
             # 之前的if无效时，判断这个elsif条件
-            if self.valid_region == False :
+            if self.valid_region[-1] == False :
                 if self.elsif_mask == False:
                     ifdef = ctx.macro_identifier().getText()
                     if ifdef in self.defines.keys():
                         print(f"ifdef: {ifdef} is defined")
-                        self.valid_region = True
+                        self.valid_region[-1] = True
                     else:
                         print(f"ifdef: {ifdef} not define")
-                        self.valid_region = False
+                        self.valid_region[-1] = False
             else:
                 # 如果之前的if有效，则本次以及后续elsif和else都无效
-                self.valid_region = False
+                self.valid_region[-1] = False
                 self.elsif_mask = True  # 屏蔽后续的elsif,直到endif
 
     # else 回调函数
     def enterElse_directive(self, ctx:SystemVerilogPreParser.Else_directiveContext):
-        this_tocken_idx = ctx.start.tokenIndex
-        if this_tocken_idx == self.region_tocken_idx[0]:
-            self.region_tocken_idx.pop(0)
+        if self.valid_region[-2]:
             line_start = ctx.start.line + self.added_line_num
             del self.source_lines[line_start-1]
             self.added_line_num -= 1
             if self.elsif_mask == False:
-                self.valid_region = not self.valid_region
+                self.valid_region[-1] = not self.valid_region[-1]
 
     # endif 回调函数
     def enterEndif_directive(self, ctx:SystemVerilogPreParser.Endif_directiveContext):
-        this_tocken_idx = ctx.start.tokenIndex
-        if this_tocken_idx == self.region_tocken_idx[0]:
-            self.region_tocken_idx.pop(0)
-
+        if self.valid_region[-2]:
             line_start = ctx.start.line + self.added_line_num
             del self.source_lines[line_start-1]
             self.added_line_num -= 1
             self.elsif_mask = False
-            self.valid_region = True
+        self.valid_region.pop()
 
     # include 回调函数
     def enterInclude_directive(self, ctx:SystemVerilogPreParser.Include_directiveContext):
-        if not self.valid_region:
+        if not self.valid_region[-1]:
             return
         filename = ctx.filename().getText()
         start_line = ctx.start.line + self.added_line_num
