@@ -30,7 +30,8 @@
                 "PARAM0" : {"value":"8"},
                 "PARAM1" : {"value":"PARAM0 + 8"},
                 "PARAM2" : {"value":"PARAM1*16"},
-                "PARAM3" : {"value":"$clog2(PARAM2-1)"}
+                "PARAM3" : {"value":"$clog2(PARAM2-1)"},
+                "PARAM4" : {"value": "PARAM0 != 8 ? 1 : 0"}
             },
             "ports" : {
                 "s0": {

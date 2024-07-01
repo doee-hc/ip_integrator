@@ -46,6 +46,9 @@
                 },
                 "PARAM3": {
                     "value": "8"
+                },
+                "PARAM4": {
+                    "value": "0"
                 }
             },
             "ports": {

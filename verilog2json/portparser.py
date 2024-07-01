@@ -13,6 +13,7 @@ def clog2(x):
 # 安全环境，只包含我们允许的运算符和函数
 safe_dict = {
     'clog2': clog2,
+    'concat': lambda *args: int(''.join(format(arg, 'b') for arg in args), 2)
 }
 
 # 添加安全的运算符
@@ -27,6 +28,12 @@ safe_operators = {
     ast.USub: operator.neg
 }
 
+def convert_ternary_operator(expr):
+    # 正则表达式匹配形式为 x ? y : z 的三目运算符
+    pattern = re.compile(r'(.+?)\s*\?\s*(.+?)\s*:\s*(.+)')
+    # 替换为 Python 的条件表达式形式：y if x else z
+    return pattern.sub(r'(\2 if \1 else \3)', expr)
+
 def eval_expr(expr, params):
     """
     安全地计算表达式的值。
@@ -37,6 +44,7 @@ def eval_expr(expr, params):
         int: 表达式的计算结果。
     """
     # 解析表达式
+    expr = convert_ternary_operator(expr)
     tree = ast.parse(expr, mode='eval').body
 
     # 计算表达式的值
@@ -66,8 +74,37 @@ def eval_expr(expr, params):
                 return func(*args)
             else:
                 raise ValueError(f"Unknown function: {node.func.id}")
+        elif isinstance(node, ast.IfExp):
+            test = _eval(node.test)
+            if test:
+                return _eval(node.body)
+            else:
+                return _eval(node.orelse)
+        elif isinstance(node, ast.Compare):
+            # 比较操作通常只有一个操作符和两个操作数
+            left = _eval(node.left)
+            # 处理可能存在的多个比较
+            for operation, right_operand in zip(node.ops, node.comparators):
+                right = _eval(right_operand)
+                if isinstance(operation, ast.Eq):
+                    result = left == right
+                elif isinstance(operation, ast.NotEq):
+                    result = left != right
+                elif isinstance(operation, ast.Lt):
+                    result = left < right
+                elif isinstance(operation, ast.LtE):
+                    result = left <= right
+                elif isinstance(operation, ast.Gt):
+                    result = left > right
+                elif isinstance(operation, ast.GtE):
+                    result = left >= right
+                # 根据比较结果更新左侧操作数，以支持链式比较
+                left = right
+            if not result:
+                return False
+            return True
         else:
-            raise TypeError(node)
+            raise TypeError("Unsupported expression type: {}".format(type(node)))
 
     return _eval(tree)
 
@@ -75,46 +112,70 @@ def parse_width_dimension(exp, params):
     parts = exp.split(':')
     # 将width解析成纯数字
     if len(parts) == 2:
-        # 多位宽的情况
         exp_l = eval_expr(parts[0], params)
         exp_r = eval_expr(parts[1], params)
-        if exp_l == exp_r == 0:
-            result = '1'
-        else:
-            result = f"[{exp_l}:{exp_r}]"
+        result = f"[{exp_l}:{exp_r}]"
     else:
-        result = f"[{int(eval_expr(exp, params) - 1)}:0]"
+        result = f"[{int(eval_expr(exp, params)-1)}:0]"
     return result
 
+def process_instance_parameters(params):
+    """
+    Process and evaluate expressions for instance parameters.
+    Args:
+        params (dict): A dictionary of parameters with expressions as values.
+    Returns:
+        dict: A dictionary of parameters with evaluated values.
+    """
+    for param_name, content in params.items():
+        expr = content['value']
+        # Evaluate the expression and update the parameter's value
+        params[param_name]['value'] = str(eval_expr(expr.replace('$', ''), params))
+    return params
+
+def process_instance_ports(ports, params):
+    """
+    Process and update port dimensions based on evaluated parameters.
+    Args:
+        ports (dict): A dictionary of ports with width and dimension expressions.
+        params (dict): A dictionary of evaluated parameters.
+    Returns:
+        dict: A dictionary of ports with updated width and dimension values.
+    """
+    for port_name, port in ports.items():
+        # Update the width of the port
+        port['width'] = parse_width_dimension(port['width'].strip("[]"), params)
+        
+        # Update the dimension of the port, if it exists
+        dimension = port['dimension'].strip("[]")
+        if dimension:
+            port['dimension'] = parse_width_dimension(dimension, params)
+        
+        ports[port_name] = port
+    return ports
+
 def process_ports(file_path, output_file_path):
+    """
+    Process ports and parameters in a JSON file and output the results to another file.
+    Args:
+        file_path (str): Path to the input JSON file.
+        output_file_path (str): Path to the output JSON file.
+    """
     with open(file_path, 'r') as file:
         data = json.load(file)
 
     for instance_name, instance in data['instances'].items():
-        params = instance['parameters']
-        ports = instance['ports']
+        # Process and evaluate parameters
+        params = process_instance_parameters(instance['parameters'])
         
-        # 处理依赖其他参数的表达式
-        for param_name,content in params.items():
-            expr = content['value']
-            params[param_name]['value'] = str(eval_expr(expr.replace('$', ''), params))
+        # Process ports with updated parameters
+        ports = process_instance_ports(instance['ports'], params)
         
-        # 处理端口定义
-        for port_name, port in ports.items():
-            port['width'] = parse_width_dimension(port['width'].strip("[]"), params)
-            
-            dimension = port['dimension'].strip("[]")
-            if dimension :
-                port['dimension'] = parse_width_dimension(dimension.strip("[]"), params)
-            
-            ports[port_name] = port
-        
-        data['instances'][instance_name]['ports'] = ports
+        # Update the instance with processed parameters and ports
         data['instances'][instance_name]['parameters'] = params
-            
-            
+        data['instances'][instance_name]['ports'] = ports
 
-    # 将处理后的数据写入到输出文件
+    # Write the processed data to the output file
     with open(output_file_path, 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
