@@ -1,0 +1,54 @@
+{
+    "instances": {
+        "instance0":{
+            "parameters" : {
+                "PARAM0" : {"value":"8"},
+                "PARAM1" : {"value":"PARAM0 + 8"},
+                "PARAM2" : {"value":"PARAM1*16"},
+                "PARAM3" : {"value":"$clog2(PARAM2-1)"}
+            },
+            "ports" : {
+                "s0": {
+                    "direction": "input",
+                    "width": "1",
+                    "dimension": "PARAM0"
+                },
+                "s1": {
+                    "direction": "output",
+                    "width": "[PARAM0-1:0]",
+                    "dimension": "PARAM0"
+                },
+                "s2": {
+                    "direction": "input",
+                    "width": "[PARAM3-1:0]",
+                    "dimension": "PARAM1 / 2"
+                }
+            }
+        },
+        "instance1":{
+            "parameters" : {
+                "PARAM0" : {"value":"8"},
+                "PARAM1" : {"value":"PARAM0 + 8"},
+                "PARAM2" : {"value":"PARAM1*16"},
+                "PARAM3" : {"value":"$clog2(PARAM2-1)"}
+            },
+            "ports" : {
+                "s0": {
+                    "direction": "input",
+                    "width": "1",
+                    "dimension": "PARAM0"
+                },
+                "s1": {
+                    "direction": "output",
+                    "width": "[PARAM2-1:0]",
+                    "dimension": "PARAM2"
+                },
+                "s2": {
+                    "direction": "input",
+                    "width": "[PARAM3-1:0]",
+                    "dimension": "PARAM1 / 2"
+                }
+            }
+        }
+    }
+}

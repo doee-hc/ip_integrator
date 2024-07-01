@@ -1,0 +1,70 @@
+{
+    "instances": {
+        "instance0": {
+            "parameters": {
+                "PARAM0": {
+                    "value": "8"
+                },
+                "PARAM1": {
+                    "value": "16"
+                },
+                "PARAM2": {
+                    "value": "256"
+                },
+                "PARAM3": {
+                    "value": "8"
+                }
+            },
+            "ports": {
+                "s0": {
+                    "direction": "input",
+                    "width": "[0:0]",
+                    "dimension": "[7:0]"
+                },
+                "s1": {
+                    "direction": "output",
+                    "width": "[7:0]",
+                    "dimension": "[7:0]"
+                },
+                "s2": {
+                    "direction": "input",
+                    "width": "[7:0]",
+                    "dimension": "[7:0]"
+                }
+            }
+        },
+        "instance1": {
+            "parameters": {
+                "PARAM0": {
+                    "value": "8"
+                },
+                "PARAM1": {
+                    "value": "16"
+                },
+                "PARAM2": {
+                    "value": "256"
+                },
+                "PARAM3": {
+                    "value": "8"
+                }
+            },
+            "ports": {
+                "s0": {
+                    "direction": "input",
+                    "width": "[0:0]",
+                    "dimension": "[7:0]"
+                },
+                "s1": {
+                    "direction": "output",
+                    "width": "[255:0]",
+                    "dimension": "[255:0]"
+                },
+                "s2": {
+                    "direction": "input",
+                    "width": "[7:0]",
+                    "dimension": "[7:0]"
+                }
+            }
+        }
+    }
+}
