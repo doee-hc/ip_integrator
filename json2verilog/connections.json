@@ -1,47 +1,106 @@
 {
-
-    "adHOcConnections":{
-        "u_initiator_transmitter_sck_1_u_target_receiver_sck_1":{
-            "initiator":{
-                "instanceRef": "u_initiator_transmitter",
-                "portRef": {
-                    "sck": "1"
-                }
+    "instances":{
+        "instances0":{
+            "ipRef": "ip0",
+            "parameters":{
+                "param0":"0",
+                "param1":"1",
+                "param2":"2",
+                "param3":"3"
             },
-            "target":{
-                "instanceRef": "u_target_receiver",
-                "portRef": {
-                    "sck": "1"
+            "ports":{
+                "s0":{
+                    "width":"[31:0]",
+                    "package":"a",
+                    "struct":"b",
+                    "dimension":"[3:0]"
+                },
+                "s1":{
+                    "width":"[31:0]",
+                    "package":"a",
+                    "struct":"b",
+                    "dimension":"[3:0]"
+                },
+                "s4":{
+                    "width":"[31:0]"
                 }
-            }            
+            }
         },
-        "u_initiator_transmitter_ws_1_0_u_target_receiver_ws_1_0":{
-            "initiator":{
-                "instanceRef": "u_initiator_transmitter",
-                "portRef": {
-                    "ws": "1:0"
+        "instances1":{
+            "ipRef": "ip1",
+            "parameters":{
+                "param0":"0",
+                "param1":"1",
+                "param2":"2",
+                "param3":"3"
+            },
+            "ports":{
+                "s2":{
+                    "width":"[31:0]",
+                    "package":"a",
+                    "struct":"b",
+                    "dimension":"[3:0]"
+                },
+                "s3":{
+                    "width":"[31:0]",
+                    "package":"a",
+                    "struct":"b",
+                    "dimension":"[3:0]"
+                },
+                "s5":{
+                    "width":"[31:0]"
+                }      
+            }
+        }
+    },
+    "adHocConnections":{
+        "instance0#instance1":{
+            "l2r":[
+                {"s0":"[3:0]","s2":"[7:4]"},
+                {"s0":"[11:8]","s2":"[15:12]"},
+                {"s0":"[19:16]","s2":"[23:20]"},
+                {"s0":"[27:24]","s2":"[31:28]"}
+            ],
+            "r2l":[
+                {"s3":"[3:0]","s1":"[7:4]"},
+                {"s3":"[11:8]","s1":"[15:12]"},
+                {"s3":"[19:16]","s1":"[23:20]"},
+                {"s3":"[27:24]","s1":"[31:28]"}
+            ],
+            "l_tie_io":{
+                "tie0":{
+                    "s2":"[3:0]"
+                },
+                "tie1":{
+                    "s1":"[3:0]"
+                },
+                "set_i":{
+                    "s4":"[7:0]"
+                },
+                "set_o":{
+                    "s4":"[15:8]"
+                },
+                "set_io":{
+                    "s4":"[31:15]"
                 }
             },
-            "target":{
-                "instanceRef": "u_target_receiver",
-                "portRef": {
-                    "ws": "1:0"
+            "r_tie":{
+                "tie0":{
+                    "s2":"[3:0]"
+                },
+                "tie1":{
+                    "s1":"[3:0]"
+                },
+                "set_i":{
+                    "s5":"[7:0]"
+                },
+                "set_o":{
+                    "s5":"[15:8]"
+                },
+                "set_io":{
+                    "s5":"[31:15]"
                 }
-            }            
-        },
-        "u_initiator_transmitter_sd_2_0_u_target_receiver_sd_3_1":{
-            "initiator":{
-                "instanceRef": "u_initiator_transmitter",
-                "portRef": {
-                    "sd": "2:0"
-                }
-            },
-            "target":{
-                "instanceRef": "u_target_receiver",
-                "portRef": {
-                    "sd": "3:1"
-                }
-            }            
+            }
         }
     }
 }
