@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+]>
+<docbook:article
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://docbook.org/ns/docbook docbook.xsd"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:docbook="http://docbook.org/ns/docbook" version="5.0">
+  <docbook:title>Signals for axi_crossbar_rd</docbook:title>
+  <docbook:sect1 xml:id="Signal-Descriptions">
+    <docbook:para>Provides a description of the axi_crossbar_rd signals.</docbook:para>
+    <docbook:sect2 xml:id="H2-sect2-signaltable-Miscellaneous_ungrouped_">
+    <docbook:title xml:id="H2-title-signaltable-Miscellaneous_ungrouped_">Miscellaneous (ungrouped) Signals</docbook:title>
+    <docbook:informaltable xml:id="interfacetable-Miscellaneous_ungrouped_" frame="none" rowsep="0" colsep="0">
+      <docbook:tgroup cols="3">
+        <?dbhtml cellpadding="0" cellspacing="0" ?>
+        <docbook:tbody>
+          <docbook:row>
+            <docbook:entry>
+            </docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="clk">clk</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="s_axi_arready">s_axi_arready</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="rst">rst</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="s_axi_rid">s_axi_rid</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_arid">s_axi_arid</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="s_axi_rdata">s_axi_rdata</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_araddr">s_axi_araddr</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="s_axi_rresp">s_axi_rresp</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_arlen">s_axi_arlen</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="s_axi_rlast">s_axi_rlast</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_arsize">s_axi_arsize</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="s_axi_rvalid">s_axi_rvalid</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_arburst">s_axi_arburst</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_arid">m_axi_arid</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_arlock">s_axi_arlock</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_araddr">m_axi_araddr</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_arqos">s_axi_arqos</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_arlen">m_axi_arlen</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_arvalid">s_axi_arvalid</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_arsize">m_axi_arsize</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="s_axi_rready">s_axi_rready</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_arburst">m_axi_arburst</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="m_axi_arready">m_axi_arready</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_arlock">m_axi_arlock</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="m_axi_rid">m_axi_rid</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_arqos">m_axi_arqos</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="m_axi_rdata">m_axi_rdata</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_arvalid">m_axi_arvalid</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="m_axi_rresp">m_axi_rresp</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="m_axi_rready">m_axi_rready</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="m_axi_rlast">m_axi_rlast</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="rd_error_addr">rd_error_addr</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="m_axi_rvalid">m_axi_rvalid</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>- <docbook:link linkend="rd_error_valid">rd_error_valid</docbook:link></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry align="right"><docbook:link linkend="rd_error_ready">rd_error_ready</docbook:link> -</docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry></docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry>
+            </docbook:entry>
+            <docbook:entry align="center">
+              <?dbhtml bgcolor="#C0C0C0" ?>
+              <?dbfo bgcolor="#C0C0C0" ?>
+                <docbook:literallayout>            </docbook:literallayout>
+            </docbook:entry>
+            <docbook:entry>
+            </docbook:entry>
+          </docbook:row>
+          </docbook:tbody>
+          </docbook:tgroup>
+        </docbook:informaltable>
+    <docbook:table xml:id="signaltable-Miscellaneous_ungrouped_" pgwide="1">
+      <docbook:title>Miscellaneous (ungrouped) Signals</docbook:title>
+      <docbook:tgroup cols="3">
+        <docbook:colspec colnum="1" colname="c1"/>
+        <docbook:colspec colnum="2" colname="c2"/>
+        <docbook:colspec colnum="3" colname="c3"/>
+        <docbook:thead>
+          <docbook:row>
+            <?dbhtml bgcolor="#C0C0C0" ?>
+            <?dbfo bgcolor="#C0C0C0" ?>
+            <docbook:entry>Port Name</docbook:entry>
+            <docbook:entry>I/O</docbook:entry>
+            <docbook:entry>Description</docbook:entry>
+          </docbook:row>
+        </docbook:thead>
+        <docbook:tbody>
+          <docbook:row>
+            <docbook:entry><docbook:para id="clk">clk</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="rst">rst</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arid">s_axi_arid[((S_IF_COUNT*S_IF_ID_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_araddr">s_axi_araddr[((S_IF_COUNT*ADDR_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arlen">s_axi_arlen[((S_IF_COUNT*8)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arsize">s_axi_arsize[((S_IF_COUNT*3)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arburst">s_axi_arburst[((S_IF_COUNT*2)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arlock">s_axi_arlock[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arqos">s_axi_arqos[((S_IF_COUNT*4)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arvalid">s_axi_arvalid[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_arready">s_axi_arready[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_rid">s_axi_rid[((S_IF_COUNT*S_IF_ID_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_rdata">s_axi_rdata[((S_IF_COUNT*DATA_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_rresp">s_axi_rresp[((S_IF_COUNT*2)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_rlast">s_axi_rlast[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_rvalid">s_axi_rvalid[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="s_axi_rready">s_axi_rready[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arid">m_axi_arid[((M_IF_COUNT*M_IF_ID_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_araddr">m_axi_araddr[((M_IF_COUNT*ADDR_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arlen">m_axi_arlen[((M_IF_COUNT*8)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arsize">m_axi_arsize[((M_IF_COUNT*3)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arburst">m_axi_arburst[((M_IF_COUNT*2)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arlock">m_axi_arlock[(M_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arqos">m_axi_arqos[((M_IF_COUNT*4)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arvalid">m_axi_arvalid[(M_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_arready">m_axi_arready[(M_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_rid">m_axi_rid[((M_IF_COUNT*M_IF_ID_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_rdata">m_axi_rdata[((M_IF_COUNT*DATA_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_rresp">m_axi_rresp[((M_IF_COUNT*2)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_rlast">m_axi_rlast[(M_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_rvalid">m_axi_rvalid[(M_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="m_axi_rready">m_axi_rready[(M_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="rd_error_addr">rd_error_addr[((S_IF_COUNT*ADDR_WIDTH)-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="rd_error_valid">rd_error_valid[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>O</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          <docbook:row>
+            <docbook:entry><docbook:para id="rd_error_ready">rd_error_ready[(S_IF_COUNT-1):0]</docbook:para></docbook:entry>
+            <docbook:entry>I</docbook:entry>
+            <docbook:entry>
+              <docbook:para><docbook:emphasis role="bold">Exists: </docbook:emphasis>Always</docbook:para>
+            </docbook:entry>
+          </docbook:row>
+          </docbook:tbody>
+          </docbook:tgroup>
+        </docbook:table>
+    </docbook:sect2>
+  </docbook:sect1>
+</docbook:article>

@@ -1,2 +1,0 @@
-`define  ARBITER_WIDTH 3
-`define  PORTS `ARBITER_WIDTH

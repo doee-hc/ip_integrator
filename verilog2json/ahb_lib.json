@@ -1,0 +1,134 @@
+{
+    "result": [
+        {
+            "groupName": "IP_lib",
+            "groupData": {
+                "ahb3lite_interconnect": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "ahb3lite_interconnect",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "HADDR_SIZE": {
+                                "value": "32",
+                                "js_expression": "32"
+                            },
+                            "HDATA_SIZE": {
+                                "value": "32",
+                                "js_expression": "32"
+                            },
+                            "MASTERS": {
+                                "value": "3",
+                                "js_expression": "3"
+                            },
+                            "SLAVES": {
+                                "value": "8",
+                                "js_expression": "8"
+                            },
+                            "SLAVE_MASK": {
+                                "value": "'{MASTERS{{SLAVES{1'b1}}}}",
+                                "js_expression": null,
+                                "type": "bit",
+                                "width": "[SLAVES-1:0]"
+                            },
+                            "ERROR_ON_SLAVE_NASK": {
+                                "value": "invert_slave_mask()",
+                                "js_expression": "invert_slave_mask()",
+                                "type": "bit",
+                                "width": "[SLAVES-1:0]"
+                            },
+                            "ERROR_ON_NO_SLAVE": {
+                                "value": "'{MASTER{1'b0}}",
+                                "js_expression": null,
+                                "type": "bit",
+                                "width": "[SLAVES-1:0]"
+                            },
+                            "MASTER_BITS": {
+                                "value": "MASTERS==1?1:$clog2(MASTERS)",
+                                "js_expression": "MASTERS==1?1:Math.log2(MASTERS)"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "HRESETN": {
+                                "direction": "input",
+                                "width": "1"
+                            },
+                            "HCLK": {
+                                "direction": "input",
+                                "width": "1"
+                            },
+                            "mst_priority": {
+                                "direction": "input",
+                                "width": "[MASTER_BITS-1:0]",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            },
+                            "mst_HSEL": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            },
+                            "mst_HADDR": {
+                                "direction": "input",
+                                "width": "[HADDR_SIZE-1:0]",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            },
+                            "mst_HWDATA": {
+                                "direction": "input",
+                                "width": "[HADDR_SIZE-1:0]",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            },
+                            "mst_HRDATA": {
+                                "direction": "output",
+                                "width": "[HADDR_SIZE-1:0]",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            },
+                            "mst_HWRITE": {
+                                "direction": "input",
+                                "width": "1",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            },
+                            "mst_HSIZE": {
+                                "direction": "input",
+                                "width": "[2:0]",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            },
+                            "mst_HBURST": {
+                                "direction": "input",
+                                "width": "[2:0]",
+                                "dimension": [
+                                    "[MASTERS]"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
