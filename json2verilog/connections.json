@@ -1,6 +1,6 @@
 {
     "instances":{
-        "instances0":{
+        "instance0":{
             "ipRef": "ip0",
             "parameters":{
                 "param0":"0",
@@ -26,7 +26,7 @@
                 }
             }
         },
-        "instances1":{
+        "instance1":{
             "ipRef": "ip1",
             "parameters":{
                 "param0":"0",
@@ -84,7 +84,7 @@
                     "s4":"[31:15]"
                 }
             },
-            "r_tie":{
+            "r_tie_io":{
                 "tie0":{
                     "s2":"[3:0]"
                 },
