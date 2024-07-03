@@ -74,6 +74,5 @@ module top_module(
     assign instance1_s5[7:0] = input_instance1_s5;
     assign output_instance1_s5 = instance1_s5[15:8];
     assign inout_instance1_s5 = instance1_s5[31:15];
-    assign instance0_s4[7:0] = 'z;
 
 endmodule

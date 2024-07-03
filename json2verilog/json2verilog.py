@@ -22,28 +22,31 @@ def generate_verilog(json_file_name,verilog_file_name):
     # Start generating Verilog code
     verilog_code = "module top_module(\n"
 
+    # Generate IO declaration
     for connection_name,connection in data['adHocConnections'].items():
         inst0,inst1 = connection_name.split("#")
         l_r = {'l_tie_io':inst0,'r_tie_io':inst1}
         io = {'set_i':"input",'set_o':"output",'set_io':"inout"}
         for l_r_key,l_r_value in l_r.items():
-            for io_key,io_value in io.items():
-                for port_name, width in connection[l_r_key][io_key].items():
-                    port_type = get_port_type(data['instances'][l_r_value]['ports'][port_name])
-                    width_l,width_r = width.strip('[]').split(':')
-                    length_m1 = int(width_l) - int(width_r)
-                    verilog_code += f"    {io_value:6s} {port_type} {io_value}_{l_r_value}_{port_name}[{length_m1}:0],\n"
+            if connection.get(l_r_key):
+                for io_key,io_value in io.items():
+                    if connection[l_r_key].get(io_key):
+                        for port_name, width in connection[l_r_key][io_key].items():
+                            port_type = get_port_type(data['instances'][l_r_value]['ports'][port_name])
+                            width_l,width_r = width.strip('[]').split(':')
+                            length_m1 = int(width_l) - int(width_r)
+                            verilog_code += f"    {io_value:6s} {port_type} {io_value}_{l_r_value}_{port_name}[{length_m1}:0],\n"
+        verilog_code = verilog_code.rstrip(",\n") + "\n);\n\n"
 
-    verilog_code = verilog_code.rstrip(",\n") + "\n);\n\n"
 
+    # Generate parameter declarations for every instance
     for instance_name,instance in data["instances"].items():
-        # Generate parameter declarations for every instance
         verilog_code += "    // Parameters for " + instance_name + "\n"
         for param,value in instance["parameters"].items():
             verilog_code += f"    parameter {instance_name}_{param} = {value};\n"
         verilog_code += "\n"
 
-    # Generate port declaration
+    # Generate net declaration
     for instance_name,instance in data["instances"].items():
         verilog_code += f"    // Ports for {instance_name}\n"
         for port_name,port in instance["ports"].items():
@@ -55,6 +58,11 @@ def generate_verilog(json_file_name,verilog_file_name):
                     port_type = port['struct']
             else:
                 port_type = "logic"
+
+            # TODO: fix it in lib.json
+            if port['width'] == '1':
+                port['width'] = ''
+
             # port dimension
             if port.get('dimension'):
                 verilog_code += f"    {port_type} {port['width']} {instance_name}_{port_name} {port['dimension']};\n"
@@ -94,23 +102,22 @@ def generate_verilog(json_file_name,verilog_file_name):
         io = {'set_i':"input",'set_o':"output",'set_io':"inout"}
         for l_r_key,l_r_value in l_r.items():
             verilog_code += f"    // {l_r_value} Tie\n"
-            for tie_key, tie_value in tie.items():
-                for port_name, width in connection[l_r_key][tie_key].items():
-                    verilog_code += f"    assign {l_r_value}_{port_name}{width} = {tie_value};\n"
-            verilog_code += f"    // {l_r_value} IO\n"
-            for io_key,io_value in io.items():
-                for port_name, width in connection[l_r_key][io_key].items():
-                    if io_key == 'set_i':
-                        verilog_code += f"    assign {l_r_value}_{port_name}{width} = {io_value}_{l_r_value}_{port_name};\n"
-                    elif io_key == 'set_o':
-                        verilog_code += f"    assign {io_value}_{l_r_value}_{port_name} = {l_r_value}_{port_name}{width};\n"
-                    elif io_key == 'set_io':
-                        # TODO: confirm io behavior
-                        verilog_code += f"    assign {io_value}_{l_r_value}_{port_name} = {l_r_value}_{port_name}{width};\n"
-
-
-        for port_name, width in connection["l_tie_io"]['set_i'].items():
-            verilog_code += f"    assign {inst0}_{port_name}{width} = 'z;\n"
+            if connection.get(l_r_key):
+                for tie_key, tie_value in tie.items():
+                    if connection[l_r_key].get(tie_key):
+                        for port_name, width in connection[l_r_key][tie_key].items():
+                            verilog_code += f"    assign {l_r_value}_{port_name}{width} = {tie_value};\n"
+                verilog_code += f"    // {l_r_value} IO\n"
+                for io_key,io_value in io.items():
+                    if connection[l_r_key].get(io_key):
+                        for port_name, width in connection[l_r_key][io_key].items():
+                            if io_key == 'set_i':
+                                verilog_code += f"    assign {l_r_value}_{port_name}{width} = {io_value}_{l_r_value}_{port_name};\n"
+                            elif io_key == 'set_o':
+                                verilog_code += f"    assign {io_value}_{l_r_value}_{port_name} = {l_r_value}_{port_name}{width};\n"
+                            elif io_key == 'set_io':
+                                # TODO: confirm io behavior
+                                verilog_code += f"    assign {io_value}_{l_r_value}_{port_name} = {l_r_value}_{port_name}{width};\n"
 
     verilog_code += "\nendmodule"
 
