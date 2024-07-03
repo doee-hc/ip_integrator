@@ -61,10 +61,16 @@ def eval_expr(expr, params):
                 try:
                     # 尝试将参数值从字符串转换为整数
                     value = int(value)
+
                 except ValueError:
                     # 如果转换失败，保持原样
                     pass
-                return value
+                
+                if isinstance(value, str):
+                    # 如果参数值是字符串，递归计算其值
+                    return eval_expr(value.replace('$', ''), params)
+                else:
+                    return value
             else:
                 raise ValueError(f"Unknown identifier: {node.id}")
         elif isinstance(node, ast.Call):  # <func>(<args>)
@@ -166,13 +172,13 @@ def process_ports(file_path, output_file_path):
 
     for instance_name, instance in data['instances'].items():
         # Process and evaluate parameters
-        params = process_instance_parameters(instance['parameters'])
-        
+        # params = process_instance_parameters(instance['parameters'])
+        params = instance['parameters']
         # Process ports with updated parameters
         ports = process_instance_ports(instance['ports'], params)
         
         # Update the instance with processed parameters and ports
-        data['instances'][instance_name]['parameters'] = params
+        # data['instances'][instance_name]['parameters'] = params
         data['instances'][instance_name]['ports'] = ports
 
     # Write the processed data to the output file

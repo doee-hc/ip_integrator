@@ -6,13 +6,13 @@
                     "value": "8"
                 },
                 "PARAM1": {
-                    "value": "16"
+                    "value": "PARAM0 + 8"
                 },
                 "PARAM2": {
-                    "value": "256"
+                    "value": "PARAM1*16"
                 },
                 "PARAM3": {
-                    "value": "8"
+                    "value": "$clog2(PARAM2-1)"
                 }
             },
             "ports": {
@@ -39,16 +39,16 @@
                     "value": "8"
                 },
                 "PARAM1": {
-                    "value": "16"
+                    "value": "PARAM0 + 8"
                 },
                 "PARAM2": {
-                    "value": "256"
+                    "value": "PARAM1*16"
                 },
                 "PARAM3": {
-                    "value": "8"
+                    "value": "$clog2(PARAM2-1)"
                 },
                 "PARAM4": {
-                    "value": "0"
+                    "value": "PARAM0 != 8 ? 1 : 0"
                 }
             },
             "ports": {
