@@ -295,19 +295,19 @@ class ModuleListener(SystemVerilogParserListener):
                     if(ctx.ansi_port_declaration().data_type().packed_dimension()):
                         port_width = ctx.ansi_port_declaration().data_type().packed_dimension()[0].getText()
                     else:
-                        port_width = '1'
+                        port_width = '[0:0]'
                 elif ctx.ansi_port_declaration().implicit_data_type():
                     if(ctx.ansi_port_declaration().implicit_data_type().packed_dimension()):
                         port_width = ctx.ansi_port_declaration().implicit_data_type().packed_dimension()[0].getText()
                     else:
-                        port_width = '1'
+                        port_width = '[0:0]'
                 elif ctx.ansi_port_declaration().net_type():
                     if ctx.ansi_port_declaration().data_type_or_implicit():
                         port_width = ctx.ansi_port_declaration().data_type_or_implicit().getText()
                     else:
-                        port_width = '1'
+                        port_width = '[0:0]'
                 else:
-                    port_width = '1'
+                    port_width = '[0:0]'
             else:
                 port_direction = self.currentPortDirection
                 port_width = self.currentPortWidth

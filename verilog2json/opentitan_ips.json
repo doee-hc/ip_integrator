@@ -46,29 +46,29 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_aon_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_aon_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -86,23 +86,23 @@
                             },
                             "adc_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "ast_pkg",
                                 "struct": "adc_ast_req_t"
                             },
                             "adc_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "ast_pkg",
                                 "struct": "adc_ast_rsp_t"
                             },
                             "intr_match_pending_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "wkup_req_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             }
                         }
                     }
@@ -157,89 +157,89 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_shadowed_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_main_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_main_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_io_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_io_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_usb_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_usb_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_aon_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_aon_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_io_div2_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_io_div4_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_root_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_root_main_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_root_io_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_root_io_div2_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_root_io_div4_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_root_usb_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -257,19 +257,19 @@
                             },
                             "pwr_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "pwrmgr_pkg",
                                 "struct": "pwr_clk_req_t"
                             },
                             "pwr_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "pwrmgr_pkg",
                                 "struct": "pwr_clk_rsp_t"
                             },
                             "scanmode_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
@@ -281,57 +281,57 @@
                             },
                             "lc_hw_debug_en_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "lc_clk_byp_req_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "lc_clk_byp_ack_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "io_clk_byp_req_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "io_clk_byp_ack_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "all_clk_byp_req_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "all_clk_byp_ack_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "hi_speed_sel_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "calib_rdy_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
                             "jitter_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "div_step_down_req_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cg_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clocks_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "dimension": [
                                     "[CLK_NUM-1:0]"
                                 ]
@@ -482,185 +482,185 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_shadowed_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_otp_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_otp_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "lc_creator_seed_sw_rw_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_owner_seed_sw_rw_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_iso_part_sw_rd_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_iso_part_sw_wr_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_seed_hw_rd_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_escalate_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_nvm_debug_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "core_tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "core_tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "prim_tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "prim_tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "mem_tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "mem_tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "otp_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "otp_ctrl_pkg",
                                 "struct": "flash_otp_key_req_t"
                             },
                             "otp_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "otp_ctrl_pkg",
                                 "struct": "flash_otp_key_rsp_t"
                             },
                             "rma_req_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "rma_seed_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_flash_rma_seed_t"
                             },
                             "rma_ack_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "pwrmgr_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "pwrmgr_pkg",
                                 "struct": "pwr_flash_t"
                             },
                             "keymgr_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_tck_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_tms_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_tdi_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_tdo_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_tdo_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_corr_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_prog_empty_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_prog_lvl_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rd_full_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rd_lvl_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_op_done_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "alert_rx_i": {
                                 "direction": "input",
@@ -676,7 +676,7 @@
                             },
                             "obs_ctrl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "ast_pkg",
                                 "struct": "ast_obs_ctrl_t"
                             },
@@ -686,31 +686,31 @@
                             },
                             "scan_en_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "scanmode_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
                             "scan_rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "flash_bist_enable_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
                             "flash_power_down_h_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "flash_power_ready_h_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "flash_test_mode_a_io": {
                                 "direction": "inout",
@@ -718,7 +718,7 @@
                             },
                             "flash_test_voltage_h_io": {
                                 "direction": "inout",
-                                "width": "1"
+                                "width": "[0:0]"
                             }
                         }
                     }
@@ -770,27 +770,27 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "ram_cfg_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_ram_1p_pkg",
                                 "struct": "ram_1p_cfg_t"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -808,87 +808,87 @@
                             },
                             "cio_scl_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_scl_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_scl_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_sda_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_sda_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_sda_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_fmt_threshold_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_threshold_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_acq_threshold_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_overflow_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_controller_halt_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_scl_interference_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_sda_interference_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_stretch_timeout_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_sda_unstable_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_cmd_complete_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_tx_stretch_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_tx_threshold_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_acq_stretch_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_unexp_stop_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_host_timeout_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             }
                         }
                     }
@@ -1001,49 +1001,49 @@
                         "ports": {
                             "clk_slow_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_slow_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_main_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_lc_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_lc_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_esc_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_esc_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -1061,67 +1061,67 @@
                             },
                             "pwr_ast_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_ast_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_rst_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_rst_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_clk_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_otp_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_otp_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_lc_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_lc_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_flash_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "pwr_cpu_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "fetch_en_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_hw_debug_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_dft_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
@@ -1135,43 +1135,43 @@
                             },
                             "ndmreset_req_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "strap_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "low_power_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rom_ctrl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "rom_ctrl_pkg",
                                 "struct": "pwrmgr_data_t"
                             },
                             "sw_rst_req_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
                             "esc_rst_tx_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_esc_pkg",
                                 "struct": "esc_tx_t"
                             },
                             "esc_rst_rx_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_esc_pkg",
                                 "struct": "esc_rx_t"
                             },
                             "intr_wakeup_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             }
                         }
                     }
@@ -1258,43 +1258,43 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_aon_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_io_div4_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_main_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_io_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_io_div2_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_usb_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_por_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_por_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "por_n_i": {
                                 "direction": "input",
@@ -1302,13 +1302,13 @@
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -1326,49 +1326,49 @@
                             },
                             "pwr_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "pwrmgr_pkg",
                                 "struct": "pwr_rst_req_t"
                             },
                             "pwr_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "pwrmgr_pkg",
                                 "struct": "pwr_rst_rsp_t"
                             },
                             "sw_rst_req_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "alert_dump_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "alert_pkg",
                                 "struct": "alert_crashdump_t"
                             },
                             "cpu_dump_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "rv_core_ibex_pkg",
                                 "struct": "cpu_crash_dump_t"
                             },
                             "scan_rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "scanmode_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
                             "rst_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "resets_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "dimension": [
                                     "[RST_NUM-1:0]"
                                 ]
@@ -1525,35 +1525,35 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_edn_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_edn_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_esc_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_esc_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_cpu_n_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "ram_cfg_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_ram_1p_pkg",
                                 "struct": "ram_1p_cfg_t"
                             },
@@ -1567,133 +1567,133 @@
                             },
                             "corei_tl_h_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "corei_tl_h_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "cored_tl_h_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "cored_tl_h_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "irq_software_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "irq_timer_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "irq_external_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "esc_tx_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_esc_pkg",
                                 "struct": "esc_tx_t"
                             },
                             "esc_rx_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_esc_pkg",
                                 "struct": "esc_rx_t"
                             },
                             "nmi_wdog_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "debug_req_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "crash_dump_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "lc_cpu_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "pwrmgr_cpu_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "pwrmgr_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "pwrmgr_pkg",
                                 "struct": "pwr_cpu_t"
                             },
                             "scan_rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "scanmode_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
                             "cfg_tl_d_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "cfg_tl_d_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "edn_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "edn_pkg",
                                 "struct": "edn_req_t"
                             },
                             "edn_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "edn_pkg",
                                 "struct": "edn_rsp_t"
                             },
                             "clk_otp_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_otp_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "icache_otp_key_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "otp_ctrl_pkg",
                                 "struct": "sram_otp_key_req_t"
                             },
                             "icache_otp_key_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "otp_ctrl_pkg",
                                 "struct": "sram_otp_key_rsp_t"
                             },
@@ -1764,19 +1764,19 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_lc_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_lc_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "next_dm_addr_i": {
                                 "direction": "input",
@@ -1784,45 +1784,45 @@
                             },
                             "lc_hw_debug_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "lc_dft_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "pinmux_hw_debug_en_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "lc_ctrl_pkg",
                                 "struct": "lc_tx_t"
                             },
                             "otp_dis_rv_dm_late_debug_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi8_t"
                             },
                             "scanmode_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             },
                             "scan_rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "ndmreset_req_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "dmactive_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "debug_req_o": {
                                 "direction": "output",
@@ -1834,37 +1834,37 @@
                             },
                             "regs_tl_d_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "regs_tl_d_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "mem_tl_d_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "mem_tl_d_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
                             "sba_tl_h_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "sba_tl_h_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -1882,13 +1882,13 @@
                             },
                             "jtag_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "jtag_pkg",
                                 "struct": "jtag_req_t"
                             },
                             "jtag_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "jtag_pkg",
                                 "struct": "jtag_rsp_t"
                             }
@@ -1947,21 +1947,21 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -2130,21 +2130,21 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -2162,11 +2162,11 @@
                             },
                             "cio_sck_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_csb_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_sd_o": {
                                 "direction": "output",
@@ -2182,77 +2182,77 @@
                             },
                             "cio_tpm_csb_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "passthrough_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "spi_device_pkg",
                                 "struct": "passthrough_req_t"
                             },
                             "passthrough_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "spi_device_pkg",
                                 "struct": "passthrough_rsp_t"
                             },
                             "intr_upload_cmdfifo_not_empty_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_upload_payload_not_empty_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_upload_payload_overflow_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_readbuf_watermark_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_readbuf_flip_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_tpm_header_not_empty_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_tpm_rdfifo_cmd_end_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_tpm_rdfifo_drop_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "ram_cfg_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_ram_2p_pkg",
                                 "struct": "ram_2p_cfg_t"
                             },
                             "sck_monitor_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "mbist_en_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "scan_clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "scan_rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "scanmode_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             }
@@ -2278,656 +2278,6 @@
                         "parameters": {},
                         "defines": {},
                         "ports": {}
-                    }
-                },
-                "top_earlgrey": {
-                    "style": {
-                        "width": 80,
-                        "height": 60,
-                        "borderRadius": "10",
-                        "fontSize": 12,
-                        "fontColor": "#fff",
-                        "stroke": "#926390",
-                        "fill": "#926390"
-                    },
-                    "content": {
-                        "category": "Peripherial",
-                        "ipFullName": "top_earlgrey",
-                        "vendor": "Unknown",
-                        "version": "1.0",
-                        "description": "No description.",
-                        "parameters": {
-                            "GpioGpioAsyncOn": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "SpiDeviceSramType": {
-                                "value": "spi_device_pkg::DefaultSramType",
-                                "type": "spi_device_pkg::sram_type_e"
-                            },
-                            "I2c0InputDelayCycles": {
-                                "value": "0",
-                                "type": "int"
-                            },
-                            "I2c1InputDelayCycles": {
-                                "value": "0",
-                                "type": "int"
-                            },
-                            "I2c2InputDelayCycles": {
-                                "value": "0",
-                                "type": "int"
-                            },
-                            "OtpCtrlMemInitFile": {
-                                "value": "\"\""
-                            },
-                            "SecLcCtrlVolatileRawUnlockEn": {
-                                "value": "top_pkg::SecVolatileRawUnlockEn",
-                                "type": "bit"
-                            },
-                            "LcCtrlSiliconCreatorId": {
-                                "value": "16'h4001",
-                                "type": "logic",
-                                "width": "[15:0]"
-                            },
-                            "LcCtrlProductId": {
-                                "value": "16'h0002",
-                                "type": "logic",
-                                "width": "[15:0]"
-                            },
-                            "LcCtrlRevisionId": {
-                                "value": "8'h01",
-                                "type": "logic",
-                                "width": "[7:0]"
-                            },
-                            "LcCtrlIdcodeValue": {
-                                "value": "jtag_id_pkg::LC_CTRL_JTAG_IDCODE",
-                                "type": "logic",
-                                "width": "[31:0]"
-                            },
-                            "UsbdevStub": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "UsbdevRcvrWakeTimeUs": {
-                                "value": "100",
-                                "type": "int"
-                            },
-                            "SecRstmgrAonCheck": {
-                                "value": "1'b1",
-                                "type": "bit"
-                            },
-                            "SecRstmgrAonMaxSyncDelay": {
-                                "value": "2",
-                                "type": "int"
-                            },
-                            "SecPinmuxAonVolatileRawUnlockEn": {
-                                "value": "top_pkg::SecVolatileRawUnlockEn",
-                                "type": "bit"
-                            },
-                            "PinmuxAonTargetCfg": {
-                                "value": "pinmux_pkg::DefaultTargetCfg",
-                                "type": "pinmux_pkg::target_cfg_t"
-                            },
-                            "SramCtrlRetAonInstrExec": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "SecFlashCtrlScrambleEn": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "FlashCtrlProgFifoDepth": {
-                                "value": "4",
-                                "type": "int"
-                            },
-                            "FlashCtrlRdFifoDepth": {
-                                "value": "16",
-                                "type": "int"
-                            },
-                            "RvDmIdcodeValue": {
-                                "value": "jtag_id_pkg::RV_DM_JTAG_IDCODE",
-                                "type": "logic",
-                                "width": "[31:0]"
-                            },
-                            "SecAesMasking": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "SecAesSBoxImpl": {
-                                "value": "aes_pkg::SBoxImplDom",
-                                "type": "aes_pkg::sbox_impl_e"
-                            },
-                            "SecAesStartTriggerDelay": {
-                                "value": "0",
-                                "type": "intunsigned"
-                            },
-                            "SecAesAllowForcingMasks": {
-                                "value": "1'b0",
-                                "type": "bit"
-                            },
-                            "SecAesSkipPRNGReseeding": {
-                                "value": "1'b0",
-                                "type": "bit"
-                            },
-                            "KmacEnMasking": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "KmacSwKeyMasked": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "SecKmacCmdDelay": {
-                                "value": "0",
-                                "type": "int"
-                            },
-                            "SecKmacIdleAcceptSwMsg": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "OtbnStub": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "OtbnRegFile": {
-                                "value": "otbn_pkg::RegFileFF",
-                                "type": "otbn_pkg::regfile_e"
-                            },
-                            "SecOtbnMuteUrnd": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "SecOtbnSkipUrndReseedAtStart": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "KeymgrUseOtpSeedsInsteadOfFlash": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "KeymgrKmacEnMasking": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "CsrngSBoxImpl": {
-                                "value": "aes_pkg::SBoxImplCanright",
-                                "type": "aes_pkg::sbox_impl_e"
-                            },
-                            "EntropySrcEsFifoDepth": {
-                                "value": "3",
-                                "type": "int"
-                            },
-                            "EntropySrcDistrFifoDepth": {
-                                "value": "2",
-                                "type": "intunsigned"
-                            },
-                            "EntropySrcStub": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "SramCtrlMainInstrExec": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RomCtrlBootRomInitFile": {
-                                "value": "\"\""
-                            },
-                            "SecRomCtrlDisableScrambling": {
-                                "value": "1'b0",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexPMPEnable": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexPMPGranularity": {
-                                "value": "0",
-                                "type": "intunsigned"
-                            },
-                            "RvCoreIbexPMPNumRegions": {
-                                "value": "16",
-                                "type": "intunsigned"
-                            },
-                            "RvCoreIbexMHPMCounterNum": {
-                                "value": "2",
-                                "type": "intunsigned"
-                            },
-                            "RvCoreIbexMHPMCounterWidth": {
-                                "value": "32",
-                                "type": "intunsigned"
-                            },
-                            "RvCoreIbexRV32E": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexRV32M": {
-                                "value": "ibex_pkg::RV32MSingleCycle",
-                                "type": "ibex_pkg::rv32m_e"
-                            },
-                            "RvCoreIbexRV32B": {
-                                "value": "ibex_pkg::RV32BOTEarlGrey",
-                                "type": "ibex_pkg::rv32b_e"
-                            },
-                            "RvCoreIbexRegFile": {
-                                "value": "ibex_pkg::RegFileFF",
-                                "type": "ibex_pkg::regfile_e"
-                            },
-                            "RvCoreIbexBranchTargetALU": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexWritebackStage": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexICache": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexICacheECC": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexICacheScramble": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexBranchPredictor": {
-                                "value": "0",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexDbgTriggerEn": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexDbgHwBreakNum": {
-                                "value": "4",
-                                "type": "int"
-                            },
-                            "RvCoreIbexSecureIbex": {
-                                "value": "1",
-                                "type": "bit"
-                            },
-                            "RvCoreIbexDmHaltAddr": {
-                                "value": "tl_main_pkg::ADDR_SPACE_RV_DM__MEM+dm::HaltAddress[31:0]",
-                                "type": "intunsigned"
-                            },
-                            "RvCoreIbexDmExceptionAddr": {
-                                "value": "tl_main_pkg::ADDR_SPACE_RV_DM__MEM+dm::ExceptionAddress[31:0]",
-                                "type": "intunsigned"
-                            },
-                            "RvCoreIbexPipeLine": {
-                                "value": "0",
-                                "type": "bit"
-                            }
-                        },
-                        "defines": {},
-                        "ports": {
-                            "mio_in_i": {
-                                "direction": "input",
-                                "width": "[46:0]"
-                            },
-                            "mio_out_o": {
-                                "direction": "output",
-                                "width": "[46:0]"
-                            },
-                            "mio_oe_o": {
-                                "direction": "output",
-                                "width": "[46:0]"
-                            },
-                            "dio_in_i": {
-                                "direction": "input",
-                                "width": "[15:0]"
-                            },
-                            "dio_out_o": {
-                                "direction": "output",
-                                "width": "[15:0]"
-                            },
-                            "dio_oe_o": {
-                                "direction": "output",
-                                "width": "[15:0]"
-                            },
-                            "mio_attr_o": {
-                                "direction": "output",
-                                "width": "[pinmux_reg_pkg::NMioPads-1:0]",
-                                "package": "prim_pad_wrapper_pkg",
-                                "struct": "pad_attr_t"
-                            },
-                            "dio_attr_o": {
-                                "direction": "output",
-                                "width": "[pinmux_reg_pkg::NDioPads-1:0]",
-                                "package": "prim_pad_wrapper_pkg",
-                                "struct": "pad_attr_t"
-                            },
-                            "adc_req_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "ast_pkg",
-                                "struct": "adc_ast_req_t"
-                            },
-                            "adc_rsp_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "ast_pkg",
-                                "struct": "adc_ast_rsp_t"
-                            },
-                            "ast_edn_req_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "edn_pkg",
-                                "struct": "edn_req_t"
-                            },
-                            "ast_edn_rsp_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "edn_pkg",
-                                "struct": "edn_rsp_t"
-                            },
-                            "ast_lc_dft_en_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "lc_ctrl_pkg",
-                                "struct": "lc_tx_t"
-                            },
-                            "obs_ctrl_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "ast_pkg",
-                                "struct": "ast_obs_ctrl_t"
-                            },
-                            "ram_1p_cfg_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_ram_1p_pkg",
-                                "struct": "ram_1p_cfg_t"
-                            },
-                            "spi_ram_2p_cfg_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_ram_2p_pkg",
-                                "struct": "ram_2p_cfg_t"
-                            },
-                            "usb_ram_1p_cfg_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_ram_1p_pkg",
-                                "struct": "ram_1p_cfg_t"
-                            },
-                            "rom_cfg_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_rom_pkg",
-                                "struct": "rom_cfg_t"
-                            },
-                            "clk_main_jitter_en_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "io_clk_byp_req_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "io_clk_byp_ack_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "all_clk_byp_req_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "all_clk_byp_ack_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "hi_speed_sel_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "div_step_down_req_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "calib_rdy_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "flash_bist_enable_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "flash_power_down_h_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "flash_power_ready_h_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "flash_test_mode_a_io": {
-                                "direction": "inout",
-                                "width": "[1:0]"
-                            },
-                            "flash_test_voltage_h_io": {
-                                "direction": "inout",
-                                "width": "1"
-                            },
-                            "flash_obs_o": {
-                                "direction": "output",
-                                "width": "[7:0]"
-                            },
-                            "es_rng_req_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "entropy_src_pkg",
-                                "struct": "entropy_src_rng_req_t"
-                            },
-                            "es_rng_rsp_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "entropy_src_pkg",
-                                "struct": "entropy_src_rng_rsp_t"
-                            },
-                            "es_rng_fips_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "ast_tl_req_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "tlul_pkg",
-                                "struct": "tl_h2d_t"
-                            },
-                            "ast_tl_rsp_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "tlul_pkg",
-                                "struct": "tl_d2h_t"
-                            },
-                            "dft_strap_test_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "pinmux_pkg",
-                                "struct": "dft_strap_test_req_t"
-                            },
-                            "dft_hold_tap_sel_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usb_dp_pullup_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usb_dn_pullup_en_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "pwrmgr_ast_req_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "pwrmgr_pkg",
-                                "struct": "pwr_ast_req_t"
-                            },
-                            "pwrmgr_ast_rsp_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "pwrmgr_pkg",
-                                "struct": "pwr_ast_rsp_t"
-                            },
-                            "otp_ctrl_otp_ast_pwr_seq_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "otp_ctrl_pkg",
-                                "struct": "otp_ast_req_t"
-                            },
-                            "otp_ctrl_otp_ast_pwr_seq_h_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "otp_ctrl_pkg",
-                                "struct": "otp_ast_rsp_t"
-                            },
-                            "otp_ext_voltage_h_io": {
-                                "direction": "inout",
-                                "width": "1"
-                            },
-                            "otp_obs_o": {
-                                "direction": "output",
-                                "width": "[7:0]"
-                            },
-                            "por_n_i": {
-                                "direction": "input",
-                                "width": "[1:0]"
-                            },
-                            "fpga_info_i": {
-                                "direction": "input",
-                                "width": "[31:0]"
-                            },
-                            "sensor_ctrl_ast_alert_req_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "ast_pkg",
-                                "struct": "ast_alert_req_t"
-                            },
-                            "sensor_ctrl_ast_alert_rsp_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "ast_pkg",
-                                "struct": "ast_alert_rsp_t"
-                            },
-                            "sensor_ctrl_ast_status_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "ast_pkg",
-                                "struct": "ast_status_t"
-                            },
-                            "ast2pinmux_i": {
-                                "direction": "input",
-                                "width": "[8:0]"
-                            },
-                            "ast_init_done_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            },
-                            "sensor_ctrl_manual_pad_attr_o": {
-                                "direction": "output",
-                                "width": "[3:0]",
-                                "package": "prim_pad_wrapper_pkg",
-                                "struct": "pad_attr_t"
-                            },
-                            "sck_monitor_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usbdev_usb_rx_d_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "usbdev_usb_tx_d_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usbdev_usb_tx_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usbdev_usb_tx_use_d_se0_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usbdev_usb_rx_enable_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usbdev_usb_ref_val_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "usbdev_usb_ref_pulse_o": {
-                                "direction": "output",
-                                "width": "1"
-                            },
-                            "clk_main_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "clk_io_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "clk_usb_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "clk_aon_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "clks_ast_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "clkmgr_pkg",
-                                "struct": "clkmgr_out_t"
-                            },
-                            "rsts_ast_o": {
-                                "direction": "output",
-                                "width": "1",
-                                "package": "rstmgr_pkg",
-                                "struct": "rstmgr_out_t"
-                            },
-                            "scan_rst_ni": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "scan_en_i": {
-                                "direction": "input",
-                                "width": "1"
-                            },
-                            "scanmode_i": {
-                                "direction": "input",
-                                "width": "1",
-                                "package": "prim_mubi_pkg",
-                                "struct": "mubi4_t"
-                            }
-                        }
                     }
                 },
                 "uart": {
@@ -2973,21 +2323,21 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -3005,47 +2355,47 @@
                             },
                             "cio_rx_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_tx_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_tx_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_tx_watermark_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_watermark_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_tx_empty_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_overflow_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_frame_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_break_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_timeout_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_parity_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             }
                         }
                     }
@@ -3097,29 +2447,29 @@
                         "ports": {
                             "clk_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "clk_aon_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "rst_aon_ni": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "tl_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t"
                             },
                             "tl_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t"
                             },
@@ -3137,169 +2487,169 @@
                             },
                             "cio_usb_dp_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_usb_dn_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_rx_d_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_usb_dp_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_usb_dp_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_usb_dn_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_usb_dn_en_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_tx_se0_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_tx_d_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "cio_sense_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_dp_pullup_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_dn_pullup_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_rx_enable_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_tx_use_d_se0_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_aon_suspend_req_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_aon_wake_ack_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_aon_bus_reset_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_aon_sense_lost_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_aon_bus_not_idle_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_aon_wake_detect_active_i": {
                                 "direction": "input",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_ref_val_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "usb_ref_pulse_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "ram_cfg_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_ram_1p_pkg",
                                 "struct": "ram_1p_cfg_t"
                             },
                             "intr_pkt_received_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_pkt_sent_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_powered_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_disconnected_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_host_lost_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_link_reset_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_link_suspend_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_link_resume_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_av_out_empty_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_full_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_av_overflow_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_link_in_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_link_out_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_crc_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_pid_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_rx_bitstuff_err_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_frame_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             },
                             "intr_av_setup_empty_o": {
                                 "direction": "output",
-                                "width": "1"
+                                "width": "[0:0]"
                             }
                         }
                     }
@@ -3338,21 +2688,21 @@
                         "ports": {
                             "clk": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "dimension": [
                                     "[CLK_NUM-1:0]"
                                 ]
                             },
                             "rst": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "dimension": [
                                     "[RST_NUM-1:0]"
                                 ]
                             },
                             "tl_host_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t",
                                 "dimension": [
@@ -3361,7 +2711,7 @@
                             },
                             "tl_host_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t",
                                 "dimension": [
@@ -3370,7 +2720,7 @@
                             },
                             "tl_device_o": {
                                 "direction": "output",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_h2d_t",
                                 "dimension": [
@@ -3379,7 +2729,7 @@
                             },
                             "tl_device_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "tlul_pkg",
                                 "struct": "tl_d2h_t",
                                 "dimension": [
@@ -3388,7 +2738,7 @@
                             },
                             "scanmode_i": {
                                 "direction": "input",
-                                "width": "1",
+                                "width": "[0:0]",
                                 "package": "prim_mubi_pkg",
                                 "struct": "mubi4_t"
                             }

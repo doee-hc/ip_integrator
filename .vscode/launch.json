@@ -12,9 +12,9 @@
             "console": "integratedTerminal",
             "cwd": "${fileDirname}",
             //"args": ["-f", "connections_axi.json", "-o","top.v"]
-            //"args": ["-l", "rtl.lst", "-o","opentitan_ips.json"]
+            "args": ["-l", "rtl.lst", "-o","opentitan_ips.json"]
             //"args": ["-f", "connections.json", "-o","top.sv"]
-            "args": ["-f", "ports.json", "-o","ports_parsed.json"]
+            //"args": ["-f", "ports.json", "-o","ports_parsed.json"]
         },
         {
             "name": "Python Debugger: Python File",

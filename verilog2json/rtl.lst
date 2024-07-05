@@ -33,7 +33,6 @@
 ./open_source_ip/opentitan_ip/rv_timer.sv
 ./open_source_ip/opentitan_ip/spi_device.sv
 ./open_source_ip/opentitan_ip/spi_host.sv
-./open_source_ip/opentitan_ip/top_earlgrey.sv
 ./open_source_ip/opentitan_ip/uart.sv
 ./open_source_ip/opentitan_ip/usbdev.sv
 ./open_source_ip/opentitan_ip/xbar_main.sv
