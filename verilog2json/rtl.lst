@@ -18,11 +18,23 @@
 #+incdir+./preproc_demo
 
 # opentitan ip
++incdir+./open_source_ip/opentitan_ip
+
+./open_source_ip/opentitan_ip/adc_ctrl.sv
+./open_source_ip/opentitan_ip/clkmgr.sv
+./open_source_ip/opentitan_ip/flash_ctrl.sv
 ./open_source_ip/opentitan_ip/i2c.sv
 ./open_source_ip/opentitan_ip/pwm.sv
+./open_source_ip/opentitan_ip/pwrmgr.sv
+./open_source_ip/opentitan_ip/rstmgr.sv
 ./open_source_ip/opentitan_ip/rv_core_ibex.sv
 ./open_source_ip/opentitan_ip/rv_dm.sv
+./open_source_ip/opentitan_ip/rv_plic.sv
+./open_source_ip/opentitan_ip/rv_timer.sv
+./open_source_ip/opentitan_ip/spi_device.sv
 ./open_source_ip/opentitan_ip/spi_host.sv
+./open_source_ip/opentitan_ip/top_earlgrey.sv
 ./open_source_ip/opentitan_ip/uart.sv
 ./open_source_ip/opentitan_ip/usbdev.sv
-+incdir+./open_source_ip/opentitan_ip
+./open_source_ip/opentitan_ip/xbar_main.sv
+./open_source_ip/opentitan_ip/xbar_peri.sv

@@ -19,17 +19,23 @@
                 "s0": {
                     "direction": "input",
                     "width": "[0:0]",
-                    "dimension": "[7:0]"
+                    "dimension": [
+                        "[7:0]"
+                    ]
                 },
                 "s1": {
                     "direction": "output",
                     "width": "[7:0]",
-                    "dimension": "[7:0]"
+                    "dimension": [
+                        "[7:0]"
+                    ]
                 },
                 "s2": {
                     "direction": "input",
                     "width": "[7:0]",
-                    "dimension": "[7:0]"
+                    "dimension": [
+                        "[7:0]"
+                    ]
                 }
             }
         },
@@ -55,17 +61,23 @@
                 "s0": {
                     "direction": "input",
                     "width": "[0:0]",
-                    "dimension": "[7:0]"
+                    "dimension": [
+                        "[7:0]"
+                    ]
                 },
                 "s1": {
                     "direction": "output",
                     "width": "[255:0]",
-                    "dimension": "[255:0]"
+                    "dimension": [
+                        "[255:0]"
+                    ]
                 },
                 "s2": {
                     "direction": "input",
                     "width": "[7:0]",
-                    "dimension": "[7:0]"
+                    "dimension": [
+                        "[7:0]"
+                    ]
                 }
             }
         }

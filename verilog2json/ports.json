@@ -11,17 +11,17 @@
                 "s0": {
                     "direction": "input",
                     "width": "1",
-                    "dimension": "PARAM0"
+                    "dimension": ["[PARAM0-1:0]"]
                 },
                 "s1": {
                     "direction": "output",
                     "width": "[PARAM0-1:0]",
-                    "dimension": "PARAM0"
+                    "dimension": ["[PARAM0-1:0]"]
                 },
                 "s2": {
                     "direction": "input",
                     "width": "[PARAM3-1:0]",
-                    "dimension": "PARAM1 / 2"
+                    "dimension": ["PARAM1 / 2"]
                 }
             }
         },
@@ -37,17 +37,17 @@
                 "s0": {
                     "direction": "input",
                     "width": "1",
-                    "dimension": "PARAM0"
+                    "dimension": ["[PARAM0]"]
                 },
                 "s1": {
                     "direction": "output",
                     "width": "[PARAM2-1:0]",
-                    "dimension": "PARAM2"
+                    "dimension": ["[PARAM2]"]
                 },
                 "s2": {
                     "direction": "input",
                     "width": "[PARAM3-1:0]",
-                    "dimension": "PARAM1 / 2"
+                    "dimension": ["[PARAM1 / 2]"]
                 }
             }
         }

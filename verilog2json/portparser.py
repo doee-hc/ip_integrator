@@ -44,6 +44,7 @@ def eval_expr(expr, params):
         int: 表达式的计算结果。
     """
     # 解析表达式
+    expr = expr.replace('$', '')
     expr = convert_ternary_operator(expr)
     tree = ast.parse(expr, mode='eval').body
 
@@ -68,7 +69,7 @@ def eval_expr(expr, params):
                 
                 if isinstance(value, str):
                     # 如果参数值是字符串，递归计算其值
-                    return eval_expr(value.replace('$', ''), params)
+                    return eval_expr(value, params)
                 else:
                     return value
             else:
@@ -114,16 +115,20 @@ def eval_expr(expr, params):
 
     return _eval(tree)
 
-def parse_width_dimension(exp, params):
-    parts = exp.split(':')
+def parse_packed(exp, params):
+    _exp = exp.strip("[]")
+    parts = _exp.split(':')
     # 将width解析成纯数字
     if len(parts) == 2:
         exp_l = eval_expr(parts[0], params)
         exp_r = eval_expr(parts[1], params)
         result = f"[{exp_l}:{exp_r}]"
     else:
-        result = f"[{int(eval_expr(exp, params)-1)}:0]"
+        result = f"[{int(eval_expr(_exp, params)-1)}:0]"
+    
+    print(exp + " -> " + result)
     return result
+
 
 def process_instance_parameters(params):
     """
@@ -150,12 +155,22 @@ def process_instance_ports(ports, params):
     """
     for port_name, port in ports.items():
         # Update the width of the port
-        port['width'] = parse_width_dimension(port['width'].strip("[]"), params)
+        port['width'] = parse_packed(port['width'], params)
         
         # Update the dimension of the port, if it exists
-        dimension = port['dimension'].strip("[]")
-        if dimension:
-            port['dimension'] = parse_width_dimension(dimension, params)
+
+        if port.get('dimension'):
+            dimension = port['dimension']
+            parsed_dimension = []
+            for dim in dimension:
+                parsed = parse_packed(dim, params)
+                if parsed != "[0:0]":
+                    parsed_dimension.append(parsed)
+
+            if len(parsed_dimension) == 0:
+                del port['dimension']
+            else:
+                port['dimension'] = parsed_dimension
         
         ports[port_name] = port
     return ports
@@ -185,5 +200,10 @@ def process_ports(file_path, output_file_path):
     with open(output_file_path, 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
-# 使用示例
-process_ports('ports.json', 'ports_parsed.json')
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Parse ports width and dimension expressions.')
+    parser.add_argument('-f', '--file', required=True, help='Single json to process')
+    parser.add_argument('-o', '--output', required=True, help='Output json file name')
+    args = parser.parse_args()
+    if args.file and args.output:
+        process_ports(args.file, args.output)

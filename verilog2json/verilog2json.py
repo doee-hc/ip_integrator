@@ -12,6 +12,7 @@ import os
 import argparse
 import ast
 import operator
+import copy
 
 def clog2(x):
     if x <= 0:
@@ -21,6 +22,7 @@ def clog2(x):
 # 安全环境，只包含我们允许的运算符和函数
 safe_dict = {
     'clog2': clog2,
+    'concat': lambda *args: int(''.join(format(arg, 'b') for arg in args), 2)
 }
 
 # 添加安全的运算符
@@ -35,6 +37,12 @@ safe_operators = {
     ast.USub: operator.neg
 }
 
+def convert_ternary_operator(expr):
+    # 正则表达式匹配形式为 x ? y : z 的三目运算符
+    pattern = re.compile(r'(.+?)\s*\?\s*(.+?)\s*:\s*(.+)')
+    # 替换为 Python 的条件表达式形式：y if x else z
+    return pattern.sub(r'(\2 if \1 else \3)', expr)
+
 def eval_expr(expr, params):
     """
     安全地计算表达式的值。
@@ -45,6 +53,8 @@ def eval_expr(expr, params):
         int: 表达式的计算结果。
     """
     # 解析表达式
+    expr = expr.replace('$', '')
+    expr = convert_ternary_operator(expr)
     tree = ast.parse(expr, mode='eval').body
 
     # 计算表达式的值
@@ -61,10 +71,16 @@ def eval_expr(expr, params):
                 try:
                     # 尝试将参数值从字符串转换为整数
                     value = int(value)
+
                 except ValueError:
                     # 如果转换失败，保持原样
                     pass
-                return value
+                
+                if isinstance(value, str):
+                    # 如果参数值是字符串，递归计算其值
+                    return eval_expr(value.replace('$', ''), params)
+                else:
+                    return value
             else:
                 raise ValueError(f"Unknown identifier: {node.id}")
         elif isinstance(node, ast.Call):  # <func>(<args>)
@@ -74,16 +90,56 @@ def eval_expr(expr, params):
                 return func(*args)
             else:
                 raise ValueError(f"Unknown function: {node.func.id}")
+        elif isinstance(node, ast.IfExp):
+            test = _eval(node.test)
+            if test:
+                return _eval(node.body)
+            else:
+                return _eval(node.orelse)
+        elif isinstance(node, ast.Compare):
+            # 比较操作通常只有一个操作符和两个操作数
+            left = _eval(node.left)
+            # 处理可能存在的多个比较
+            for operation, right_operand in zip(node.ops, node.comparators):
+                right = _eval(right_operand)
+                if isinstance(operation, ast.Eq):
+                    result = left == right
+                elif isinstance(operation, ast.NotEq):
+                    result = left != right
+                elif isinstance(operation, ast.Lt):
+                    result = left < right
+                elif isinstance(operation, ast.LtE):
+                    result = left <= right
+                elif isinstance(operation, ast.Gt):
+                    result = left > right
+                elif isinstance(operation, ast.GtE):
+                    result = left >= right
+                # 根据比较结果更新左侧操作数，以支持链式比较
+                left = right
+            if not result:
+                return False
+            return True
         else:
-            raise TypeError(node)
+            raise TypeError("Unsupported expression type: {}".format(type(node)))
 
     return _eval(tree)
 
+def parse_packed(exp, params):
+    parts = exp.strip("[]").split(':')
+    # 将width解析成纯数字
+    if len(parts) == 2:
+        exp_l = eval_expr(parts[0], params)
+        exp_r = eval_expr(parts[1], params)
+        result = f"[{exp_l}:{exp_r}]"
+    else:
+        result = f"[{int(eval_expr(exp, params)-1)}:0]"
+    return result
 
-# 自定义监听器类
-class ModuleListener(SystemVerilogParserListener):
-    def __init__(self):
-        self.style = {
+# package::struct的互联匹配规则
+PACKAGE_STRUCT_DICT = {
+    # opentitan ip
+}
+DEFAULT_STYLE = {
             "width": 80,
             "height": 60,
             "borderRadius": "10",
@@ -92,7 +148,7 @@ class ModuleListener(SystemVerilogParserListener):
             "stroke": "#926390",
             "fill": "#926390"
         }
-        self.content = {
+DEFAULT_CONTENT = {
             "category": "Peripherial",
             "ipFullName": {},
             "vendor": "Unknown",
@@ -102,6 +158,12 @@ class ModuleListener(SystemVerilogParserListener):
             "defines": {},
             "ports": {}
         }
+
+
+
+# 自定义监听器类
+class ModuleListener(SystemVerilogParserListener):
+    def __init__(self):
         self.modules = {}
         self.currentModuleName = ""
         self.currentParamName = ""
@@ -110,6 +172,7 @@ class ModuleListener(SystemVerilogParserListener):
         self.currentPortWidth = ""
         self.iteration = 0
         self.paramRegion = False
+        self.localParam ={}
 
     # def enterSource_text(self, ctx:SystemVerilogParser.Source_textContext):
     #     print(f"source_text: {ctx.getText()}")
@@ -117,9 +180,18 @@ class ModuleListener(SystemVerilogParserListener):
 
     def enterModule_identifier(self, ctx:SystemVerilogParser.Module_identifierContext):
         self.currentModuleName = ctx.getText()
-        self.modules[self.currentModuleName] = {'style':self.style,'content':self.content}
+        self.modules[self.currentModuleName] = {
+            'style': copy.deepcopy(DEFAULT_STYLE),
+            'content': copy.deepcopy(DEFAULT_CONTENT)
+        }
         self.modules[self.currentModuleName]['content']['ipFullName'] = self.currentModuleName
         print(f"Module name: {self.currentModuleName}")
+        self.localParam = {}
+
+    def enterLocal_parameter_declaration(self, ctx:SystemVerilogParser.Local_parameter_declarationContext):
+        localParamName = ctx.list_of_param_assignments().param_assignment()[0].parameter_identifier().getText()
+        localParamValue = ctx.list_of_param_assignments().param_assignment()[0].constant_param_expression().getText()
+        self.localParam[localParamName] = {'value': localParamValue}
 
     def enterParameter_declaration(self, ctx:SystemVerilogParser.Parameter_declarationContext):
         self.paramRegion = True
@@ -259,20 +331,14 @@ class ModuleListener(SystemVerilogParserListener):
         
         print(f"Port name: {port_names}, direction: {port_direction}, width: {port_width}, dimension: {port_dimension}")
 
-        port_width = port_width.strip("[]")
-        parts = port_width.split(':')
-        params = self.modules[self.currentModuleName]['content']['parameters']
-        # 将width解析成纯数字
-        if len(parts) == 2:
-            # 多位宽的情况
-            width_l = eval_expr(parts[0], params)
-            width_r = eval_expr(parts[1], params)
-            if width_l == width_r == 0:
-                port_width = '1'
-            else:
-                port_width = f"[{width_l}:{width_r}]"
-        
-
+        # # 临时将所有port、dimension转为数字
+        # params = {**self.modules[self.currentModuleName]['content']['parameters'],**self.localParam}
+        # port_width = parse_packed(port_width,params)
+        # parsed_dimension = []
+        # if port_dimension:
+        #     for dim in port_dimension:
+        #         parsed_dimension.append(parse_packed(dim,params))
+        #     port_dimension = parsed_dimension
         
         # 添加端口名称到模块信息中
         self.modules[self.currentModuleName]['content']['ports'][port_names] = {'direction': port_direction, 'width': port_width}
@@ -542,7 +608,7 @@ class IncludeListener(SystemVerilogPreParserListener):
 
 def preparse_systemverilog(content,include_dirs,included_files=[],defines=[]):
 
-    print("Enter preparse_systemverilog")
+
 
     input_stream = InputStream(content)
     lexer = SystemVerilogLexer(input_stream)
@@ -630,11 +696,12 @@ if __name__ == '__main__':
     # 遍历所有文件路径，将文件内容连接起来
     for file_path in files_to_process:
         with open(file_path, 'r') as file:
+            print(f"Preparsing {file_path}")
             preprocessed_source_text = '\n'.join(preparse_systemverilog(file.read(),include_dirs))
             combined_content += preprocessed_source_text+'\n'
 
-    with open("preproced_verilog.v", 'w') as json_file:
-        json_file.write(combined_content)
+    with open("preproced_verilog.v", 'w') as file:
+        file.write(combined_content)
     
     print("============Preprocessed source text=============")
     # print(combined_content)
@@ -645,7 +712,8 @@ if __name__ == '__main__':
     pattern = r'(module\s+.*?\(.*?\)\s?;).*?(endmodule)'
     filted_code = re.sub(pattern, r'\1 \n \2', combined_content, flags=re.DOTALL)
     print(f'Filted code :{filted_code}')
-
+    with open("filed_verilog.v", 'w') as file:
+        file.write(filted_code)
     parse_systemverilog(filted_code,args.group,args.output)
 
 
