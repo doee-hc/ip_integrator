@@ -20,3 +20,5 @@ module xbar_main #(
 
   input prim_mubi_pkg::mubi4_t scanmode_i
 );
+
+endmodule

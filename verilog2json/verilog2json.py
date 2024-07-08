@@ -158,6 +158,13 @@ DEFAULT_CONTENT = {
             "defines": {},
             "ports": {}
         }
+# BUS_PACKAGE ={
+#     "tilelink" : {
+#         "tlul_pkg::tl_d2h_t"
+#         "package": "tlul_pkg",
+#         "struct": "tl_d2h_t"
+#     }
+# }
 
 
 

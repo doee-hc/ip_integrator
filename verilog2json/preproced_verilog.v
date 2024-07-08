@@ -10898,6 +10898,7 @@ module xbar_main #(
   input prim_mubi_pkg::mubi4_t scanmode_i
 );
 
+endmodule
 // This is a tilelink peripheral crossbar that supports single masters and multiple slaves
 // Since opentitan generates this module using templates, it is not convenient to integrate it into the environment, so we manually write a parameterized empty shell
 module xbar_peri #(

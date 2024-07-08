@@ -2744,6 +2744,76 @@
                             }
                         }
                     }
+                },
+                "xbar_peri": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "xbar_peri",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DEVICE_NUM": {
+                                "value": "1"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "clk_peri_i": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "rst_peri_ni": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "tl_main_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_h2d_t"
+                            },
+                            "tl_main_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_d2h_t"
+                            },
+                            "tl_device_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_h2d_t",
+                                "dimension": [
+                                    "[DEVICE_NUM-1:0]"
+                                ]
+                            },
+                            "tl_device_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_d2h_t",
+                                "dimension": [
+                                    "[DEVICE_NUM-1:0]"
+                                ]
+                            },
+                            "scanmode_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "prim_mubi_pkg",
+                                "struct": "mubi4_t"
+                            }
+                        }
+                    }
                 }
             }
         }

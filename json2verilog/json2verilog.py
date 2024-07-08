@@ -36,7 +36,7 @@ def generate_verilog(json_file_name,verilog_file_name):
                             width_l,width_r = width.strip('[]').split(':')
                             length_m1 = int(width_l) - int(width_r)
                             verilog_code += f"    {io_value:6s} {port_type} {io_value}_{l_r_value}_{port_name}[{length_m1}:0],\n"
-        verilog_code = verilog_code.rstrip(",\n") + "\n);\n\n"
+    verilog_code = verilog_code.rstrip(",\n") + "\n);\n\n"
 
 
     # Generate parameter declarations for every instance
@@ -63,9 +63,13 @@ def generate_verilog(json_file_name,verilog_file_name):
             if port['width'] == '1':
                 port['width'] = ''
 
+
             # port dimension
             if port.get('dimension'):
-                verilog_code += f"    {port_type} {port['width']} {instance_name}_{port_name} {port['dimension']};\n"
+                dimension = ''
+                for dim in port['dimension']:
+                    dimension += dim
+                verilog_code += f"    {port_type} {port['width']} {instance_name}_{port_name} {dimension};\n"
             else:
                 verilog_code += f"    {port_type} {port['width']} {instance_name}_{port_name};\n"
         verilog_code += "\n"
