@@ -371,7 +371,7 @@ module pwm
   output logic [NOutputs-1:0] cio_pwm_o,
   output logic [NOutputs-1:0] cio_pwm_en_o
 ); 
- endmodule : pwm
+ endmodule
 
 // Copyright lowRISC contributors (OpenTitan project).
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
@@ -965,7 +965,7 @@ module spi_host
   output logic             intr_error_o,
   output logic             intr_spi_event_o
 ); 
- endmodule : spi_host
+ endmodule
 
 // Copyright lowRISC contributors (OpenTitan project).
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
