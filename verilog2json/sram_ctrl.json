@@ -1,0 +1,169 @@
+{
+    "result": [
+        {
+            "groupName": "IP_lib",
+            "groupData": {
+                "sram_ctrl": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "sram_ctrl",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "DataWidth": {
+                                "value": "32+tlul_pkg::DataIntgWidth",
+                                "type": "int"
+                            },
+                            "NonceWidth": {
+                                "value": "64",
+                                "type": "int"
+                            },
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "6",
+                                "type": "int"
+                            },
+                            "RamAw": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "MemSizeRam": {
+                                "value": "32'h1000",
+                                "type": "int"
+                            },
+                            "AlertAsyncOn": {
+                                "value": "{NumAlerts{1'b1}}",
+                                "type": "logic",
+                                "width": "[NumAlerts-1:0]"
+                            },
+                            "InstrExec": {
+                                "value": "1",
+                                "type": "bit"
+                            },
+                            "RndCnstSramKey": {
+                                "value": "RndCnstSramKeyDefault",
+                                "type": "otp_ctrl_pkg::sram_key_t"
+                            },
+                            "RndCnstSramNonce": {
+                                "value": "RndCnstSramNonceDefault",
+                                "type": "otp_ctrl_pkg::sram_nonce_t"
+                            },
+                            "RndCnstLfsrSeed": {
+                                "value": "RndCnstLfsrSeedDefault",
+                                "type": "lfsr_seed_t"
+                            },
+                            "RndCnstLfsrPerm": {
+                                "value": "RndCnstLfsrPermDefault",
+                                "type": "lfsr_perm_t"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "clk_i": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "rst_ni": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "clk_otp_i": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "rst_otp_ni": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "ram_tl_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_h2d_t"
+                            },
+                            "ram_tl_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_d2h_t"
+                            },
+                            "regs_tl_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_h2d_t"
+                            },
+                            "regs_tl_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_d2h_t"
+                            },
+                            "alert_rx_i": {
+                                "direction": "input",
+                                "width": "[NumAlerts-1:0]",
+                                "package": "prim_alert_pkg",
+                                "struct": "alert_rx_t"
+                            },
+                            "alert_tx_o": {
+                                "direction": "output",
+                                "width": "[NumAlerts-1:0]",
+                                "package": "prim_alert_pkg",
+                                "struct": "alert_tx_t"
+                            },
+                            "lc_escalate_en_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "lc_ctrl_pkg",
+                                "struct": "lc_tx_t"
+                            },
+                            "lc_hw_debug_en_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "lc_ctrl_pkg",
+                                "struct": "lc_tx_t"
+                            },
+                            "otp_en_sram_ifetch_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "prim_mubi_pkg",
+                                "struct": "mubi8_t"
+                            },
+                            "sram_otp_key_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "otp_ctrl_pkg",
+                                "struct": "sram_otp_key_req_t"
+                            },
+                            "sram_otp_key_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "otp_ctrl_pkg",
+                                "struct": "sram_otp_key_rsp_t"
+                            },
+                            "cfg_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "prim_ram_1p_pkg",
+                                "struct": "ram_1p_cfg_t"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

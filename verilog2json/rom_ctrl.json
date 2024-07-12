@@ -1,0 +1,142 @@
+{
+    "result": [
+        {
+            "groupName": "IP_lib",
+            "groupData": {
+                "rom_ctrl": {
+                    "style": {
+                        "width": 80,
+                        "height": 60,
+                        "borderRadius": "10",
+                        "fontSize": 12,
+                        "fontColor": "#fff",
+                        "stroke": "#926390",
+                        "fill": "#926390"
+                    },
+                    "content": {
+                        "category": "Peripherial",
+                        "ipFullName": "rom_ctrl",
+                        "vendor": "Unknown",
+                        "version": "1.0",
+                        "description": "No description.",
+                        "parameters": {
+                            "NumAlerts": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "RegsAw": {
+                                "value": "7",
+                                "type": "int"
+                            },
+                            "RomAw": {
+                                "value": "1",
+                                "type": "int"
+                            },
+                            "BootRomInitFile": {
+                                "value": "\"\""
+                            },
+                            "AlertAsyncOn": {
+                                "value": "{NumAlerts{1'b1}}",
+                                "type": "logic",
+                                "width": "[NumAlerts-1:0]"
+                            },
+                            "RndCnstScrNonce": {
+                                "value": "'0",
+                                "type": "bit",
+                                "width": "[63:0]"
+                            },
+                            "RndCnstScrKey": {
+                                "value": "'0",
+                                "type": "bit",
+                                "width": "[127:0]"
+                            },
+                            "MemSizeRom": {
+                                "value": "32'h8000",
+                                "type": "int"
+                            },
+                            "SecDisableScrambling": {
+                                "value": "1'b0",
+                                "type": "bit"
+                            }
+                        },
+                        "defines": {},
+                        "ports": {
+                            "clk_i": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "rst_ni": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "rom_cfg_i": {
+                                "direction": "input",
+                                "width": "[0:0]"
+                            },
+                            "rom_tl_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_h2d_t"
+                            },
+                            "rom_tl_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_d2h_t"
+                            },
+                            "regs_tl_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_h2d_t"
+                            },
+                            "regs_tl_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "tlul_pkg",
+                                "struct": "tl_d2h_t"
+                            },
+                            "alert_rx_i": {
+                                "direction": "input",
+                                "width": "[NumAlerts-1:0]",
+                                "package": "prim_alert_pkg",
+                                "struct": "alert_rx_t"
+                            },
+                            "alert_tx_o": {
+                                "direction": "output",
+                                "width": "[NumAlerts-1:0]",
+                                "package": "prim_alert_pkg",
+                                "struct": "alert_tx_t"
+                            },
+                            "pwrmgr_data_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "rom_ctrl_pkg",
+                                "struct": "pwrmgr_data_t"
+                            },
+                            "keymgr_data_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "rom_ctrl_pkg",
+                                "struct": "keymgr_data_t"
+                            },
+                            "kmac_data_i": {
+                                "direction": "input",
+                                "width": "[0:0]",
+                                "package": "kmac_pkg",
+                                "struct": "app_rsp_t"
+                            },
+                            "kmac_data_o": {
+                                "direction": "output",
+                                "width": "[0:0]",
+                                "package": "kmac_pkg",
+                                "struct": "app_req_t"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

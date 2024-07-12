@@ -31,7 +31,7 @@
                 "PARAM1" : {"value":"PARAM0 + 8"},
                 "PARAM2" : {"value":"PARAM1*16"},
                 "PARAM3" : {"value":"$clog2(PARAM2-1)"},
-                "PARAM4" : {"value": "PARAM0 != 8 ? 1 : 0"}
+                "PARAM4" : {"value": "PARAM0 != 8 ? 1 : $clog2(PARAM2)"}
             },
             "ports" : {
                 "s0": {
@@ -46,7 +46,7 @@
                 },
                 "s2": {
                     "direction": "input",
-                    "width": "[PARAM3-1:0]",
+                    "width": "[PARAM4-1:0]",
                     "dimension": ["[PARAM1 / 2]"]
                 }
             }

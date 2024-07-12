@@ -646,7 +646,33 @@ def parse_systemverilog(text,group_name,json_file_name):
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
 
+    for module_name, module in listener.modules.items():
+        if module_name == "ahb3lite_interconnect":
+            print(f"Add bus tag to {module_name}")
+            module['content']['category'] = "Bus"
+            for port_name, port in module['content']['ports'].items():
+                if port_name.startswith("slv_H") or port_name.startswith("mst_H"):
+                    Tag = "AHBL::" + port_name
+                    print(f"Port:{port_name} Tag: {Tag}")
+                    port['busRef'] = Tag
+
+        if module_name == "CorePkg_top":
+            print(f"Add bus tag to {module_name}")
+            module['content']['category'] = "Master"
+            for port_name, port in module['content']['ports'].items():
+                if "ibus_h" in port_name:
+                    Tag = "AHBL::mst_" + port_name.rsplit("_",1)[-1].upper() + "::0"
+                    print(f"Port:{port_name} Tag: {Tag}")
+                    port['busRef'] = Tag
+                if "dbus_h" in port_name:
+                    Tag = "AHBL::mst_" + port_name.rsplit("_",1)[-1].upper() + "::1"
+                    print(f"Port:{port_name} Tag: {Tag}")
+                    port['busRef'] = Tag
+
+
     ip_lib = {"result":[{"groupName":group_name,"groupData":listener.modules}]}
+
+    
 
     # Convert the parsed modules to JSON format
     json_output = json.dumps(ip_lib, indent=4)

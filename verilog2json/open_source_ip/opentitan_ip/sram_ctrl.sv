@@ -621,4 +621,3 @@ module sram_ctrl
   `ASSERT(TlulGntIsCorrect_A, tlul_req |-> (sram_gnt & ~init_req) == tlul_gnt)
 
 endmodule
-

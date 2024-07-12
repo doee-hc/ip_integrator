@@ -54,7 +54,7 @@
                     "value": "$clog2(PARAM2-1)"
                 },
                 "PARAM4": {
-                    "value": "PARAM0 != 8 ? 1 : 0"
+                    "value": "PARAM0 != 8 ? 1 : $clog2(PARAM2)"
                 }
             },
             "ports": {
