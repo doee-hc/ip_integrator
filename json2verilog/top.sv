@@ -1,10 +1,10 @@
 module top_module(
-    input  logic input_instance0_s4[7:0],
-    output logic output_instance0_s4[7:0],
-    inout  logic inout_instance0_s4[16:0],
-    input  logic input_instance1_s5[7:0],
-    output logic output_instance1_s5[7:0],
-    inout  logic inout_instance1_s5[16:0]
+    input  logic [7:0] input_instance0_s4,
+    output logic [7:0] output_instance0_s4,
+    inout  logic [16:0] inout_instance0_s4,
+    input  logic [7:0] input_instance1_s5,
+    output logic [7:0] output_instance1_s5,
+    inout  logic [16:0] inout_instance1_s5
 );
 
     // Parameters for instance0

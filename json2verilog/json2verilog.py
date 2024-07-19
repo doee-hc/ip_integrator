@@ -35,7 +35,10 @@ def generate_verilog(json_file_name,verilog_file_name):
                             port_type = get_port_type(data['instances'][l_r_value]['ports'][port_name])
                             width_l,width_r = width.strip('[]').split(':')
                             length_m1 = int(width_l) - int(width_r)
-                            verilog_code += f"    {io_value:6s} {port_type} {io_value}_{l_r_value}_{port_name}[{length_m1}:0],\n"
+                            if length_m1 == 0:
+                                verilog_code += f"    {io_value:6s} {port_type} {io_value}_{l_r_value}_{port_name},\n"
+                            else:
+                                verilog_code += f"    {io_value:6s} {port_type} [{length_m1}:0] {io_value}_{l_r_value}_{port_name},\n"
     verilog_code = verilog_code.rstrip(",\n") + "\n);\n\n"
 
 
